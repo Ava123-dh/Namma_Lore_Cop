@@ -61,6 +61,36 @@ npm run dev
 
 3. Open your browser and visit `http://localhost:3000`
 
+### Environment variables & security
+
+- Copy the example env into a local `.env` file and fill in your provider keys. Never commit `.env` or real API keys to the repository.
+```bash
+cp .env.example .env
+# then edit .env and add your real keys
+```
+
+- Required environment variables (place in your local `.env`):
+  - `GOOGLE_API_KEY` — Google Generative Language / Gemini API key
+  - `ANTHROPIC_API_KEY` — Anthropic API key (if you want to use Claude)
+  - `PORT` — Optional server port (default `4000`)
+
+- Start the backend proxy (run this in a separate terminal):
+```bash
+npm run server
+```
+
+- Security recommendations:
+  - If an API key was exposed, rotate/revoke it immediately from the provider console.
+  - Do not commit `.env` or secrets. This repository includes a `.gitignore` entry for `.env`.
+  - To remove accidentally committed secrets from the last commit:
+```bash
+git rm --cached .env
+git commit -m "Remove leaked env file"
+git push
+```
+  - To purge secrets from history (use with caution; rewriting history affects collaborators), use `bfg` or `git filter-repo`.
+
+
 ### Build for Production
 
 ```bash
