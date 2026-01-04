@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Timeline from './pages/Timeline'
+import MauryaTimeline from './pages/MauryaTimeline'
 import Quiz from './pages/Quiz'
 import Map from './pages/Map'
 import Favorites from './pages/Favorites'
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/timeline" element={<Timeline />} />
+            <Route path="/timeline/maurya" element={<MauryaTimeline />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/map" element={<Map />} />
             <Route path="/favorites" element={<Favorites />} />

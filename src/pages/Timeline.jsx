@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { Heart, Calendar, Users, MapPin } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Heart, Calendar, Users, MapPin, ChevronRight } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
 
 const Timeline = () => {
+  const navigate = useNavigate()
   const { isFavorite, toggleFavorite } = useFavorites()
   const [selectedEra, setSelectedEra] = useState('all')
   const [selectedEvent, setSelectedEvent] = useState(null)
@@ -244,15 +246,26 @@ const Timeline = () => {
                         </button>
                       </div>
                       <p className="text-gray-700 mb-4">{event.description}</p>
-                      <button
-                        onClick={() => setSelectedEvent(event)}
-                        className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center"
-                      >
-                        Learn More
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
+                      <div className="flex gap-3">
+                        {event.id === 'evt1' && (
+                          <button
+                            onClick={() => navigate('/timeline/maurya')}
+                            className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
+                          >
+                            Explore Timeline
+                            <ChevronRight size={16} />
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setSelectedEvent(event)}
+                          className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center"
+                        >
+                          Learn More
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
