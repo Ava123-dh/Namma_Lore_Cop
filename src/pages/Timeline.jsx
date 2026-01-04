@@ -16,6 +16,7 @@ const Timeline = () => {
       year: '300 BCE',
       era: 'ancient',
       title: 'Mauryan Empire in Karnataka',
+      route: '/timeline/maurya',
       description: 'Emperor Ashoka extended Mauryan rule to Karnataka region. Rock edicts found in Sannati and other places provide evidence of Buddhist influence.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
@@ -26,6 +27,7 @@ const Timeline = () => {
       year: '350 CE',
       era: 'ancient',
       title: 'Kadamba Dynasty Founded',
+      route: '/timeline/kadamba',
       description: 'Mayurasharma established the Kadamba dynasty, the first native kingdom of Karnataka with Banavasi as its capital.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
@@ -36,6 +38,7 @@ const Timeline = () => {
       year: '543 CE',
       era: 'ancient',
       title: 'Chalukya Dynasty Rises',
+      route: '/timeline/chalukya',
       description: 'Pulakeshin I founded the Chalukya dynasty at Badami, which became a major power in South India.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
@@ -46,6 +49,7 @@ const Timeline = () => {
       year: '753 CE',
       era: 'medieval',
       title: 'Rashtrakuta Empire',
+      route: '/timeline/rashtrakuta',
       description: 'Dantidurga established the Rashtrakuta Empire, which ruled most of the Deccan and beyond.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
@@ -56,6 +60,7 @@ const Timeline = () => {
       year: '973 CE',
       era: 'medieval',
       title: 'Western Chalukya Revival',
+      route: '/timeline/western-chalukya',
       description: 'Tailapa II revived the Chalukya dynasty, establishing the Western Chalukyas with Kalyani as capital.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
@@ -66,6 +71,7 @@ const Timeline = () => {
       year: '1000 CE',
       era: 'medieval',
       title: 'Pampa\'s Vikramarjuna Vijaya',
+      route: '/timeline/pampa',
       description: 'The great Kannada poet Pampa wrote Vikramarjuna Vijaya, one of the greatest works in Kannada literature.',
       category: 'Arts',
       image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
@@ -76,6 +82,7 @@ const Timeline = () => {
       year: '1117 CE',
       era: 'medieval',
       title: 'Hoysala Kingdom Established',
+      route: '/timeline/hoysala',
       description: 'Vishnuvardhana established the Hoysala Empire with Dwarasamudra (Halebidu) as capital.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1604420805055-aa0e0214b7e5?w=400&h=300&fit=crop',
@@ -86,6 +93,7 @@ const Timeline = () => {
       year: '1336 CE',
       era: 'medieval',
       title: 'Vijayanagara Empire Founded',
+      route: '/timeline/vijayanagara',
       description: 'Harihara I and Bukka Raya founded the Vijayanagara Empire, which became one of the greatest empires in Indian history.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=300&fit=crop',
@@ -96,6 +104,7 @@ const Timeline = () => {
       year: '1565 CE',
       era: 'medieval',
       title: 'Battle of Talikota',
+      route: '/timeline/talikota',
       description: 'The Battle of Talikota led to the decline of the Vijayanagara Empire.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1587135941948-670b381f08ce?w=400&h=300&fit=crop',
@@ -106,6 +115,7 @@ const Timeline = () => {
       year: '1610 CE',
       era: 'modern',
       title: 'Keladi Nayaka Kingdom',
+      route: '/timeline/keladi',
       description: 'The Keladi Nayakas became prominent rulers of the region, with Ikkeri as their capital.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
@@ -116,6 +126,7 @@ const Timeline = () => {
       year: '1761 CE',
       era: 'modern',
       title: 'Hyder Ali\'s Rise',
+      route: '/timeline/hyder-ali',
       description: 'Hyder Ali became the de facto ruler of Mysore Kingdom, beginning a new chapter in Karnataka history.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
@@ -126,6 +137,7 @@ const Timeline = () => {
       year: '1782 CE',
       era: 'modern',
       title: 'Tipu Sultan\'s Reign',
+      route: '/timeline/tipu',
       description: 'Tipu Sultan became the ruler of Mysore, known for his valor and resistance against British colonialism.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
@@ -136,6 +148,7 @@ const Timeline = () => {
       year: '1947 CE',
       era: 'modern',
       title: 'Indian Independence',
+      route: '/timeline/independence',
       description: 'India gained independence from British rule, and the princely states including Mysore joined the Indian Union.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
@@ -146,6 +159,7 @@ const Timeline = () => {
       year: '1956 CE',
       era: 'modern',
       title: 'Formation of Karnataka',
+      route: '/timeline/formation-karnataka',
       description: 'Karnataka state was formed by merging Kannada-speaking regions, initially named Mysore State.',
       category: 'Politics',
       image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
@@ -173,6 +187,26 @@ const Timeline = () => {
   const filteredEvents = selectedEra === 'all' 
     ? timelineEvents 
     : timelineEvents.filter(event => event.era === selectedEra)
+
+  const cleanText = (text = '') => text.replace(/\[\d+\]/g, '').trim()
+
+  const routeMap = {
+    evt1: '/timeline/maurya',
+    evt2: '/timeline/kadamba',
+    evt3: '/timeline/chalukya',
+    evt4: '/timeline/rashtrakuta',
+    evt5: '/timeline/western-chalukya',
+    evt6: '/timeline/pampa',
+    evt7: '/timeline/hoysala',
+    evt8: '/timeline/vijayanagara',
+    evt9: '/timeline/talikota',
+    evt10: '/timeline/keladi',
+    evt11: '/timeline/hyder-ali',
+    evt12: '/timeline/tipu',
+    evt13: '/timeline/independence',
+    evt14: '/timeline/formation-karnataka',
+    evt15: '/timeline/mysore-renamed',
+  }
 
   return (
     <div className="min-h-screen py-12">
@@ -245,11 +279,11 @@ const Timeline = () => {
                           />
                         </button>
                       </div>
-                      <p className="text-gray-700 mb-4">{event.description}</p>
+                      <p className="text-gray-700 mb-4">{cleanText(event.description)}</p>
                       <div className="flex gap-3">
-                        {event.id === 'evt1' && (
+                        {routeMap[event.id] && (
                           <button
-                            onClick={() => navigate('/timeline/maurya')}
+                            onClick={() => navigate(routeMap[event.id])}
                             className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
                           >
                             Explore Timeline
@@ -296,7 +330,7 @@ const Timeline = () => {
               <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full mb-4">
                 {selectedEvent.category}
               </span>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">{selectedEvent.details}</p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">{cleanText(selectedEvent.details)}</p>
               <div className="flex gap-4">
                 <button
                   onClick={() => toggleFavorite(selectedEvent)}

@@ -153,7 +153,7 @@ const MauryaTimeline = () => {
                           className="w-full h-64 object-cover rounded-lg mb-4"
                         />
                         <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                          {event.fullText}
+                          {event.fullText.replace(/\[\d+\]/g, '')}
                         </p>
                       </div>
 
@@ -194,6 +194,16 @@ const MauryaTimeline = () => {
           <p className="text-gray-700 leading-relaxed">
             The Mauryan period saw significant developments in administration, law, economics, and culture. The famous edicts of Ashoka, inscribed on rocks and pillars, are among the earliest written records of governance in Indian history and continue to influence modern concepts of human rights and environmental protection.
           </p>
+        </div>
+
+        {/* Explore links */}
+        <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
+          <h4 className="font-bold text-lg mb-3">Explore more</h4>
+          <ul className="list-disc pl-5 text-primary-700">
+            <li><a href="https://www.worldhistory.org/Mauryan_Empire/" target="_blank" rel="noreferrer" className="underline">World History — Mauryan Empire</a></li>
+            <li><a href="https://www.britannica.com/place/Mauryan-Empire" target="_blank" rel="noreferrer" className="underline">Britannica — Mauryan Empire</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Maurya_Empire" target="_blank" rel="noreferrer" className="underline">Wikipedia — Maurya Empire</a></li>
+          </ul>
         </div>
       </div>
 
