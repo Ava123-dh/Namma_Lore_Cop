@@ -96,7 +96,7 @@ const WesternChalukyaTimeline = () => {
                   </div>
                   {expandedEvent === event.id && (
                     <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                      <img src={event.image} alt={event.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+                      <img src={event.image} alt={event.title} className="w-full h-48 md:h-64 object-cover rounded-lg mb-4" />
                       <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
                       <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
                     </div>

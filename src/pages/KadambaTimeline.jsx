@@ -18,7 +18,7 @@ const KadambaTimeline = () => {
       fullText: "Mayurasharma, a Brahmin scholar from Talagunda, rebelled against Pallava overlord Skandavarman after a temple insult, defeating him with Ganga allies. He established Banavasi as capital, marking Karnataka's first native dynasty with Vedic rituals and land grants. This shift fostered indigenous Kannada identity and temple-building traditions.",
       category: 'Politics',
       highlights: ['First native Kannada dynasty', 'Banavasi capital', 'Vedic rituals and land grants', 'Indigenous Kannada identity'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      image: null,
     },
     {
       id: 'kadamba-2',
@@ -28,7 +28,8 @@ const KadambaTimeline = () => {
       fullText: "Kakusthavarma expanded territory via alliances and wars against Gangas, Vakatakas, and Pallavas, marrying into royal families for diplomacy. He shifted capital to Kolar temporarily, patronized Jainism, and boosted trade, controlling Karnataka, Goa, and Maharashtra parts. His court poet Durvinita chronicled these conquests, elevating Kadamba cultural prestige.",
       category: 'Expansion',
       highlights: ['Regional expansion to Goa and Maharashtra', 'Patronage of Jainism', 'Trade growth', 'Cultural elevation under court poet Durvinita'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      image: 'https://www.poojn.in/wp-content/uploads/2025/04/Kakusthavarmas-Reign-An-Exploration.jpeg.jpg',
+      imagePosition: '50% 30%',
     },
     {
       id: 'kadamba-3',
@@ -38,7 +39,7 @@ const KadambaTimeline = () => {
       fullText: "Ravivarma clashed with Pallavas, Gangas, and internal Triparvata branch, extending north to Narmada River against Vakatakas. Ruling amid family feuds, he maintained core territories through military prowess and Shaiva temples like Banavasi's Madhukeshvara. His victories sustained the dynasty but sowed decline seeds via infighting.",
       category: 'Military',
       highlights: ['Conflicts with Pallavas and Gangas', 'Extension to Narmada River', 'Patronage of Shaiva temples', 'Internal family feuds'],
-      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+      image: null,
     },
     {
       id: 'kadamba-4',
@@ -48,7 +49,7 @@ const KadambaTimeline = () => {
       fullText: "Badami Chalukyas under Pulakeshin I overthrew the weakened Kadambas, reducing them to vassals after Ravivarma's successors faltered. This ended independent Kadamba rule, fragmenting the dynasty into branches in Goa, Halasi, and Hangal under larger empires. However, Kadamba legacy persisted in architecture and minor kingdoms for centuries.",
       category: 'Political Change',
       highlights: ['Chalukya conquest under Pulakeshin I', 'Reduction to vassalage', 'Fragmentation into regional branches', 'Lasting cultural legacy'],
-      image: 'https://images.unsplash.com/photo-1582719471537-41efb2d30bba?w=400&h=300&fit=crop',
+      image: null,
     },
   ]
 
@@ -95,9 +96,16 @@ const KadambaTimeline = () => {
                   {expandedEvent === event.id && (
                     <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
                       <div className="mb-6">
-                        <img src={event.image} alt={event.title} className="w-full h-64 object-cover rounded-lg mb-4" />
-                        <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                      </div>
+                            {event.image && (
+                              <img
+                                src={event.image}
+                                alt={event.title}
+                                className="w-full h-48 md:h-64 object-cover rounded-lg mb-4"
+                                style={{ objectPosition: event.imagePosition || '50% 50%' }}
+                              />
+                            )}
+                            <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
+                          </div>
                       <div>
                         <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">

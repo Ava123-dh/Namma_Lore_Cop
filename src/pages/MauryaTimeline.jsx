@@ -19,7 +19,7 @@ const MauryaTimeline = () => {
       fullText: 'Chandragupta Maurya, guided by mentor Chanakya (Kautilya), overthrew the Nanda dynasty through guerrilla warfare and civil unrest, seizing Magadha\'s capital Pataliputra. This victory unified northern India, establishing centralized administration via the Arthashastra treatise on governance, economy, and espionage. Chandragupta\'s coalition expelled lingering Greek forces, laying foundations for imperial expansion across the subcontinent.',
       category: 'Politics',
       highlights: ['Overthrew Nanda dynasty', 'Established centralized governance', 'Mentored by Chanakya', 'Greek forces expelled'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      image: 'https://i.pinimg.com/736x/64/23/5f/64235f04a68e5af5cc01fcc6ff93d590.jpg',
     },
     {
       id: 'maurya-2',
@@ -30,7 +30,7 @@ const MauryaTimeline = () => {
       fullText: 'Chandragupta defeated Seleucus I Nicator\'s invading army, securing northwestern territories in a treaty that gained 500 elephants and diplomatic marriages. This halted Hellenistic incursions, extended Mauryan borders to modern Afghanistan, and boosted military prestige. The peace fostered Indo-Greek exchanges in culture and trade, enhancing the empire\'s wealth.',
       category: 'Military',
       highlights: ['Defeated Seleucid forces', 'Secured 500 war elephants', 'Extended borders to Afghanistan', 'Promoted Indo-Greek trade'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      image: 'https://i.pinimg.com/1200x/f9/9d/17/f99d172e9eb644565274ec070b5a778a.jpg',
     },
     {
       id: 'maurya-3',
@@ -41,7 +41,7 @@ const MauryaTimeline = () => {
       fullText: 'Ashoka\'s brutal annexation of Kalinga killed over 100,000, with massive casualties among soldiers and civilians shocking the emperor. Witnessing the bloodshed led to his conversion to Buddhism, renouncing violence for dhamma (moral law). This pivot promoted non-violence, welfare policies, and missionary spread of Buddhism across Asia.',
       category: 'Religious',
       highlights: ['100,000+ casualties', 'Ashoka\'s conversion to Buddhism', 'Adopted non-violence', 'Buddhist missionary expansion'],
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      image: 'https://www.cheggindia.com/wp-content/uploads/2025/07/gk-45226-kalinga-war-v1.png',
     },
     {
       id: 'maurya-4',
@@ -52,7 +52,7 @@ const MauryaTimeline = () => {
       fullText: 'Ashoka inscribed rock and pillar edicts promoting ethical governance, banning animal sacrifices, ensuring fair justice, and environmental protections. These multilingual proclamations, found empire-wide, standardized moral codes and abolished slavery in parts. They represent early welfare state ideals, influencing later Indian ethics and global human rights concepts.',
       category: 'Governance',
       highlights: ['Multilingual edicts', 'Banned animal sacrifices', 'Standardized justice system', 'Environmental protections', 'Abolished slavery'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR22gzM6WoJQAVt0bzghgZsRrc4NbKOkchCNg&s',
     },
     {
       id: 'maurya-5',
@@ -63,7 +63,7 @@ const MauryaTimeline = () => {
       fullText: 'Weak later rulers like Brihadratha lost territories to revolts and invasions; Pushyamitra Shunga assassinated him during a parade, founding the Shunga dynasty. Internal decay from over-centralization, high taxes, and succession strife fragmented the realm. This ended Mauryan rule, ushering Hindu resurgence and regional kingdoms.',
       category: 'Politics',
       highlights: ['Over-centralization weakened state', 'High taxation caused revolts', 'Succession disputes', 'Hindu resurgence began', 'Regional kingdoms emerged'],
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      image: 'https://globalprogect.weebly.com/uploads/2/4/1/7/24171316/5934518.jpg?388',
     },
   ]
 

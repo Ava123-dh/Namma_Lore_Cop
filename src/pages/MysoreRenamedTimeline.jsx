@@ -65,7 +65,7 @@ const MysoreRenamedTimeline = () => {
                   {expandedEvent === event.id && (
                     <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
                       <div className="mb-6">
-                        <img src={event.image} alt={event.title} className="w-full h-64 object-cover rounded-lg mb-4" />
+                        <img src={event.image} alt={event.title} className="w-full h-48 md:h-64 object-cover rounded-lg mb-4" />
                         <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
                       </div>
                       <div>

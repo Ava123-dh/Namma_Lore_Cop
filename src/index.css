@@ -47,3 +47,127 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #ea580c;
 }
+
+/* Chatbot mascot animations */
+.mascot-pop {
+  animation: mascotPop 450ms cubic-bezier(.2, .9, .3, 1);
+}
+
+.mascot-idle {
+  animation: mascotIdle 5s ease-in-out infinite;
+}
+
+.mascot-talk {
+  animation: mascotTalk 1.4s ease-in-out infinite;
+}
+
+.speech-pulse-active {
+  animation: speechPulse 1.3s ease-in-out infinite;
+}
+
+.speech-pulse-idle {
+  animation: speechIdle 6s ease-in-out infinite;
+}
+
+.message-reveal {
+  animation: messageReveal 260ms ease;
+}
+
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  background: #9ca3af;
+  border-radius: 9999px;
+  animation: typingBlink 1.2s ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.message-text .word-speak {
+  display: inline-block;
+  animation: wordSpeak 360ms ease forwards;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.speech-bubble {
+  position: relative;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-top-color: #f3f4f6;
+}
+
+@keyframes mascotPop {
+  0% { transform: translateY(16px) scale(.9); opacity: 0 }
+  60% { transform: translateY(-6px) scale(1.02); opacity: 1 }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes mascotTalk {
+  0% { transform: translateY(0) rotate(-1deg) scale(1); }
+  20% { transform: translateY(-6px) rotate(1deg) scale(1.02); }
+  50% { transform: translateY(0) rotate(-0.5deg) scale(1); }
+  80% { transform: translateY(-4px) rotate(1deg) scale(1.01); }
+  100% { transform: translateY(0) rotate(-1deg) scale(1); }
+}
+
+@keyframes mascotIdle {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(0.6deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes speechPulse {
+  0% { box-shadow: 0 10px 26px rgba(59,130,246,0.14); transform: translateY(0) scale(1); }
+  50% { box-shadow: 0 12px 32px rgba(59,130,246,0.22); transform: translateY(-2px) scale(1.01); }
+  100% { box-shadow: 0 10px 26px rgba(59,130,246,0.14); transform: translateY(0) scale(1); }
+}
+
+@keyframes speechIdle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes messageReveal {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typingBlink {
+  0% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 0.2; transform: translateY(0); }
+}
+
+@keyframes wordSpeak {
+  from { opacity: 0; transform: translateY(6px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px) }
+  to { opacity: 1; transform: translateY(0) }
+}

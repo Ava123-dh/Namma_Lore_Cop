@@ -1,20 +1,32 @@
-import { useState } from 'react'
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { X, Send, MessageCircle } from 'lucide-react'
+
+// Mascot image URL - local file
+const MASCOT_SRC = 'download (2).png'
+const PROMPT_PREFIX = `You are Aira, a peppy, friendly mascot guide for Karnataka history. Keep replies concise but complete (2-4 short sentences), upbeat, and easy to skim. Avoid markdown lists unless the user asks. Keep tone energetic but informative.`
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isFullScreen, setIsFullScreen] = useState(true)
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hello! I'm your Karnataka History assistant. I can help you learn about historical events, dynasties, monuments, and more. What would you like to know?",
+      text: "Hey hey! I'm Aira, your peppy Karnataka guide. Ask me anything and I'll keep it snappy!",
       sender: 'bot',
       timestamp: new Date(),
     },
   ])
   const [input, setInput] = useState('')
-  // Default to Gemini 2.5 Flash (Google Generative Language API - has free tier)
   const [model, setModel] = useState('gemini-2.5-flash')
-  const [isFullScreen, setIsFullScreen] = useState(false)
+  const [isThinking, setIsThinking] = useState(false)
+  const [speakingId, setSpeakingId] = useState(1)
+  const lastBotIdRef = useRef(messages[0].id)
+
+  // Open chatbot in full-screen immediately
+  const handleOpenChat = () => {
+    setIsOpen(true)
+    setIsFullScreen(true)
+  }
 
   const handleSend = () => {
     if (!input.trim()) return
@@ -32,6 +44,7 @@ const ChatBot = () => {
     // Insert a placeholder bot message while waiting for AI
     const placeholderId = messages.length + 2
     const placeholder = { id: placeholderId, text: 'Thinking...', sender: 'bot', timestamp: new Date() }
+    setIsThinking(true)
     setMessages((prev) => [...prev, placeholder])
 
     // Call backend for AI-generated response. In dev use the backend port directly.
@@ -41,7 +54,7 @@ const ChatBot = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       // send `short: true` when NOT full-screen so backend returns concise answers
-      body: JSON.stringify({ model, prompt: input, short: !isFullScreen })
+      body: JSON.stringify({ model, prompt: `${PROMPT_PREFIX}\n\nUser: ${input}\nAira:`, short: false })
     })
       .then(async (r) => {
         if (!r.ok) throw new Error(await r.text())
@@ -53,11 +66,13 @@ const ChatBot = () => {
         const cleaned = raw.replace(/\*/g, '')
         const botMessage = { id: placeholderId, text: cleaned, sender: 'bot', timestamp: new Date() }
         setMessages((prev) => prev.map((m) => (m.id === placeholderId ? botMessage : m)))
+        setIsThinking(false)
       })
       .catch((err) => {
         console.error('AI call failed:', err)
         const botMessage = { id: placeholderId, text: `Error: Unable to generate response. ${err.message}`, sender: 'bot', timestamp: new Date() }
         setMessages((prev) => prev.map((m) => (m.id === placeholderId ? botMessage : m)))
+        setIsThinking(false)
       })
   }
 
@@ -68,6 +83,32 @@ const ChatBot = () => {
     }
   }
 
+  // Scroll to bottom when messages update
+  const scrollRef = useRef(null)
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [messages, isFullScreen])
+
+  // Keep the mascot "speaking" for a beat whenever a new bot message appears or while thinking
+  useEffect(() => {
+    let timer
+    const botMessages = messages.filter((m) => m.sender === 'bot')
+    const latest = botMessages[botMessages.length - 1]
+    if (!latest) return () => {}
+
+    if (latest.id !== lastBotIdRef.current || isThinking) {
+      lastBotIdRef.current = latest.id
+      setSpeakingId(latest.id)
+      timer = setTimeout(() => setSpeakingId(null), 1600)
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer)
+    }
+  }, [messages, isThinking])
+
   const quickQuestions = [
     "Tell me about Hampi",
     "Who was Tipu Sultan?",
@@ -75,144 +116,128 @@ const ChatBot = () => {
     "Show me the timeline",
   ]
 
+  const renderBotWords = (text) => {
+    const parts = text.split(/(\s+)/)
+    return parts.map((part, idx) => {
+      if (part.trim() === '') return <span key={`space-${idx}`}>{part}</span>
+      return (
+        <span
+          key={`word-${idx}-${part}`}
+          className="word-speak"
+          style={{ animationDelay: `${idx * 60}ms` }}
+        >
+          {part}
+        </span>
+      )
+    })
+  }
+
   return (
     <>
-      {/* Chat Button */}
       {!isOpen && (
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={handleOpenChat}
           className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center"
+          title="Chat with Aira"
         >
           <MessageCircle size={28} />
         </button>
       )}
 
-      {/* Chat Window */}
+      {/* Full-screen Chat Window only */}
       {isOpen && (
-        <div
-          className={
-            `fixed z-50 flex flex-col bg-white shadow-2xl ` +
-            (isFullScreen
-              ? 'inset-0 m-0 p-6 rounded-none'
-              : 'bottom-6 right-6 w-96 max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-2rem)] rounded-2xl')
-          }
-        >
-          {/* Header */}
-          <div className={`bg-gradient-to-r from-primary-500 to-primary-600 text-white flex justify-between items-center ${isFullScreen ? 'p-6 rounded-none' : 'p-4 rounded-t-2xl'}`}>
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <Bot size={24} />
-              </div>
+        <div className="fixed inset-0 z-50 flex bg-gradient-to-br from-blue-50 via-white to-blue-100 m-0 p-0">
+          <div className="flex flex-col w-full h-full">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white flex justify-between items-center p-6 shadow-lg">
               <div>
-                <h3 className="font-bold">History Assistant</h3>
-                <p className="text-xs text-white/80">Always here to help</p>
+                <h3 className="font-bold text-xl">Aira — Peppy History Buddy</h3>
+                <p className="text-xs text-white/80">Short, snappy answers about Karnataka</p>
               </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setIsFullScreen((s) => !s)}
-                className="text-xs px-2 py-1 bg-white/20 rounded-md hover:bg-white/30"
-                title={isFullScreen ? 'Exit full screen' : 'Full screen (longer answers)'}
-              >
-                {isFullScreen ? 'Exit' : 'Full'}
-              </button>
-              <select
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                className="text-xs rounded-md p-1 bg-white/20 text-white"
-                title="Choose between Gemini (free) or Claude (paid)"
-              >
-                <option value="gemini-2.5-flash">Gemini 2.5 Flash (Free)</option>
-                <option value="gemini-2.5-pro">Gemini 2.5 Pro (Free)</option>
-                <option value="claude-haiku-4.5">Claude Haiku 4.5</option>
-              </select>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-          </div>
-
-          {/* Messages */}
-          <div className={`flex-1 overflow-y-auto ${isFullScreen ? 'p-6 space-y-6' : 'p-4 space-y-4'}`}>
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`flex items-start space-x-2 max-w-[80%] ${
-                    message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-                  }`}
+              <div className="flex items-center space-x-3">
+                <select
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  className="text-xs rounded-md p-2 bg-white/20 text-white"
                 >
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.sender === 'user'
-                        ? 'bg-primary-500'
-                        : 'bg-gradient-to-br from-primary-500 to-primary-600'
-                    }`}
-                  >
-                    {message.sender === 'user' ? (
-                      <User size={18} className="text-white" />
-                    ) : (
-                      <Bot size={18} className="text-white" />
-                    )}
-                  </div>
-                  <div
-                    className={`p-3 rounded-xl ${
-                      message.sender === 'user'
-                        ? 'bg-primary-500 text-white'
-                        : 'bg-gray-100 text-gray-900'
-                    }`}
-                  >
-                    <p className="text-sm">{message.text}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Quick Questions */}
-          {messages.length === 1 && (
-            <div className="px-4 pb-2">
-              <p className="text-xs text-gray-500 mb-2">Quick questions:</p>
-              <div className="flex flex-wrap gap-2">
-                {quickQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setInput(question)
-                      setTimeout(() => handleSend(), 100)
-                    }}
-                    className="text-xs px-3 py-2 bg-primary-50 text-primary-600 rounded-lg hover:bg-primary-100 transition-colors"
-                  >
-                    {question}
-                  </button>
-                ))}
+                  <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                  <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+                  <option value="claude-haiku-4.5">Claude Haiku 4.5</option>
+                </select>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                >
+                  <X size={20} />
+                </button>
               </div>
             </div>
-          )}
 
-          {/* Input */}
-          <div className={`${isFullScreen ? 'p-6 border-t border-gray-200' : 'p-4 border-t border-gray-200'}`}>
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask me about Karnataka history..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-              <button
-                onClick={handleSend}
-                className="p-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={!input.trim()}
-              >
-                <Send size={20} />
-              </button>
+            {/* Messages */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-10 pb-8 pt-6 space-y-6 w-full">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex items-end gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  {message.sender === 'bot' && (() => {
+                    const isActiveBot = message.id === speakingId || (isThinking && message.text === 'Thinking...')
+                    return (
+                      <>
+                        <img
+                          src={MASCOT_SRC}
+                          alt="Aira the mascot"
+                          className={`w-24 h-24 object-contain drop-shadow-md mascot-pop ${isActiveBot ? 'mascot-talk' : 'mascot-idle'}`}
+                          style={{ marginBottom: '2px' }}
+                        />
+                        <div className="relative max-w-[76ch] message-reveal">
+                          <div className={`bg-white text-gray-900 p-5 rounded-[28px] rounded-tl-[12px] shadow-lg border border-blue-200 ${isActiveBot ? 'speech-pulse-active' : 'speech-pulse-idle'}`}>
+                            <p className="text-sm leading-relaxed message-text">
+                              {message.text === 'Thinking...' ? (
+                                <span className="typing-dots" aria-label="Thinking">
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                </span>
+                              ) : (
+                                renderBotWords(message.text)
+                              )}
+                            </p>
+                            {/* Speech bubble pointer */}
+                            <div className="absolute -left-3 top-6 w-5 h-5 bg-white border-l border-b border-blue-200 transform -rotate-45 rounded-bl-lg"></div>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })()}
+                  {message.sender === 'user' ? (
+                    <div className="bg-primary-500 text-white px-4 py-3 rounded-2xl max-w-[70%] shadow-md text-sm leading-relaxed">
+                      {message.text}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+
+            {/* Input */}
+            <div className="px-10 pb-8 w-full">
+              <div className="flex space-x-3">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Ask Aira anything about Karnataka history..."
+                  className="flex-1 px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                />
+                <button
+                  onClick={handleSend}
+                  className="px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!input.trim()}
+                >
+                  <Send size={20} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

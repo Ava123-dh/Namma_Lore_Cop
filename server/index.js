@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import fetch from 'node-fetch'
+import https from 'https'
 
 dotenv.config()
 
@@ -10,6 +11,11 @@ app.use(cors())
 app.use(express.json())
 
 const PORT = process.env.PORT || 4000
+
+// Create an HTTPS agent that doesn't reject unauthorized certificates (for development only)
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false
+})
 
 app.post('/api/generate', async (req, res) => {
   const { model = 'gemini', prompt } = req.body
@@ -34,7 +40,8 @@ app.post('/api/generate', async (req, res) => {
           'Content-Type': 'application/json',
           'x-api-key': ANTHROPIC_API_KEY
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        agent: httpsAgent
       })
 
       const data = await resp.json()
@@ -72,7 +79,8 @@ app.post('/api/generate', async (req, res) => {
     const resp = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      agent: httpsAgent
     })
 
     if (!resp.ok) {

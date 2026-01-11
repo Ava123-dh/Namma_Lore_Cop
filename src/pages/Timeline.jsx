@@ -19,7 +19,7 @@ const Timeline = () => {
       route: '/timeline/maurya',
       description: 'Emperor Ashoka extended Mauryan rule to Karnataka region. Rock edicts found in Sannati and other places provide evidence of Buddhist influence.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      image: 'https://i.pinimg.com/736x/64/23/5f/64235f04a68e5af5cc01fcc6ff93d590.jpg',
       details: 'The Mauryan Empire marked the beginning of organized governance in Karnataka. The famous Ashoka edicts in Brahmi script discovered in Karnataka are among the oldest written records in the region.',
     },
     {
