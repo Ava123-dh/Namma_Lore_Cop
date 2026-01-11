@@ -15,20 +15,40 @@ const KadambaTimeline = () => {
       year: '345 CE',
       title: 'Founding',
       subtitle: 'Mayurasharma establishes Banavasi',
-      fullText: "Mayurasharma, a Brahmin scholar from Talagunda, rebelled against Pallava overlord Skandavarman after a temple insult, defeating him with Ganga allies and establishing Banavasi as capital. This marked Karnataka's first native dynasty and fostered indigenous Kannada identity.",
+      fullText: "Mayurasharma, a Brahmin scholar from Talagunda, rebelled against Pallava overlord Skandavarman after a temple insult, defeating him with Ganga allies. He established Banavasi as capital, marking Karnataka's first native dynasty with Vedic rituals and land grants. This shift fostered indigenous Kannada identity and temple-building traditions.",
       category: 'Politics',
-      highlights: ['First native Kannada dynasty', 'Banavasi capital', 'Patronage of Kannada'],
+      highlights: ['First native Kannada dynasty', 'Banavasi capital', 'Vedic rituals and land grants', 'Indigenous Kannada identity'],
       image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
     },
     {
       id: 'kadamba-2',
       year: '435 CE',
       title: 'Kakusthavarma\'s Peak',
-      subtitle: 'Expansion and alliances',
-      fullText: "Kakusthavarma expanded territory via alliances and wars, patronized Jainism, and boosted trade, controlling parts of Karnataka, Goa, and Maharashtra. His court elevated Kadamba cultural prestige.",
-      category: 'Military',
-      highlights: ['Regional expansion', 'Patronage of Jainism', 'Trade growth'],
+      subtitle: 'Expansion and cultural elevation',
+      fullText: "Kakusthavarma expanded territory via alliances and wars against Gangas, Vakatakas, and Pallavas, marrying into royal families for diplomacy. He shifted capital to Kolar temporarily, patronized Jainism, and boosted trade, controlling Karnataka, Goa, and Maharashtra parts. His court poet Durvinita chronicled these conquests, elevating Kadamba cultural prestige.",
+      category: 'Expansion',
+      highlights: ['Regional expansion to Goa and Maharashtra', 'Patronage of Jainism', 'Trade growth', 'Cultural elevation under court poet Durvinita'],
       image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'kadamba-3',
+      year: '485 CE',
+      title: 'Ravivarma\'s Wars',
+      subtitle: 'Military campaigns and internal struggles',
+      fullText: "Ravivarma clashed with Pallavas, Gangas, and internal Triparvata branch, extending north to Narmada River against Vakatakas. Ruling amid family feuds, he maintained core territories through military prowess and Shaiva temples like Banavasi's Madhukeshvara. His victories sustained the dynasty but sowed decline seeds via infighting.",
+      category: 'Military',
+      highlights: ['Conflicts with Pallavas and Gangas', 'Extension to Narmada River', 'Patronage of Shaiva temples', 'Internal family feuds'],
+      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'kadamba-4',
+      year: '540 CE',
+      title: 'Chalukya Conquest',
+      subtitle: 'End of independent rule',
+      fullText: "Badami Chalukyas under Pulakeshin I overthrew the weakened Kadambas, reducing them to vassals after Ravivarma's successors faltered. This ended independent Kadamba rule, fragmenting the dynasty into branches in Goa, Halasi, and Hangal under larger empires. However, Kadamba legacy persisted in architecture and minor kingdoms for centuries.",
+      category: 'Political Change',
+      highlights: ['Chalukya conquest under Pulakeshin I', 'Reduction to vassalage', 'Fragmentation into regional branches', 'Lasting cultural legacy'],
+      image: 'https://images.unsplash.com/photo-1582719471537-41efb2d30bba?w=400&h=300&fit=crop',
     },
   ]
 
@@ -97,14 +117,22 @@ const KadambaTimeline = () => {
 
         <div className="mt-16 p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Kadamba Dynasty</h3>
-          <p className="text-gray-700 leading-relaxed">The Kadamba Dynasty (c.345–540 CE) was the first native kingdom of Karnataka, establishing important cultural and administrative foundations in the region.</p>
+          <p className="text-gray-700 leading-relaxed mb-6">The Kadamba Dynasty (c. 345–540 CE) was an early Kannada kingdom in Karnataka, founded by Mayurasharma, pioneering local rule post-Gupta era with influences on art, architecture, and Shaivism. Key events defined its rise, expansions, and vassalage under Chalukyas. The Kadambas were pioneering administrators who established Kannada as an official language and created lasting contributions to South Indian temple architecture and cultural traditions.</p>
         </div>
 
         <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
-          <h4 className="font-bold text-lg mb-3">Explore more</h4>
-          <ul className="list-disc pl-5 text-primary-700">
-            <li><a href="https://en.wikipedia.org/wiki/Kadamba_dynasty" target="_blank" rel="noreferrer" className="underline">Kadamba Dynasty — Wikipedia</a></li>
-            <li><a href="https://lotusarise.com/kadamba-dynasty-upsc/" target="_blank" rel="noreferrer" className="underline">UPSC Notes — LotusArise</a></li>
+          <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
+          <ul className="space-y-2">
+            <li><a href="https://lotusarise.com/kadamba-dynasty-upsc/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">LotusArise - Kadamba Dynasty UPSC Notes</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Kadamba_dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Wikipedia - Kadamba Dynasty</a></li>
+            <li><a href="https://vajiramandravi.com/current-affairs/kadamba-dynasty/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Vajira Mandravi - Kadamba Dynasty Current Affairs</a></li>
+            <li><a href="https://testbook.com/ias-preparation/kadamba-dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Testbook - IAS Preparation on Kadamba Dynasty</a></li>
+            <li><a href="http://historyofindia-madhunimkar.blogspot.com/2009/09/introduction-kadamba-dynasty-345-525-ce.html" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">History of India - Kadamba Dynasty Introduction</a></li>
+            <li><a href="https://www.clearias.com/kadamba-dynasty/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">ClearIAS - Kadamba Dynasty</a></li>
+            <li><a href="https://www.newworldencyclopedia.org/entry/Kadamba_Dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">New World Encyclopedia - Kadamba Dynasty</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Timeline_of_Karnataka" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Wikipedia - Timeline of Karnataka</a></li>
+            <li><a href="https://history-maps.com/story/History-of-India/event/Kadamba-Dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">History Maps - Kadamba Dynasty History</a></li>
+            <li><a href="https://ijmer.in/pdf/volume1-issue4-2012/342-349.pdf" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">IJMER - Academic Paper on Kadamba Dynasty</a></li>
           </ul>
         </div>
       </div>

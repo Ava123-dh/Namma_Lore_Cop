@@ -10,9 +10,66 @@ const ChalukyaTimeline = () => {
   const [expandedEvent, setExpandedEvent] = useState(null)
 
   const events = [
-    { id: 'ch-1', year: '543 CE', title: 'Pulakesin I\'s Founding', subtitle: 'Badami established as capital', fullText: "Pulakesin I fortified Badami (Vatapi) as capital, performed royal rituals and defeated neighboring rulers, laying the foundation for Chalukya rule in the Deccan.", category: 'Politics', highlights: ['Badami capital', 'Military consolidation'], image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop' },
-    { id: 'ch-2', year: '618 CE', title: 'Narmada Victory', subtitle: 'Pulakesin II checks Harshavardhana', fullText: 'Pulakesin II halted Harshavardhana at the Narmada River, preserving Chalukya independence and earning great prestige.', category: 'Military', highlights: ['Border secured', 'Prestige increased'], image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop' },
-    { id: 'ch-3', year: '740 CE', title: 'Vikramaditya II\'s Triumphs', subtitle: 'Kanchipuram campaigns', fullText: 'Vikramaditya II overran Kanchipuram and repelled incursions, marking a high point in Chalukya military success and cultural patronage.', category: 'Military', highlights: ['Kanchipuram taken', 'Art and architecture flourished'], image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop' },
+    {
+      id: 'ch-1',
+      year: '543 CE',
+      title: 'Pulakesin I\'s Founding',
+      subtitle: 'Badami sovereignty established',
+      fullText: "Pulakesin I established Chalukya sovereignty by fortifying Badami (Vatapi) as capital and performing Ashvamedha yajna, asserting imperial status. He defeated local Kadambas, Nalas, and Mauryas, laying foundations for Deccan dominance. This marked the dynasty's emergence post-Gupta decline, blending martial prowess with Vaishnava devotion.",
+      category: 'Politics',
+      highlights: ['Badami capital fortified', 'Ashvamedha yajna performed', 'Defeated Kadambas and Nalas', 'Post-Gupta dominance established'],
+      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'ch-2',
+      year: '618 CE',
+      title: 'Narmada Victory',
+      subtitle: 'Pulakesin II halts Harshavardhana',
+      fullText: 'Pulakesin II halted Harshavardhana\'s southern expansion at the Narmada River, earning the title Satyashraya. This preserved Chalukya independence, boosted prestige, and fixed northern borders. The Aihole inscription celebrates it as a pivotal check on North Indian hegemony.',
+      category: 'Military',
+      highlights: ['Northern border secured', 'Title Satyashraya earned', 'Chalukya independence preserved', 'Aihole inscription recorded'],
+      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'ch-3',
+      year: '631 CE',
+      title: 'Kanchi Plunder',
+      subtitle: 'Vikramaditya I sacks Pallava capital',
+      fullText: 'Vikramaditya I sacked Pallava capital Kanchipuram, avenging his father\'s defeat by Narasimhavarman I. He installed a victory pillar at Kailasanatha Temple with Kannada inscription. This reversed Pallava gains, affirming Chalukya supremacy in South India temporarily.',
+      category: 'Military',
+      highlights: ['Kanchipuram sacked', 'Victory pillar installed', 'Pallava power reversed', 'Kannada inscription commissioned'],
+      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'ch-4',
+      year: '624 CE',
+      title: 'Eastern Branch Independence',
+      subtitle: 'Vengi granted to brother Kubja Vishnuvardhana',
+      fullText: 'Pulakesin II granted Vengi to brother Kubja Vishnuvardhana, founding Eastern Chalukyas stretching to Andhra coasts. This split fostered bilingual administration and alliances against common foes. It endured until 1070 CE, influencing Telugu culture and temple arts.',
+      category: 'Expansion',
+      highlights: ['Eastern Chalukya dynasty founded', 'Bilingual administration', 'Andhra coast control', 'Influence until 1070 CE'],
+      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'ch-5',
+      year: '740 CE',
+      title: 'Vikramaditya II\'s Triumphs',
+      subtitle: 'Military zenith and cultural flourishing',
+      fullText: 'Vikramaditya II overran Kanchipuram thrice, decisively crushing Pallavas and repelling Arab incursions in Gujarat. His victories ended Pallava power, promoted Vesara architecture like Virupaksha Temple. The reign epitomized Chalukya military zenith and cultural flourishing.',
+      category: 'Military',
+      highlights: ['Kanchipuram conquered thrice', 'Arab incursions repelled', 'Pallava power ended', 'Vesara architecture promoted'],
+      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+    },
+    {
+      id: 'ch-6',
+      year: '753 CE',
+      title: 'Rashtrakuta Overthrow',
+      subtitle: 'End of Badami Chalukyas',
+      fullText: 'Dantidurga, a feudatory, defeated Kirtivarman II, ending Badami Chalukyas and founding Rashtrakutas. Internal weaknesses, prolonged wars, and overextension caused fragmentation. This shifted Deccan power, though Kalyani Chalukyas later revived the line.',
+      category: 'Political Change',
+      highlights: ['Internal weaknesses led to decline', 'Rashtrakutas founded', 'Deccan power shifted', 'Kalyani Chalukyas later revived line'],
+      image: 'https://images.unsplash.com/photo-1582719471537-41efb2d30bba?w=400&h=300&fit=crop',
+    },
   ]
 
   const parentEvent = { id: 'evt3', title: 'Chalukya Dynasty', year: 'Badami Chalukyas onwards', category: 'Politics' }
@@ -79,15 +136,22 @@ const ChalukyaTimeline = () => {
         </div>
 
         <div className="mt-16 p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Chalukyas</h3>
-          <p className="text-gray-700 leading-relaxed">The Chalukyas established a powerful Deccan dynasty; their patronage led to remarkable temple architecture and regional power balances with northern kingdoms.</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Chalukya Dynasty</h3>
+          <p className="text-gray-700 leading-relaxed mb-6">The Badami Chalukyas (543–753 CE) established a powerful Deccan empire that dominated South India, pioneering the balance of power between North and South Indian kingdoms. Their strategic military victories, particularly under Pulakesin II and Vikramaditya II, secured Chalukya independence and prestige. The dynasty's patronage led to remarkable Vesara architecture, including the famous temples at Badami, Aihole, and Pattadakal. Though their direct rule ended with the Rashtrakuta conquest, their legacy endured through the Eastern Chalukyas and later revival of the Kalyani Chalukyas.</p>
         </div>
 
         <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
-          <h4 className="font-bold text-lg mb-3">Explore more</h4>
-          <ul className="list-disc pl-5 text-primary-700">
-            <li><a href="https://en.wikipedia.org/wiki/Chalukya_dynasty" target="_blank" rel="noreferrer" className="underline">Chalukya Dynasty — Wikipedia</a></li>
-            <li><a href="https://www.britannica.com/topic/Chalukya-dynasty" target="_blank" rel="noreferrer" className="underline">Britannica — Chalukya</a></li>
+          <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
+          <ul className="space-y-2">
+            <li><a href="https://lotusarise.com/chalukya-dynasty-upsc/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">LotusArise - Chalukya Dynasty UPSC Notes</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Western_Chalukya_Empire" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Wikipedia - Western Chalukya Empire</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Chalukya_dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Wikipedia - Chalukya Dynasty</a></li>
+            <li><a href="https://www.britannica.com/topic/Chalukya-dynasty" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Britannica - Chalukya Dynasty</a></li>
+            <li><a href="https://study.com/academy/lesson/chalukya-dynasty-history-rulers.html" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Study.com - Chalukya Dynasty History & Rulers</a></li>
+            <li><a href="https://www.geeksforgeeks.org/social-science/chalukya-dynasty-history-significance-art-culture/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">GeeksforGeeks - Chalukya Dynasty History & Culture</a></li>
+            <li><a href="https://testbook.com/ias-preparation/western-chalukyas-of-badami" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Testbook - Western Chalukyas IAS Preparation</a></li>
+            <li><a href="https://byjus.com/free-ias-prep/ncert-notes-chalukya-dynasty/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">BYJU'S - NCERT Notes on Chalukya Dynasty</a></li>
+            <li><a href="https://prepp.in/news/e-492-chalukyas-6th-century-to-12th-century-medieval-india-history-notes" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">PREPP - Chalukyas 6th-12th Century History Notes</a></li>
           </ul>
         </div>
       </div>
