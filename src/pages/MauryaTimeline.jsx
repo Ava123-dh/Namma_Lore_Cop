@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import AiraQuizNudge from '../components/AiraQuizNudge'
+import useQuizNudge from '../hooks/useQuizNudge'
 
 const MauryaTimeline = () => {
   const navigate = useNavigate()
@@ -67,6 +69,14 @@ const MauryaTimeline = () => {
     },
   ]
 
+  const { showNudge, markSeen, hideNudge } = useQuizNudge(mauryaEvents.length)
+
+  const handleToggleEvent = (eventId) => {
+    const next = expandedEvent === eventId ? null : eventId
+    setExpandedEvent(next)
+    if (next === eventId) markSeen(eventId)
+  }
+
   const parentEvent = {
     id: 'evt1',
     title: 'Mauryan Empire in Karnataka',
@@ -93,40 +103,33 @@ const MauryaTimeline = () => {
             {parentEvent.title}
           </h1>
           <p className="text-xl text-gray-600">
-            Explore the key events and transformations of the Mauryan Empire era
+            Explore the key events and transformations of the Mauryan Empire era.
           </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Timeline Line */}
           <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-
-          {/* Events */}
           <div className="space-y-8">
-            {mauryaEvents.map((event, index) => (
+            {mauryaEvents.map((event) => (
               <div key={event.id} className="relative pl-20">
-                {/* Timeline Dot */}
-                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow"
-                  onClick={() => setExpandedEvent(expandedEvent === event.id ? null : event.id)}
+                <div
+                  className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow"
+                  onClick={() => handleToggleEvent(event.id)}
                 >
                   <Calendar size={14} className="text-white" />
                 </div>
 
-                {/* Event Card */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
-                  onClick={() => setExpandedEvent(expandedEvent === event.id ? null : event.id)}
+                <div
+                  className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
+                  onClick={() => handleToggleEvent(event.id)}
                 >
-                  {/* Collapsed State */}
                   <div className="p-6 cursor-pointer">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
                         <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                        <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">
-                          {event.category}
-                        </span>
+                        <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
                       </div>
                       <button
                         onClick={(e) => {
@@ -135,29 +138,18 @@ const MauryaTimeline = () => {
                         }}
                         className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
                       >
-                        <Heart
-                          size={24}
-                          className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}
-                        />
+                        <Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} />
                       </button>
                     </div>
                   </div>
 
-                  {/* Expanded State */}
                   {expandedEvent === event.id && (
                     <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
                       <div className="mb-6">
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-64 object-cover rounded-lg mb-4"
-                        />
                         <p className="text-gray-700 text-lg leading-relaxed mb-4">
                           {event.fullText.replace(/\[\d+\]/g, '')}
                         </p>
                       </div>
-
-                      {/* Highlights */}
                       <div>
                         <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -169,12 +161,7 @@ const MauryaTimeline = () => {
                           ))}
                         </ul>
                       </div>
-
-                      {/* Collapse Button */}
-                      <button
-                        onClick={() => setExpandedEvent(null)}
-                        className="mt-6 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
-                      >
+                      <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700 transition-colors">
                         Show Less ↑
                       </button>
                     </div>
@@ -207,6 +194,7 @@ const MauryaTimeline = () => {
         </div>
       </div>
 
+      <AiraQuizNudge show={showNudge} onClose={hideNudge} />
       <ChatBot />
     </div>
   )

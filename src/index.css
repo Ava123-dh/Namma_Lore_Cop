@@ -102,6 +102,87 @@
   transform: translateY(6px);
 }
 
+.aira-nudge {
+  animation: airaSlideIn 550ms cubic-bezier(.2, .9, .3, 1);
+  pointer-events: auto;
+}
+
+.aira-nudge-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.aira-nudge-mascot {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.18));
+}
+
+.aira-bubble-wrapper {
+  position: relative;
+  width: 280px;
+  max-width: min(78vw, 320px);
+}
+
+.aira-bubble-img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+}
+
+.aira-bubble-text {
+  position: absolute;
+  inset: 18% 16% 24% 18%;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #111827;
+  text-align: center;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aira-nudge-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.aira-nudge-primary,
+.aira-nudge-secondary {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.aira-nudge-primary {
+  background: linear-gradient(135deg, #fb923c, #f97316);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25);
+}
+
+.aira-nudge-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(249, 115, 22, 0.32);
+}
+
+.aira-nudge-secondary {
+  background: #fff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.aira-nudge-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
 .speech-bubble {
   position: relative;
   background: #f3f4f6;
@@ -165,6 +246,12 @@
 @keyframes wordSpeak {
   from { opacity: 0; transform: translateY(6px) scale(.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes airaSlideIn {
+  0% { transform: translateX(120%) scale(.96); opacity: 0; }
+  60% { transform: translateX(-6%) scale(1.02); opacity: 1; }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
 }
 
 @keyframes fadeIn {

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import AiraQuizNudge from '../components/AiraQuizNudge'
+import useQuizNudge from '../hooks/useQuizNudge'
 
 const TalikotaTimeline = () => {
   const navigate = useNavigate()
@@ -12,6 +14,14 @@ const TalikotaTimeline = () => {
   const events = [
     { id: 't-1', year: '1565 CE', title: 'Battle of Talikota', subtitle: 'Defeat of Vijayanagara', fullText: 'The allied Deccan Sultanates defeated Vijayanagara forces at Talikota, leading to the sack of Hampi and collapse of centralized power.', category: 'Military', highlights: ['Allied Sultanates victory', 'Destruction of Hampi'], image: 'https://images.unsplash.com/photo-1587135941948-670b381f08ce?w=400&h=300&fit=crop' }
   ]
+
+  const { showNudge, markSeen, hideNudge } = useQuizNudge(events.length)
+
+  const handleToggleEvent = (eventId) => {
+    const next = expandedEvent === eventId ? null : eventId
+    setExpandedEvent(next)
+    if (next === eventId) markSeen(eventId)
+  }
 
   const parentEvent = { id: 'evt9', title: 'Battle of Talikota', year: '1565 CE' }
 
@@ -29,10 +39,10 @@ const TalikotaTimeline = () => {
           <div className="space-y-8">
             {events.map((event) => (
               <div key={event.id} className="relative pl-20">
-                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => setExpandedEvent(expandedEvent === event.id ? null : event.id)}>
+                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
                   <Calendar size={14} className="text-white" />
                 </div>
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => setExpandedEvent(expandedEvent === event.id ? null : event.id)}>
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
                   <div className="p-6 cursor-pointer">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -46,7 +56,6 @@ const TalikotaTimeline = () => {
                   </div>
                   {expandedEvent === event.id && (
                     <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                      <img src={event.image} alt={event.title} className="w-full h-48 md:h-64 object-cover rounded-lg mb-4" />
                       <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
                       <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
                     </div>
@@ -67,6 +76,7 @@ const TalikotaTimeline = () => {
           <ul className="list-disc pl-5 text-primary-700"><li><a href="https://en.wikipedia.org/wiki/Battle_of_Talikota" target="_blank" rel="noreferrer" className="underline">Battle of Talikota — Wikipedia</a></li></ul>
         </div>
       </div>
+      <AiraQuizNudge show={showNudge} onClose={hideNudge} />
       <ChatBot />
     </div>
   )

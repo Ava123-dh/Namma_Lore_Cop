@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, Send, MessageCircle } from 'lucide-react'
 
-// Mascot image URL - local file
-const MASCOT_SRC = 'download (2).png'
+// Mascot image URL - local file in public/images
+const MASCOT_SRC = '/images/aira-mascot.png'
 const PROMPT_PREFIX = `You are Aira, a peppy, friendly mascot guide for Karnataka history. Keep replies concise but complete (2-4 short sentences), upbeat, and easy to skim. Avoid markdown lists unless the user asks. Keep tone energetic but informative.`
 
 const ChatBot = () => {
@@ -17,7 +17,7 @@ const ChatBot = () => {
     },
   ])
   const [input, setInput] = useState('')
-  const [model, setModel] = useState('gemini-2.5-flash')
+  const [model, setModel] = useState('gemini-2.5-pro')
   const [isThinking, setIsThinking] = useState(false)
   const [speakingId, setSpeakingId] = useState(1)
   const lastBotIdRef = useRef(messages[0].id)
@@ -160,9 +160,8 @@ const ChatBot = () => {
                   onChange={(e) => setModel(e.target.value)}
                   className="text-xs rounded-md p-2 bg-white/20 text-white"
                 >
-                  <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
                   <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
-                  <option value="claude-haiku-4.5">Claude Haiku 4.5</option>
+                  <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
                 </select>
                 <button
                   onClick={() => setIsOpen(false)}
