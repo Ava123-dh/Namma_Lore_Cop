@@ -11,6 +11,9 @@ const Quiz = () => {
   const [answers, setAnswers] = useState([])
   const [timeLeft, setTimeLeft] = useState(600) // 10 minutes
 
+  const airaMascot = '/images/aira-mascot.png'
+  const airaBadge = '/images/aira-bubble.png'
+
   const questions = [
     {
       id: 1,
@@ -127,21 +130,30 @@ const Quiz = () => {
 
   if (!started) {
     return (
-      <div className="min-h-screen py-12">
+      <div className="quiz-shell min-h-screen py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mb-6">
-              <Trophy className="text-white" size={40} />
+          <div className="quiz-hero aira-hero">
+            <div className="aira-hero-copy">
+              <div className="aira-chip">Aira-approved challenge</div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+                Karnataka History Quiz
+              </h1>
+              <p className="text-lg md:text-xl text-gray-700 max-w-2xl">
+                Test your knowledge, earn bragging rights, and learn with Aira by your side.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-4 text-sm font-semibold text-gray-700">
+                <span className="pill-soft">10 curated questions</span>
+                <span className="pill-soft">Timer: 10 mins</span>
+                <span className="pill-soft">Explanations included</span>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Karnataka History Quiz
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Test your knowledge about Karnataka's rich history and heritage
-            </p>
+            <div className="aira-hero-mascot">
+              <img src={airaMascot} alt="Aira cheering" className="aira-hero-img" />
+              <div className="aira-stamp">Cheer Squad</div>
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 quiz-panel">
             <div className="space-y-6 mb-8">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
@@ -174,7 +186,7 @@ const Quiz = () => {
 
             <button
               onClick={startQuiz}
-              className="w-full btn-primary text-lg"
+              className="w-full btn-primary text-lg shine-button"
             >
               Start Quiz
             </button>
@@ -189,9 +201,9 @@ const Quiz = () => {
     const scoreMessage = getScoreMessage()
     
     return (
-      <div className="min-h-screen py-12">
+      <div className="quiz-shell min-h-screen py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center quiz-panel">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mb-6">
               <Trophy className="text-white" size={48} />
             </div>
@@ -201,7 +213,8 @@ const Quiz = () => {
               {scoreMessage.text}
             </p>
             
-            <div className="bg-gradient-to-br from-primary-50 to-orange-50 rounded-xl p-8 mb-8">
+            <div className="bg-gradient-to-br from-primary-50 to-orange-50 rounded-xl p-8 mb-8 relative overflow-hidden">
+              <div className="aira-confetti"></div>
               <div className="text-6xl font-bold text-primary-600 mb-2">
                 {score}/{questions.length}
               </div>
@@ -218,7 +231,7 @@ const Quiz = () => {
               {questions.map((question, index) => {
                 const userAnswer = answers.find(a => a.question === index)
                 return (
-                  <div key={question.id} className="bg-gray-50 rounded-lg p-4">
+                  <div key={question.id} className="bg-gray-50 rounded-lg p-4 quiz-review-card">
                     <div className="flex items-start space-x-3 mb-2">
                       {userAnswer?.correct ? (
                         <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={20} />
@@ -248,7 +261,7 @@ const Quiz = () => {
             <div className="flex gap-4">
               <button
                 onClick={startQuiz}
-                className="flex-1 btn-primary"
+                className="flex-1 btn-primary shine-button"
               >
                 <RotateCcw size={20} className="inline mr-2" />
                 Try Again
@@ -270,8 +283,26 @@ const Quiz = () => {
   const question = questions[currentQuestion]
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
+  const getCheer = () => {
+    if (selectedAnswer === null) return 'Try this one—Aira is cheering for you!'
+    const correct = selectedAnswer === question.correct
+    if (correct) return 'Boom! Trumpets up—great job!'
+    return 'Close! Aira says keep going, you got this.'
+  }
+
+  const showCornerAira = selectedAnswer !== null && selectedAnswer !== question.correct
+
   return (
-    <div className="min-h-screen py-12">
+    <div className="quiz-shell min-h-screen py-12">
+      {showCornerAira && (
+        <div className="aira-flyer" aria-hidden="true" key={`fly-${currentQuestion}-${selectedAnswer}`}>
+          <img src={airaMascot} alt="Aira cheering" className="aira-flyer-mascot" />
+          <div className="aira-flyer-inner">
+            <img src={airaBadge} alt="Aira speech bubble" className="aira-flyer-bubble" />
+            <div className="aira-flyer-text">{getCheer()}</div>
+          </div>
+        </div>
+      )}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Progress Bar */}
         <div className="mb-8">
@@ -292,10 +323,18 @@ const Quiz = () => {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-            {question.question}
-          </h2>
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 quiz-panel question-panel">
+          <div className="flex flex-col gap-4 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              {question.question}
+            </h2>
+            <div className="aira-cheer-inline">
+              <div className="aira-cheer aira-cheer-pop">
+                <img src={airaMascot} alt="Aira cheering" className="aira-cheer-img" />
+                <div className="aira-cheer-bubble">{getCheer()}</div>
+              </div>
+            </div>
+          </div>
 
           <div className="space-y-4 mb-8">
             {question.options.map((option, index) => {
@@ -308,7 +347,7 @@ const Quiz = () => {
                   key={index}
                   onClick={() => handleAnswer(index)}
                   disabled={selectedAnswer !== null}
-                  className={`w-full text-left p-6 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`w-full text-left p-6 rounded-xl font-semibold transition-all duration-300 quiz-option ${
                     !showAnswer
                       ? 'bg-gray-50 hover:bg-primary-50 hover:border-primary-500 border-2 border-gray-200'
                       : isSelected && isCorrect
@@ -335,7 +374,8 @@ const Quiz = () => {
           </div>
 
           {selectedAnswer !== null && (
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-6">
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-6 aira-tip">
+              <div className="aira-tip-head">Aira says</div>
               <p className="text-gray-800">{question.explanation}</p>
             </div>
           )}

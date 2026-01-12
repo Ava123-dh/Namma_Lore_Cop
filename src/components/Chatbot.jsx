@@ -1,11 +1,31 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, Send, MessageCircle } from 'lucide-react'
 
+let CHATBOT_CLAIMED = false
+
 // Mascot image URL - local file in public/images
 const MASCOT_SRC = '/images/aira-mascot.png'
 const PROMPT_PREFIX = `You are Aira, a peppy, friendly mascot guide for Karnataka history. Keep replies concise but complete (2-4 short sentences), upbeat, and easy to skim. Avoid markdown lists unless the user asks. Keep tone energetic but informative.`
 
-const ChatBot = () => {
+const ChatBot = ({ primary = false }) => {
+  const [isActive, setIsActive] = useState(() => {
+    if (primary) {
+      CHATBOT_CLAIMED = true
+      return true
+    }
+    if (CHATBOT_CLAIMED) return false
+    CHATBOT_CLAIMED = true
+    return true
+  })
+
+  useEffect(() => {
+    if (!isActive || primary) return
+    return () => {
+      CHATBOT_CLAIMED = false
+    }
+  }, [isActive, primary])
+
+  if (!isActive) return null
   const [isOpen, setIsOpen] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [messages, setMessages] = useState([
@@ -137,8 +157,9 @@ const ChatBot = () => {
       {!isOpen && (
         <button
           onClick={handleOpenChat}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 z-40 flex items-center justify-center"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 z-[120] flex items-center justify-center pointer-events-auto"
           title="Chat with Aira"
+          aria-label="Open Aira chat"
         >
           <MessageCircle size={28} />
         </button>

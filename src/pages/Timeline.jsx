@@ -30,7 +30,7 @@ const Timeline = () => {
       route: '/timeline/kadamba',
       description: 'Mayurasharma established the Kadamba dynasty, the first native kingdom of Karnataka with Banavasi as its capital.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      image: 'https://media.assettype.com/dharmadispatch%2F2021-09%2Fbe44d979-190a-4f02-bd99-27e9a8285f03%2FbattleSculpture.jpeg?rect=0%2C0%2C1396%2C785&w=480&auto=format%2Ccompress&fit=max',
       details: 'The Kadambas were the first indigenous dynasty to use Kannada as an administrative language. They made significant contributions to art, architecture, and literature.',
     },
     {
@@ -41,7 +41,7 @@ const Timeline = () => {
       route: '/timeline/chalukya',
       description: 'Pulakeshin I founded the Chalukya dynasty at Badami, which became a major power in South India.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      image: 'https://c8.alamy.com/comp/M90W3R/national-museum-of-india-delhi-shiva-parvati-and-family-early-western-chalukya-10th-century-ad-aihole-karnataka-stone-detail-india-M90W3R.jpg',
       details: 'The Chalukyas built magnificent cave temples at Badami, Aihole, and Pattadakal, which are UNESCO World Heritage Sites today. They were great patrons of art and architecture.',
     },
     {
@@ -52,7 +52,7 @@ const Timeline = () => {
       route: '/timeline/rashtrakuta',
       description: 'Dantidurga established the Rashtrakuta Empire, which ruled most of the Deccan and beyond.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      image: 'https://c8.alamy.com/comp/2B014EJ/india-floating-figures-mural-from-the-ellora-cave-complex-aurangabad-maharasthra-c-5th-10th-centuries-ellora-marathi-vr-is-an-archaeological-site-29-km-18-mi-north-west-of-the-city-of-aurangabad-in-the-indian-state-of-maharashtra-built-by-the-rashtrakuta-dynasty-it-is-also-known-as-elapura-in-the-rashtrakuta-literature-and-ellooru-well-known-for-its-monumental-caves-ellora-is-a-world-heritage-site-ellora-represents-the-epitome-of-indian-rock-cut-architecture-the-34-caves-are-actually-structures-excavated-out-of-the-vertical-face-of-the-charanandri-hills-2B014EJ.jpg',
       details: 'The Rashtrakutas built the magnificent Kailasa temple at Ellora, considered one of the greatest architectural achievements in ancient India.',
     },
     {
@@ -63,7 +63,7 @@ const Timeline = () => {
       route: '/timeline/western-chalukya',
       description: 'Tailapa II revived the Chalukya dynasty, establishing the Western Chalukyas with Kalyani as capital.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      image: 'https://heritage-india.com/wp-content/uploads/2022/03/chalukyas-5.jpg',
       details: 'This period saw great literary development in Kannada, with poets like Ranna, Pampa, and Ponna flourishing under royal patronage.',
     },
     {
@@ -74,7 +74,7 @@ const Timeline = () => {
       route: '/timeline/pampa',
       description: 'The great Kannada poet Pampa wrote Vikramarjuna Vijaya, one of the greatest works in Kannada literature.',
       category: 'Arts',
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      image: 'https://i.ytimg.com/vi/pioU_XsjBpI/hqdefault.jpg',
       details: 'Pampa is considered one of the greatest Kannada poets and is called "Adikavi" (First Poet). His work laid the foundation for classical Kannada literature.',
     },
     {
@@ -85,7 +85,7 @@ const Timeline = () => {
       route: '/timeline/hoysala',
       description: 'Vishnuvardhana established the Hoysala Empire with Dwarasamudra (Halebidu) as capital.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1604420805055-aa0e0214b7e5?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvWCM0WyOdYkcLAzAlVkZ71Cqi4ysiqnZX4w&s',
       details: 'The Hoysalas are renowned for their exquisite temple architecture, featuring intricate sculptures at Belur, Halebidu, and Somanathapura.',
     },
     {
@@ -96,19 +96,8 @@ const Timeline = () => {
       route: '/timeline/vijayanagara',
       description: 'Harihara I and Bukka Raya founded the Vijayanagara Empire, which became one of the greatest empires in Indian history.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyzaQhBiS6n0ZKjGChDHGc4qxzwQibvqqrMQ&s',
       details: 'At its peak, Vijayanagara was one of the largest and most prosperous cities in the world. The ruins at Hampi are now a UNESCO World Heritage Site.',
-    },
-    {
-      id: 'evt9',
-      year: '1565 CE',
-      era: 'medieval',
-      title: 'Battle of Talikota',
-      route: '/timeline/talikota',
-      description: 'The Battle of Talikota led to the decline of the Vijayanagara Empire.',
-      category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1587135941948-670b381f08ce?w=400&h=300&fit=crop',
-      details: 'The allied Deccan Sultanates defeated Vijayanagara, leading to the destruction of the magnificent capital city. This marked the end of an era.',
     },
     {
       id: 'evt10',
@@ -118,7 +107,7 @@ const Timeline = () => {
       route: '/timeline/keladi',
       description: 'The Keladi Nayakas became prominent rulers of the region, with Ikkeri as their capital.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7Di_jXV6UfqBqoV0L1oixm2_sTlgmxHJzDUx2RKiY5irCwVhoyRIrmwRTX25ctVyK8Eoxgy7QEAbWR8GboX0Xn4iO4RyStbJenJxCdteN3TXBKqv7kL_F117OPuWhM6v2NXdIHrAyots/s1600/800px-ViewShimoga1805.jpg',
       details: 'Queen Chennammaji Nayaka was one of the most powerful rulers of this dynasty, successfully resisting Mughal expansion into Karnataka.',
     },
     {
@@ -129,7 +118,7 @@ const Timeline = () => {
       route: '/timeline/hyder-ali',
       description: 'Hyder Ali became the de facto ruler of Mysore Kingdom, beginning a new chapter in Karnataka history.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      image: 'https://www.1st-art-gallery.com/media/catalog/product/cache/9bad95616889b8b60a4bb85fbf2f33f9/b/a/base_14178606.webp',
       details: 'Hyder Ali was a brilliant military strategist who modernized the Mysore army and successfully challenged British colonial expansion.',
     },
     {
@@ -140,7 +129,7 @@ const Timeline = () => {
       route: '/timeline/tipu',
       description: 'Tipu Sultan became the ruler of Mysore, known for his valor and resistance against British colonialism.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      image: 'https://media.assettype.com/thequint/2017-10/169bd977-61fb-4f11-a798-0c016637a4f0/2c8d1eb6-fad0-428d-aca6-36beee5d19a6.jpg?auto=format,compress&fmt=webp&format=webp&w=1200&h=900&dpr=1.0',
       details: 'Tipu Sultan was called the "Tiger of Mysore" and was one of the few Indian rulers to defeat the British in battle. He promoted science, technology, and trade.',
     },
     {
@@ -151,7 +140,7 @@ const Timeline = () => {
       route: '/timeline/independence',
       description: 'India gained independence from British rule, and the princely states including Mysore joined the Indian Union.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjARK8W0wCW04zvFVsqIy8GKw9E0bnUWyBuA&s',
       details: 'The Maharaja of Mysore voluntarily acceded to the Indian Union, marking the beginning of a new democratic era.',
     },
     {
@@ -162,18 +151,8 @@ const Timeline = () => {
       route: '/timeline/formation-karnataka',
       description: 'Karnataka state was formed by merging Kannada-speaking regions, initially named Mysore State.',
       category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
-      details: 'The state was reorganized based on linguistic lines, uniting all Kannada-speaking people. It was renamed Karnataka in 1973.',
-    },
-    {
-      id: 'evt15',
-      year: '1973 CE',
-      era: 'modern',
-      title: 'Mysore renamed Karnataka',
-      description: 'The state of Mysore was officially renamed Karnataka, meaning "lofty land" in Kannada.',
-      category: 'Politics',
-      image: 'https://images.unsplash.com/photo-1604420805055-aa0e0214b7e5?w=400&h=300&fit=crop',
-      details: 'The name Karnataka is derived from "Karunadu," meaning elevated land, reflecting the Deccan Plateau\'s geography.',
+      image: 'https://thefederal.com/h-upload/2024/11/01/487276-karnatakarajotsava.webp',
+      details: 'The state was reorganized on linguistic lines, uniting Kannada-speaking regions as Mysore State; in 1973 it was officially renamed Karnataka (Karunadu, "elevated land"), marking the identity we know today.',
     },
   ]
 
@@ -199,13 +178,11 @@ const Timeline = () => {
     evt6: '/timeline/pampa',
     evt7: '/timeline/hoysala',
     evt8: '/timeline/vijayanagara',
-    evt9: '/timeline/talikota',
     evt10: '/timeline/keladi',
     evt11: '/timeline/hyder-ali',
     evt12: '/timeline/tipu',
     evt13: '/timeline/independence',
     evt14: '/timeline/formation-karnataka',
-    evt15: '/timeline/mysore-renamed',
   }
 
   return (

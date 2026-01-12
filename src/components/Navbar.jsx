@@ -7,11 +7,11 @@ const Navbar = () => {
   const location = useLocation()
 
   const navItems = [
-    { name: 'Home', path: '/', icon: Home },
-    { name: 'Timeline', path: '/timeline', icon: Clock },
-    { name: 'Quiz', path: '/quiz', icon: BookOpen },
-    { name: 'Map', path: '/map', icon: MapPin },
-    { name: 'Favorites', path: '/favorites', icon: Heart },
+    { name: 'Home', path: '/', icon: Home, kn: 'ಮುಖಪುಟ' },
+    { name: 'Timeline', path: '/timeline', icon: Clock, kn: 'ಕಾಲರೇಖೆ' },
+    { name: 'Quiz', path: '/quiz', icon: BookOpen, kn: 'ಪ್ರಶ್ನೋತ್ತರ' },
+    { name: 'Map', path: '/map', icon: MapPin, kn: 'ನಕ್ಷೆ' },
+    { name: 'Favorites', path: '/favorites', icon: Heart, kn: 'ಇಷ್ಟಗಳು' },
   ]
 
   const isActive = (path) => location.pathname === path
@@ -38,7 +38,7 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-4 py-2 rounded-lg flex items-center space-x-2 transition-all duration-300 ${
+                  className={`group relative px-4 py-2 rounded-lg flex items-center space-x-2 transition-all duration-300 ${
                     isActive(item.path)
                       ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-md'
                       : 'text-gray-700 hover:bg-primary-50'
@@ -46,6 +46,9 @@ const Navbar = () => {
                 >
                   <Icon size={18} />
                   <span className="font-medium">{item.name}</span>
+                  <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded bg-white/90 text-primary-700 text-[11px] font-semibold shadow-sm opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-200">
+                    {item.kn}
+                  </span>
                 </Link>
               )
             })}
@@ -78,6 +81,7 @@ const Navbar = () => {
                 >
                   <Icon size={18} />
                   <span className="font-medium">{item.name}</span>
+                  <span className="text-[11px] text-primary-700 ml-auto">{item.kn}</span>
                 </Link>
               )
             })}

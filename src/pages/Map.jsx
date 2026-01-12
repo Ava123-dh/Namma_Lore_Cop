@@ -27,7 +27,7 @@ const Map = () => {
       type: 'UNESCO World Heritage',
       period: 'Vijayanagara Empire (14th-16th century)',
       description: 'The magnificent ruins of Hampi, capital of the Vijayanagara Empire. Home to stunning temples, royal palaces, and ancient bazaars.',
-      image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBFjdTNzZ5N6vlpehb4NPviNnEWEU-Tz-jNg&s',
       highlights: ['Virupaksha Temple', 'Stone Chariot', 'Vittala Temple', 'Royal Enclosure'],
     },
     {
@@ -37,7 +37,7 @@ const Map = () => {
       type: 'Palace',
       period: 'Wadiyar Dynasty (1912)',
       description: 'The official residence of the Wadiyar dynasty and seat of the Kingdom of Mysore. An architectural marvel blending Hindu, Muslim, Rajput, and Gothic styles.',
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSemK7SgPyzFOzwUYCss3KZLTsWAMrm-ig-Ew&s',
       highlights: ['Durbar Hall', 'Kalyana Mantapa', 'Royal Court', 'Golden Throne'],
     },
     {
@@ -47,7 +47,7 @@ const Map = () => {
       type: 'Cave Temples',
       period: 'Chalukya Dynasty (6th century)',
       description: 'Rock-cut cave temples showcasing ancient Indian architecture. Four main caves dedicated to Hindu and Jain faiths.',
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/BadamiCaves87.JPG/1280px-BadamiCaves87.JPG',
       highlights: ['Cave Temple 1', 'Cave Temple 3', 'Agastya Lake', 'Sandstone Cliffs'],
     },
     {
@@ -57,7 +57,7 @@ const Map = () => {
       type: 'Temple',
       period: 'Hoysala Dynasty (1117 CE)',
       description: 'A masterpiece of Hoysala architecture with intricate sculptures and detailed carvings. Built to commemorate victory over the Cholas.',
-      image: 'https://images.unsplash.com/photo-1604420805055-aa0e0214b7e5?w=400&h=300&fit=crop',
+      image: 'https://www.gudlu.in/blog/wp-content/uploads/2023/03/Feature-Image-6.jpg',
       highlights: ['Chennakeshava Temple', 'Star-shaped Platform', 'Darpana Sundari', 'Navaranga Hall'],
     },
     {
@@ -67,7 +67,7 @@ const Map = () => {
       type: 'Temple Complex',
       period: 'Hoysala Dynasty (12th century)',
       description: 'Former capital of the Hoysala Empire, famous for the Hoysaleswara Temple with its exquisite sculptures and friezes.',
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      image: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSpT5p0YXCJxsnhtyjUuRtUciEG_85sbx369H-1SzZVKf9yBWQTUIMSGYaZ0IYwDE-io9ICjejRhNJ8E6spSMYDd_Q&s=19',
       highlights: ['Hoysaleswara Temple', 'Kedareshwara Temple', 'Jain Basadi', 'Archaeological Museum'],
     },
     {
@@ -77,7 +77,7 @@ const Map = () => {
       type: 'Mausoleum',
       period: 'Adil Shahi Dynasty (1656)',
       description: 'Tomb of Mohammed Adil Shah with the second largest pre-modern dome in the world. Famous for its whispering gallery.',
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Gol_Gumbaj2.JPG',
       highlights: ['Central Dome', 'Whispering Gallery', 'Corner Towers', 'Archaeological Museum'],
     },
     {
@@ -87,7 +87,7 @@ const Map = () => {
       type: 'UNESCO World Heritage',
       period: 'Chalukya Dynasty (7th-8th century)',
       description: 'A harmonious blend of architectural styles from northern and southern India. A UNESCO World Heritage Site.',
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      image: 'https://kevinstandagephotography.wordpress.com/wp-content/uploads/2015/04/pattadakal-ksp_5064.jpg',
       highlights: ['Virupaksha Temple', 'Mallikarjuna Temple', 'Papanatha Temple', 'Jain Temple'],
     },
     {
@@ -97,7 +97,7 @@ const Map = () => {
       type: 'Fort',
       period: 'Nayakas of Chitradurga (17th-18th century)',
       description: 'A stone fortress built in stages between 11th and 18th centuries. Known for its seven concentric fortification walls.',
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      image: 'https://miro.medium.com/1*prqzJby5Mz8BIZeQCF8j-Q.jpeg',
       highlights: ['Seven Walls', 'Hidimbeshwara Temple', 'Obavva\'s Kindi', 'Upper Fort'],
     },
     {
@@ -107,7 +107,7 @@ const Map = () => {
       type: 'Historical Town',
       period: 'Tipu Sultan Era (18th century)',
       description: 'Historic town and former capital of Tipu Sultan. Site of several battles during the Anglo-Mysore Wars.',
-      image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=300&fit=crop',
+      image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/c9/49/0a/temple-view.jpg?w=1200&h=1200&s=1',
       highlights: ['Tipu Sultan\'s Summer Palace', 'Ranganathaswamy Temple', 'Daria Daulat Bagh', 'Gumbaz'],
     },
     {
@@ -117,7 +117,7 @@ const Map = () => {
       type: 'Temple Complex',
       period: 'Chalukya Dynasty (5th-8th century)',
       description: 'Cradle of Hindu temple architecture with over 125 temples. Experimental ground for architectural styles.',
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/b/b3/8th_century_Durga_temple_exterior_view%2C_Aihole_Hindu_temples_and_monuments_3.jpg',
       highlights: ['Durga Temple', 'Lad Khan Temple', 'Meguti Jain Temple', 'Ravanaphadi Cave'],
     },
   ]

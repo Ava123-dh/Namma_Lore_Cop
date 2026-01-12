@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Clock, BookOpen, MapPin, Sparkles, Users, Award } from 'lucide-react'
+import { Clock, BookOpen, MapPin, Sparkles } from 'lucide-react'
 import ChatBot from '../components/Chatbot'
 
 const Home = () => {
@@ -27,32 +27,38 @@ const Home = () => {
     },
   ]
 
-  const stats = [
-    { icon: Users, value: '10,000+', label: 'Active Learners' },
-    { icon: Clock, value: '500+', label: 'Historical Events' },
-    { icon: Award, value: '100+', label: 'Quiz Questions' },
-    { icon: MapPin, value: '200+', label: 'Heritage Sites' },
-  ]
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-karnataka-red/10 via-primary-100/20 to-karnataka-yellow/10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
-          <div className="text-center">
-            <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md mb-6">
+      <section className="relative overflow-hidden namma-hero">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b2c]/75 via-[#ff914d]/60 to-[#ffd199]/48"></div>
+        <div className="absolute inset-0 hero-aurora"></div>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="floating-orb orb-one"></div>
+          <div className="floating-orb orb-two"></div>
+          <div className="floating-orb orb-three"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
+          <div className="text-center max-w-5xl mx-auto section-reveal">
+            <div className="inline-flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-4 py-2 rounded-full shadow-md mb-6">
               <Sparkles className="text-karnataka-red" size={20} />
               <span className="text-sm font-semibold text-gray-700">Discover Karnataka's Rich Heritage</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-karnataka-red via-primary-600 to-karnataka-yellow bg-clip-text text-transparent">
-                Namma Lore
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 hero-title-shadow drop-shadow-2xl group">
+              <span className="inline-flex items-center gap-3 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent block group-hover:hidden">Namma</span>
+                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:block">ನಮ್ಮ</span>
+                <img
+                  src="/images/karnataka-flag-map.png"
+                  alt="Karnataka map"
+                  className="h-20 md:h-24 w-auto object-contain opacity-70 drop-shadow-lg"
+                />
+                <span className="bg-gradient-to-r from-[#ff2d2d] via-[#ff6b2c] to-[#ff9248] bg-clip-text text-transparent">Lore</span>
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white drop-shadow-[0_12px_32px_rgba(0,0,0,0.6)] mb-10 max-w-3xl mx-auto hero-subtitle-shadow">
               Making history fun, engaging, and accessible for students and tourists through interactive timelines, quizzes, and maps.
             </p>
             
@@ -64,32 +70,18 @@ const Home = () => {
                 Take a Quiz
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-12 bg-white/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon
-              return (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg mb-3">
-                    <Icon className="text-white" size={24} />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              )
-            })}
+            <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm font-semibold text-gray-800 hero-badges">
+              <span className="badge-soft">Fresh drops weekly</span>
+              <span className="badge-soft">AI tutor built-in</span>
+              <span className="badge-soft">Made for explorers</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20 section-reveal delay-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -100,16 +92,16 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 feature-grid">
             {features.map((feature, index) => {
               const Icon = feature.icon
               return (
                 <Link
                   key={index}
                   to={feature.link}
-                  className="bg-white rounded-2xl p-8 shadow-lg card-hover"
+                  className="bg-white rounded-2xl p-8 shadow-lg card-hover feature-card"
                 >
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl mb-6`}>
+                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl mb-6 icon-glow`}>
                     <Icon className="text-white" size={28} />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -132,7 +124,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-orange-50">
+      <section className="py-20 bg-gradient-to-br from-primary-50 to-orange-50 section-reveal delay-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -164,7 +156,7 @@ const Home = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8">
+              <div className="bg-white rounded-2xl shadow-2xl p-8 about-card tilt-hover">
                 <img 
                   src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop" 
                   alt="Karnataka Heritage" 
