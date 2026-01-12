@@ -2,7 +2,7 @@
 // Environment variables required in Netlify: GOOGLE_API_KEY (required), ANTHROPIC_API_KEY (optional)
 // Frontend should call `${VITE_SERVER_URL}/api/generate` with JSON { model, prompt, short }
 
-const fetchFn = typeof fetch === 'function' ? fetch : (...args) => import('node-fetch').then(({ default: f }) => f(...args))
+const fetchFn = require('node-fetch')
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
