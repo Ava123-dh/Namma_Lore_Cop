@@ -217,15 +217,16 @@ const Timeline = () => {
 
         {/* Timeline */}
         <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
+          <div className="hidden md:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
 
           <div className="space-y-12">
-            {filteredEvents.map((event, index) => (
-              <div key={event.id} className="relative pl-20">
+            {filteredEvents.map((event) => (
+              <div key={event.id} className="relative md:pl-20 pl-4 border-l md:border-l-0 border-primary-200/60">
                 {/* Timeline Dot */}
-                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                <div className="hidden md:flex absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg items-center justify-center">
                   <Calendar size={14} className="text-white" />
                 </div>
+                <div className="md:hidden absolute -left-[9px] top-6 w-4 h-4 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-2 border-white shadow"></div>
 
                 {/* Event Card */}
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
@@ -234,7 +235,7 @@ const Timeline = () => {
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-64 object-cover"
+                        className="w-full h-56 md:h-64 object-cover"
                       />
                     </div>
                     <div className="md:w-2/3 p-6">
@@ -257,7 +258,7 @@ const Timeline = () => {
                         </button>
                       </div>
                       <p className="text-gray-700 mb-4">{cleanText(event.description)}</p>
-                      <div className="flex gap-3">
+                      <div className="flex flex-wrap gap-3">
                         {routeMap[event.id] && (
                           <button
                             onClick={() => navigate(routeMap[event.id])}
