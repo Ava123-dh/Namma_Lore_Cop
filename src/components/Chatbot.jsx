@@ -17,7 +17,7 @@ const ChatBot = () => {
     },
   ])
   const [input, setInput] = useState('')
-  const [model, setModel] = useState('gemini-2.5-pro')
+  const [model, setModel] = useState('gemini-2.5-flash')
   const [isThinking, setIsThinking] = useState(false)
   const [speakingId, setSpeakingId] = useState(1)
   const lastBotIdRef = useRef(messages[0].id)
@@ -160,8 +160,8 @@ const ChatBot = () => {
                   onChange={(e) => setModel(e.target.value)}
                   className="text-xs rounded-md p-2 bg-white/20 text-white"
                 >
-                  <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
                   <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                  <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
                 </select>
                 <button
                   onClick={() => setIsOpen(false)}
