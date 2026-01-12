@@ -48,7 +48,7 @@ const Home = () => {
             <h1 className="text-5xl md:text-7xl font-extrabold mb-8 hero-title-shadow drop-shadow-2xl group">
               <span className="inline-flex items-center gap-3 bg-clip-text text-transparent">
                 <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent block group-hover:hidden">Namma</span>
-                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:block">ನಮ್ಮ</span>
+                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:inline-flex items-center whitespace-nowrap leading-[1.4] px-2 py-1 translate-y-[1px]">ನಮ್ಮ</span>
                 <img
                   src="/images/karnataka-flag-map.png"
                   alt="Karnataka map"
