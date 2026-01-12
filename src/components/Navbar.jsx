@@ -46,7 +46,7 @@ const Navbar = () => {
                 >
                   <Icon size={18} />
                   <span className="font-medium">{item.name}</span>
-                  <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded bg-white/90 text-primary-700 text-[11px] font-semibold shadow-sm opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-200">
+                  <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1 px-2 py-1 rounded bg-white/90 text-primary-700 text-[12px] font-semibold shadow-sm opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0 transition-all duration-200">
                     {item.kn}
                   </span>
                 </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
                 >
                   <Icon size={18} />
                   <span className="font-medium">{item.name}</span>
-                  <span className="text-[11px] text-primary-700 ml-auto">{item.kn}</span>
+                  <span className="text-[12px] text-primary-700 ml-auto">{item.kn}</span>
                 </Link>
               )
             })}

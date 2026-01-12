@@ -6,7 +6,7 @@
   body {
     @apply bg-gradient-to-br from-orange-50 via-white to-yellow-50 min-h-screen;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cstyle%3Etext%7Bfont-family:Inter,Arial,sans-serif;font-size:26px;fill:%23e65100;opacity:0.08%7D%3C/style%3E%3Ctext x='12' y='52' transform='rotate(-18 70 70)'%3EAvani%3C/text%3E%3Ctext x='120' y='160' transform='rotate(-18 180 180)'%3EAvani%3C/text%3E%3Ctext x='40' y='220' transform='rotate(-18 100 220)'%3EAvani%3C/text%3E%3C/svg%3E");
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cstyle%3Etext%7Bfont-family:Inter,Arial,sans-serif;font-size:26px;fill:%23e65100;opacity:0.08%7D%3C/style%3E%3Ctext x='12' y='52' transform='rotate(-18 70 70)'%3EAvani%20%C2%A9%3C/text%3E%3Ctext x='120' y='160' transform='rotate(-18 180 180)'%3EAvani%20%C2%A9%3C/text%3E%3Ctext x='40' y='220' transform='rotate(-18 100 220)'%3EAvani%20%C2%A9%3C/text%3E%3C/svg%3E");
     background-size: 240px 240px;
   }
 }

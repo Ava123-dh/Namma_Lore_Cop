@@ -27,9 +27,10 @@ import ChatBot from './components/Chatbot'
 const CascadeShell = () => {
   const location = useLocation()
   const isTimelineLanding = location.pathname === '/timeline'
+  const isMapPage = location.pathname === '/map'
 
   useEffect(() => {
-    if (isTimelineLanding) return
+    if (isTimelineLanding || isMapPage) return
 
     const blocks = document.querySelectorAll(
       [
@@ -59,10 +60,10 @@ const CascadeShell = () => {
     })
 
     return () => observer.disconnect()
-  }, [location.pathname, isTimelineLanding])
+  }, [location.pathname, isTimelineLanding, isMapPage])
 
   return (
-    <div className={`min-h-screen ${isTimelineLanding ? '' : 'page-cascade'}`}>
+    <div className={`min-h-screen ${isTimelineLanding || isMapPage ? '' : 'page-cascade'}`}>
       <Navbar />
       <ChatBot primary />
       <Routes>
