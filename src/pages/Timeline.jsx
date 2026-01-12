@@ -221,12 +221,12 @@ const Timeline = () => {
 
           <div className="space-y-12">
             {filteredEvents.map((event) => (
-              <div key={event.id} className="relative md:pl-20 pl-4 border-l md:border-l-0 border-primary-200/60">
+              <div key={event.id} className="relative md:pl-20 pl-4">
                 {/* Timeline Dot */}
                 <div className="hidden md:flex absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg items-center justify-center">
                   <Calendar size={14} className="text-white" />
                 </div>
-                <div className="md:hidden absolute -left-[9px] top-6 w-4 h-4 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-2 border-white shadow"></div>
+                <div className="md:hidden absolute left-0 top-6 w-3 h-3 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full shadow"></div>
 
                 {/* Event Card */}
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
