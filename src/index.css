@@ -33,7 +33,7 @@
   }
 
   .namma-hero {
-    background-image: linear-gradient(180deg, rgba(255, 121, 45, 0.32), rgba(255, 186, 120, 0.2)), url('https://i.pinimg.com/736x/66/83/01/6683011ab3793dada43fcf9888b7cdef.jpg');
+    background-image: linear-gradient(180deg, rgba(255, 121, 45, 0.32), rgba(255, 186, 120, 0.2)), url('/images/karnataka-hero.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

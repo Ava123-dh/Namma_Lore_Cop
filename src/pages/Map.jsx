@@ -97,7 +97,7 @@ const Map = () => {
       type: 'Fort',
       period: 'Nayakas of Chitradurga (17th-18th century)',
       description: 'A stone fortress built in stages between 11th and 18th centuries. Known for its seven concentric fortification walls.',
-      image: 'https://miro.medium.com/1*prqzJby5Mz8BIZeQCF8j-Q.jpeg',
+      image: '/images/chitradurga-fort.jpg',
       highlights: ['Seven Walls', 'Hidimbeshwara Temple', 'Obavva\'s Kindi', 'Upper Fort'],
     },
     {

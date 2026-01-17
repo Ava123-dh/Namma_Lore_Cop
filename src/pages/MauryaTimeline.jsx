@@ -22,7 +22,7 @@ const MauryaTimeline = () => {
       fullText: 'Chandragupta Maurya, guided by mentor Chanakya (Kautilya), overthrew the Nanda dynasty through guerrilla warfare and civil unrest, seizing Magadha\'s capital Pataliputra. This victory unified northern India, establishing centralized administration via the Arthashastra treatise on governance, economy, and espionage. Chandragupta\'s coalition expelled lingering Greek forces, laying foundations for imperial expansion across the subcontinent.',
       category: 'Politics',
       highlights: ['Overthrew Nanda dynasty', 'Established centralized governance', 'Mentored by Chanakya', 'Greek forces expelled'],
-      image: 'https://i.pinimg.com/736x/64/23/5f/64235f04a68e5af5cc01fcc6ff93d590.jpg',
+      image: '/images/mauryan.jpg',
     },
     {
       id: 'maurya-2',
