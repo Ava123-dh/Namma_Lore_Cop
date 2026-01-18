@@ -2,9 +2,7 @@
 // Environment variables required in Netlify: GOOGLE_API_KEY (required), ANTHROPIC_API_KEY (optional)
 // Frontend should call `${VITE_SERVER_URL}/api/generate` with JSON { model, prompt, short }
 
-const fetchFn = require('node-fetch')
-
-exports.handler = async (event) => {
+export const handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) }
   }
@@ -34,7 +32,7 @@ exports.handler = async (event) => {
         temperature: 0.2,
       }
 
-      const resp = await fetchFn('https://api.anthropic.com/v1/complete', {
+      const resp = await fetch('https://api.anthropic.com/v1/complete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +66,7 @@ exports.handler = async (event) => {
       },
     }
 
-    const resp = await fetchFn(url, {
+    const resp = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
