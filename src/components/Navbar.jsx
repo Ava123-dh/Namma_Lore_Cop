@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Clock, BookOpen, MapPin, Heart, Home } from 'lucide-react'
+import { Menu, X, Clock, BookOpen, MapPin, Heart, Home, Mail } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +12,7 @@ const Navbar = () => {
     { name: 'Quiz', path: '/quiz', icon: BookOpen, kn: 'ಪ್ರಶ್ನೋತ್ತರ' },
     { name: 'Map', path: '/map', icon: MapPin, kn: 'ನಕ್ಷೆ' },
     { name: 'Favorites', path: '/favorites', icon: Heart, kn: 'ಇಷ್ಟಗಳು' },
+    { name: 'Contact', path: '/contact', icon: Mail, kn: 'ಸಂಪರ್ಕ' },
   ]
 
   const isActive = (path) => location.pathname === path

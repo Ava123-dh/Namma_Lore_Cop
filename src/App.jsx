@@ -21,6 +21,7 @@ import MysoreRenamedTimeline from './pages/MysoreRenamedTimeline'
 import Quiz from './pages/Quiz'
 import Map from './pages/Map'
 import Favorites from './pages/Favorites'
+import Contact from './pages/Contact'
 import { FavoritesProvider } from './context/FavoritesContext'
 import ChatBot from './components/Chatbot'
 
@@ -87,6 +88,7 @@ const CascadeShell = () => {
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/map" element={<Map />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   )
