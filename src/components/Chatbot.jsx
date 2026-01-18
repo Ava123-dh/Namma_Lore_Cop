@@ -68,7 +68,9 @@ const ChatBot = ({ primary = false }) => {
     setMessages((prev) => [...prev, placeholder])
 
     // Call backend for AI-generated response. In dev use the backend port directly.
-    const baseUrl = import.meta.env.VITE_SERVER_URL || (import.meta.env.DEV ? 'http://localhost:4000' : '')
+    const baseUrl = import.meta.env.DEV
+      ? (import.meta.env.VITE_SERVER_URL || 'http://localhost:4000')
+      : ''
     // Call backend proxy for AI-generated response
     fetch(`${baseUrl}/api/generate`, {
       method: 'POST',
