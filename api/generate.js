@@ -73,7 +73,8 @@ export default async function handler(req, res) {
     if (!resp.ok) {
       const detail = await resp.text()
       console.error('Gemini API error:', detail)
-      res.status(500).json({ error: 'Gemini API error', detail })
+      const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(detail)
+      res.status(isOverloaded ? 503 : 500).json({ error: isOverloaded ? 'Model overloaded' : 'Gemini API error', detail })
       return
     }
 
@@ -101,6 +102,7 @@ export default async function handler(req, res) {
     res.status(200).json({ text })
   } catch (err) {
     console.error('Proxy error:', err)
-    res.status(500).json({ error: 'Generation failed', detail: err.message })
+    const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(err.message || '')
+    res.status(isOverloaded ? 503 : 500).json({ error: isOverloaded ? 'Model overloaded' : 'Generation failed', detail: err.message })
   }
 }

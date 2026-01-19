@@ -88,8 +88,17 @@ const ChatBot = ({ primary = false }) => {
       body: JSON.stringify({ model, prompt: `${PROMPT_PREFIX}\n\nUser: ${input}\nAira:`, short: false })
     })
       .then(async (r) => {
-        if (!r.ok) throw new Error(await r.text())
-        return r.json()
+        const contentType = r.headers.get('content-type') || ''
+        const payload = contentType.includes('application/json') ? await r.json() : { error: await r.text() }
+        if (!r.ok) {
+          const errorText = payload?.error || payload?.detail || payload?.message || 'Request failed'
+          const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(errorText)
+          throw new Error(isOverloaded
+            ? 'Model is overloaded right now. Please try again in a moment.'
+            : errorText
+          )
+        }
+        return payload
       })
       .then((data) => {
         // Strip any asterisks from responses and normalize text

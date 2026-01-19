@@ -86,7 +86,8 @@ app.post('/api/generate', async (req, res) => {
     if (!resp.ok) {
       const errorData = await resp.text()
       console.error('Gemini API error:', errorData)
-      return res.status(500).json({ error: 'Gemini API error', detail: errorData })
+      const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(errorData)
+      return res.status(isOverloaded ? 503 : 500).json({ error: isOverloaded ? 'Model overloaded' : 'Gemini API error', detail: errorData })
     }
 
     const data = await resp.json()
@@ -114,7 +115,8 @@ app.post('/api/generate', async (req, res) => {
     return res.json({ text })
   } catch (err) {
     console.error(err)
-    res.status(500).json({ error: 'Generation failed', detail: err.message })
+    const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(err.message || '')
+    res.status(isOverloaded ? 503 : 500).json({ error: isOverloaded ? 'Model overloaded' : 'Generation failed', detail: err.message })
   }
 })
 

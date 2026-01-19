@@ -84,7 +84,12 @@ export const handler = async (event) => {
     if (!resp.ok) {
       const detail = await resp.text()
       console.error('Gemini API error:', detail)
-      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Gemini API error', detail }) }
+      const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(detail)
+      return {
+        statusCode: isOverloaded ? 503 : 500,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: isOverloaded ? 'Model overloaded' : 'Gemini API error', detail })
+      }
     }
 
     const data = await resp.json()
@@ -111,6 +116,11 @@ export const handler = async (event) => {
     return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ text }) }
   } catch (err) {
     console.error('Proxy error:', err)
-    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Generation failed', detail: err.message }) }
+    const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(err.message || '')
+    return {
+      statusCode: isOverloaded ? 503 : 500,
+      headers: corsHeaders,
+      body: JSON.stringify({ error: isOverloaded ? 'Model overloaded' : 'Generation failed', detail: err.message })
+    }
   }
 }
