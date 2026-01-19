@@ -97,7 +97,7 @@ const CascadeShell = () => {
 function App() {
   return (
     <FavoritesProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <CascadeShell />
       </Router>
     </FavoritesProvider>
