@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
-const AiraQuizNudge = ({ show, onClose, bubbleSrc = '/images/aira-bubble.png', mascotSrc = '/images/aira-mascot.png' }) => {
+const baseUrl = import.meta.env.BASE_URL
+
+const AiraQuizNudge = ({ show, onClose, bubbleSrc = `${baseUrl}images/aira-bubble.png`, mascotSrc = `${baseUrl}images/aira-mascot.png` }) => {
   const navigate = useNavigate()
   if (!show) return null
 

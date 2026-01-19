@@ -3,6 +3,7 @@ import { Clock, BookOpen, MapPin, Sparkles } from 'lucide-react'
 import ChatBot from '../components/Chatbot'
 
 const Home = () => {
+  const baseUrl = import.meta.env.BASE_URL
   const features = [
     {
       icon: Clock,
@@ -50,7 +51,7 @@ const Home = () => {
                 <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent block group-hover:hidden">Namma</span>
                 <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:inline-flex items-center whitespace-nowrap leading-[1.4] px-2 py-1 translate-y-[1px]">ನಮ್ಮ</span>
                 <img
-                  src="/images/karnataka-flag-map.png"
+                  src={`${baseUrl}images/karnataka-flag-map.png`}
                   alt="Karnataka map"
                   className="h-20 md:h-24 w-auto object-contain opacity-70 drop-shadow-lg"
                 />

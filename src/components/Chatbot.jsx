@@ -4,7 +4,7 @@ import { X, Send, MessageCircle } from 'lucide-react'
 let CHATBOT_CLAIMED = false
 
 // Mascot image URL - local file in public/images
-const MASCOT_SRC = '/images/aira-mascot.png'
+const MASCOT_SRC = `${import.meta.env.BASE_URL}images/aira-mascot.png`
 const PROMPT_PREFIX = `You are Aira, a peppy, friendly mascot guide for Karnataka history. Keep replies concise but complete (2-4 short sentences), upbeat, and easy to skim. Avoid markdown lists unless the user asks. Keep tone energetic but informative.`
 
 const ChatBot = ({ primary = false }) => {

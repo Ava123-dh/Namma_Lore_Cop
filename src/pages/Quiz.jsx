@@ -3,6 +3,7 @@ import { Trophy, Clock, RotateCcw, CheckCircle, XCircle, Award } from 'lucide-re
 import ChatBot from '../components/Chatbot'
 
 const Quiz = () => {
+  const baseUrl = import.meta.env.BASE_URL
   const [started, setStarted] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
@@ -11,8 +12,8 @@ const Quiz = () => {
   const [answers, setAnswers] = useState([])
   const [timeLeft, setTimeLeft] = useState(600) // 10 minutes
 
-  const airaMascot = '/images/aira-mascot.png'
-  const airaBadge = '/images/aira-bubble.png'
+  const airaMascot = `${baseUrl}images/aira-mascot.png`
+  const airaBadge = `${baseUrl}images/aira-bubble.png`
 
   const questions = [
     {

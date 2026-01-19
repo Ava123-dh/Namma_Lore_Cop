@@ -15,6 +15,7 @@ L.Icon.Default.mergeOptions({
 })
 
 const Map = () => {
+  const baseUrl = import.meta.env.BASE_URL
   const { isFavorite, toggleFavorite } = useFavorites()
   const [selectedSite, setSelectedSite] = useState(null)
   const [filter, setFilter] = useState('all')
@@ -97,7 +98,7 @@ const Map = () => {
       type: 'Fort',
       period: 'Nayakas of Chitradurga (17th-18th century)',
       description: 'A stone fortress built in stages between 11th and 18th centuries. Known for its seven concentric fortification walls.',
-      image: '/images/chitradurga-fort.jpg',
+      image: `${baseUrl}images/chitradurga-fort.jpg`,
       highlights: ['Seven Walls', 'Hidimbeshwara Temple', 'Obavva\'s Kindi', 'Upper Fort'],
     },
     {

@@ -5,6 +5,7 @@ import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
 
 const Timeline = () => {
+  const baseUrl = import.meta.env.BASE_URL
   const navigate = useNavigate()
   const { isFavorite, toggleFavorite } = useFavorites()
   const [selectedEra, setSelectedEra] = useState('all')
@@ -19,7 +20,7 @@ const Timeline = () => {
       route: '/timeline/maurya',
       description: 'Emperor Ashoka extended Mauryan rule to Karnataka region. Rock edicts found in Sannati and other places provide evidence of Buddhist influence.',
       category: 'Politics',
-      image: '/images/mauryan.jpg',
+      image: `${baseUrl}images/mauryan.jpg`,
       details: 'The Mauryan Empire marked the beginning of organized governance in Karnataka. The famous Ashoka edicts in Brahmi script discovered in Karnataka are among the oldest written records in the region.',
     },
     {

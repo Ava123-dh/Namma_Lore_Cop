@@ -7,6 +7,7 @@ import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
 const MauryaTimeline = () => {
+  const baseUrl = import.meta.env.BASE_URL
   const navigate = useNavigate()
   const { isFavorite, toggleFavorite } = useFavorites()
   const [expandedEvent, setExpandedEvent] = useState(null)
@@ -22,7 +23,7 @@ const MauryaTimeline = () => {
       fullText: 'Chandragupta Maurya, guided by mentor Chanakya (Kautilya), overthrew the Nanda dynasty through guerrilla warfare and civil unrest, seizing Magadha\'s capital Pataliputra. This victory unified northern India, establishing centralized administration via the Arthashastra treatise on governance, economy, and espionage. Chandragupta\'s coalition expelled lingering Greek forces, laying foundations for imperial expansion across the subcontinent.',
       category: 'Politics',
       highlights: ['Overthrew Nanda dynasty', 'Established centralized governance', 'Mentored by Chanakya', 'Greek forces expelled'],
-      image: '/images/mauryan.jpg',
+      image: `${baseUrl}images/mauryan.jpg`,
     },
     {
       id: 'maurya-2',
