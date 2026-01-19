@@ -2,28 +2,37 @@
 // Environment variables required in Netlify: GOOGLE_API_KEY (required), ANTHROPIC_API_KEY (optional)
 // Frontend should call `${VITE_SERVER_URL}/api/generate` with JSON { model, prompt, short }
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+}
+
 export const handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 204, headers: corsHeaders, body: '' }
+  }
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: JSON.stringify({ error: 'Method not allowed' }) }
+    return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) }
   }
 
   let body
   try {
     body = JSON.parse(event.body || '{}')
   } catch (err) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) }
+    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Invalid JSON' }) }
   }
 
   const { model = 'gemini-2.5-pro', prompt, short = false } = body
   if (!prompt) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Missing prompt' }) }
+    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'Missing prompt' }) }
   }
 
   try {
     // Claude (optional)
     if (model.toLowerCase().includes('claude')) {
       const apiKey = process.env.ANTHROPIC_API_KEY
-      if (!apiKey) return { statusCode: 500, body: JSON.stringify({ error: 'Anthropic API key not configured' }) }
+      if (!apiKey) return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Anthropic API key not configured' }) }
 
       const requestBody = {
         model,
@@ -43,12 +52,12 @@ export const handler = async (event) => {
 
       const data = await resp.json()
       const text = data.completion ?? data.output ?? data?.choices?.[0]?.text ?? JSON.stringify(data)
-      return { statusCode: 200, body: JSON.stringify({ text }) }
+      return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ text }) }
     }
 
     // Gemini
     const apiKey = process.env.GOOGLE_API_KEY
-    if (!apiKey) return { statusCode: 500, body: JSON.stringify({ error: 'Google API key not configured' }) }
+    if (!apiKey) return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Google API key not configured' }) }
 
     let modelName = model.startsWith('models/') ? model.replace('models/', '') : model
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`
@@ -75,7 +84,7 @@ export const handler = async (event) => {
     if (!resp.ok) {
       const detail = await resp.text()
       console.error('Gemini API error:', detail)
-      return { statusCode: 500, body: JSON.stringify({ error: 'Gemini API error', detail }) }
+      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Gemini API error', detail }) }
     }
 
     const data = await resp.json()
@@ -99,9 +108,9 @@ export const handler = async (event) => {
       text = JSON.stringify(data)
     }
 
-    return { statusCode: 200, body: JSON.stringify({ text }) }
+    return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ text }) }
   } catch (err) {
     console.error('Proxy error:', err)
-    return { statusCode: 500, body: JSON.stringify({ error: 'Generation failed', detail: err.message }) }
+    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ error: 'Generation failed', detail: err.message }) }
   }
 }
