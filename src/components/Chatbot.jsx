@@ -67,12 +67,21 @@ const ChatBot = ({ primary = false }) => {
     setIsThinking(true)
     setMessages((prev) => [...prev, placeholder])
 
-    // Call backend for AI-generated response. In dev use the backend port directly.
-    const baseUrl = import.meta.env.DEV
-      ? (import.meta.env.VITE_SERVER_URL || 'http://localhost:4000')
-      : ''
+    const apiBaseUrl = (import.meta.env.VITE_SERVER_URL || '').replace(/\/$/, '')
+    if (!apiBaseUrl) {
+      const botMessage = {
+        id: placeholderId,
+        text: 'Error: Chatbot backend is not configured. Set VITE_SERVER_URL to your deployed API base URL (for example, a Netlify/Vercel function) and redeploy.',
+        sender: 'bot',
+        timestamp: new Date(),
+      }
+      setMessages((prev) => prev.map((m) => (m.id === placeholderId ? botMessage : m)))
+      setIsThinking(false)
+      return
+    }
+
     // Call backend proxy for AI-generated response
-    fetch(`${baseUrl}/api/generate`, {
+    fetch(`${apiBaseUrl}/api/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       // send `short: true` when NOT full-screen so backend returns concise answers
