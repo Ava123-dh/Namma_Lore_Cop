@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:docs": "vite build && rm -rf docs && mkdir -p docs && cp -R dist/* docs/ && touch docs/.nojekyll",
+    "build:docs": "vite build && rm -rf docs && mkdir -p docs && cp -R dist/* docs/ && cp CNAME docs/ && touch docs/.nojekyll",
     "preview": "vite preview",
     "server": "node server/index.js"
   },
