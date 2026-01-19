@@ -4,6 +4,7 @@ import ChatBot from '../components/Chatbot'
 
 const Home = () => {
   const baseUrl = import.meta.env.BASE_URL
+  const heroBackground = `linear-gradient(180deg, rgba(255, 121, 45, 0.32), rgba(255, 186, 120, 0.2)), url(${baseUrl}images/karnataka-hero.jpg)`
   const features = [
     {
       icon: Clock,
@@ -31,7 +32,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden namma-hero">
+      <section className="relative overflow-hidden namma-hero" style={{ backgroundImage: heroBackground }}>
         <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b2c]/75 via-[#ff914d]/60 to-[#ffd199]/48"></div>
         <div className="absolute inset-0 hero-aurora"></div>
         <div className="absolute inset-0 pointer-events-none">
