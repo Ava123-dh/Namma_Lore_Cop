@@ -12,8 +12,6 @@ const Home = () => {
       description: 'Explore Karnataka\'s rich history through an engaging timeline of events, dynasties, and cultural milestones.',
       link: '/timeline',
       gradient: 'from-blue-500 to-cyan-500',
-      accent: 'from-blue-100 to-cyan-100',
-      kicker: 'Trace dynasties and turning points in minutes.',
     },
     {
       icon: BookOpen,
@@ -21,8 +19,6 @@ const Home = () => {
       description: 'Test your knowledge with interactive MCQ quizzes covering various aspects of Karnataka\'s history.',
       link: '/quiz',
       gradient: 'from-purple-500 to-pink-500',
-      accent: 'from-purple-100 to-pink-100',
-      kicker: 'Short, smart quizzes that keep score for you.',
     },
     {
       icon: MapPin,
@@ -30,8 +26,6 @@ const Home = () => {
       description: 'Discover historical monuments and sites near you with our interactive location-based map.',
       link: '/map',
       gradient: 'from-green-500 to-emerald-500',
-      accent: 'from-green-100 to-emerald-100',
-      kicker: 'Find monuments and sites near your location.',
     },
   ]
 
@@ -53,7 +47,7 @@ const Home = () => {
               <span className="text-sm font-semibold text-gray-700">Discover Karnataka's Rich Heritage</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl font-extrabold mb-8 hero-title-shadow drop-shadow-2xl group">
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 hero-title-shadow drop-shadow-2xl group">
               <span className="inline-flex items-center gap-3 bg-clip-text text-transparent">
                 <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent block group-hover:hidden">Namma</span>
                 <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:inline-flex items-center whitespace-nowrap leading-[1.4] px-2 py-1 translate-y-[1px]">ನಮ್ಮ</span>
@@ -69,7 +63,12 @@ const Home = () => {
             <p className="text-xl md:text-2xl text-white drop-shadow-[0_12px_32px_rgba(0,0,0,0.6)] mb-10 max-w-3xl mx-auto hero-subtitle-shadow">
               Making history fun, engaging, and accessible for students and tourists through interactive timelines, quizzes, and maps.
             </p>
-            
+
+            <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm font-semibold text-gray-800 hero-badges">
+              <span className="badge-soft">Fresh drops weekly</span>
+              <span className="badge-soft">AI tutor built-in</span>
+              <span className="badge-soft">Made for explorers</span>
+            </div>
           </div>
         </div>
       </section>
