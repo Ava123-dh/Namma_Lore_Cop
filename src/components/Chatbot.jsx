@@ -18,14 +18,6 @@ const ChatBot = ({ primary = false }) => {
     return true
   })
 
-  useEffect(() => {
-    if (!isActive || primary) return
-    return () => {
-      CHATBOT_CLAIMED = false
-    }
-  }, [isActive, primary])
-
-  if (!isActive) return null
   const [isOpen, setIsOpen] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [messages, setMessages] = useState([
@@ -40,7 +32,16 @@ const ChatBot = ({ primary = false }) => {
   const [model, setModel] = useState('gemini-2.5-flash')
   const [isThinking, setIsThinking] = useState(false)
   const [speakingId, setSpeakingId] = useState(1)
-  const lastBotIdRef = useRef(messages[0].id)
+  const lastBotIdRef = useRef(null)
+
+  useEffect(() => {
+    if (!isActive || primary) return
+    return () => {
+      CHATBOT_CLAIMED = false
+    }
+  }, [isActive, primary])
+
+  if (!isActive) return null
 
   // Open chatbot in full-screen immediately
   const handleOpenChat = () => {
@@ -88,8 +89,22 @@ const ChatBot = ({ primary = false }) => {
       body: JSON.stringify({ model, prompt: `${PROMPT_PREFIX}\n\nUser: ${input}\nAira:`, short: false })
     })
       .then(async (r) => {
+        console.log('API Response Status:', r.status, r.statusText)
         const contentType = r.headers.get('content-type') || ''
-        const payload = contentType.includes('application/json') ? await r.json() : { error: await r.text() }
+        console.log('Content-Type:', contentType)
+        
+        const rawText = await r.text()
+        console.log('Raw response text:', rawText)
+        
+        let payload
+        try {
+          payload = JSON.parse(rawText)
+        } catch (e) {
+          payload = { error: rawText }
+        }
+        
+        console.log('Parsed payload:', payload)
+        
         if (!r.ok) {
           const errorText = payload?.error || payload?.detail || payload?.message || 'Request failed'
           const isOverloaded = /overloaded|resource_exhausted|429|503/i.test(errorText)
@@ -102,9 +117,12 @@ const ChatBot = ({ primary = false }) => {
       })
       .then((data) => {
         // Strip any asterisks from responses and normalize text
+        console.log('Data object:', data)
         const raw = (data.text || '')
-        const cleaned = raw.replace(/\*/g, '')
-        const botMessage = { id: placeholderId, text: cleaned, sender: 'bot', timestamp: new Date() }
+        console.log('Raw text from data.text:', raw)
+        const cleaned = raw.replace(/\*/g, '').trim()
+        console.log('Cleaned bot response:', cleaned)
+        const botMessage = { id: placeholderId, text: cleaned || 'I received an empty response. Please try again!', sender: 'bot', timestamp: new Date() }
         setMessages((prev) => prev.map((m) => (m.id === placeholderId ? botMessage : m)))
         setIsThinking(false)
       })
