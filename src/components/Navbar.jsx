@@ -20,8 +20,13 @@ const Navbar = () => {
     <nav className="nav">
       <div className="nav-inner">
         <Link to="/" className="nav-logo" onClick={() => setIsOpen(false)}>
-          <span className="nav-logo-dot" aria-hidden="true" />
-          Namma Lore
+          {/* The wordmark is inside the artwork, so the link carries the name
+              for anyone who can't see it */}
+          <img
+            src={`${import.meta.env.BASE_URL}images/nammalore-logo.svg`}
+            alt="Namma Lore"
+            className="nav-logo-mark"
+          />
         </Link>
 
         <div className="nav-links">
