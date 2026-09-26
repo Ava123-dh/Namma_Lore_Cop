@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -38,41 +39,68 @@ const KadambaTimeline = () => {
       year: '345 CE',
       title: 'Founding',
       subtitle: 'Mayurasharma establishes Banavasi',
-      fullText: "Mayurasharma, a Brahmin scholar from Talagunda, rebelled against Pallava overlord Skandavarman after a temple insult, defeating him with Ganga allies. He established Banavasi as capital, marking Karnataka's first native dynasty with Vedic rituals and land grants. This shift fostered indigenous Kannada identity and temple-building traditions.",
+      fullText: "According to the Talagunda inscription, Mayurasharma - a Brahmin student slighted at the Pallava court in Kanchi - abandoned his studies, took up arms, and around 345 CE carved out an independent kingdom based at Banavasi. The Kadambas were the first indigenous dynasty to use Kannada, 'the language of the soil', for administration; their Halmidi inscription (c. 450 CE) is the earliest known Kannada inscription.",
       category: 'Politics',
-      highlights: ['First native Kannada dynasty', 'Banavasi capital', 'Vedic rituals and land grants', 'Indigenous Kannada identity'],
+      highlights: [
+        "Founded c. 345 CE by Mayurasharma at Banavasi",
+        "Sparked by a quarrel at the Pallava court in Kanchi",
+        "First native kingdom of Karnataka",
+        "First to use Kannada for administration",
+        "Left the Halmidi inscription (c. 450 CE), earliest in Kannada",
+      ],
       image: null,
+      sources: [{ label: 'Wikipedia — Kadamba dynasty', url: 'https://en.wikipedia.org/wiki/Kadamba_dynasty' }],
     },
     {
       id: 'kadamba-2',
       year: '435 CE',
-      title: 'Kakusthavarma\'s Peak',
+      title: "Kakusthavarma's Zenith",
       subtitle: 'Expansion and cultural elevation',
-      fullText: "Kakusthavarma expanded territory via alliances and wars against Gangas, Vakatakas, and Pallavas, marrying into royal families for diplomacy. He shifted capital to Kolar temporarily, patronized Jainism, and boosted trade, controlling Karnataka, Goa, and Maharashtra parts. His court poet Durvinita chronicled these conquests, elevating Kadamba cultural prestige.",
-      category: 'Expansion',
-      highlights: ['Regional expansion to Goa and Maharashtra', 'Patronage of Jainism', 'Trade growth', 'Cultural elevation under court poet Durvinita'],
+      fullText: "Under Kakusthavarma (c. 435-455 CE) the Kadamba kingdom reached its zenith. So prestigious was the dynasty that he married his daughters into the imperial Guptas and the Vakatakas, and the celebrated Talagunda inscription dates to his era. His reign is remembered as a high point of early Karnataka statehood and of Sanskrit and Kannada culture.",
+      category: 'Culture & Diplomacy',
+      highlights: [
+        "Kakusthavarma reigned c. 435-455 CE",
+        "The dynasty reached its zenith under him",
+        "Married daughters into the Gupta and Vakataka houses",
+        "The Talagunda inscription dates to his era",
+        "A high point of early Karnataka culture",
+      ],
       image: 'https://www.poojn.in/wp-content/uploads/2025/04/Kakusthavarmas-Reign-An-Exploration.jpeg.jpg',
-      imagePosition: '50% 30%',
+      sources: [{ label: 'Wikipedia — Kadamba dynasty', url: 'https://en.wikipedia.org/wiki/Kadamba_dynasty' }],
     },
     {
       id: 'kadamba-3',
-      year: '485 CE',
-      title: 'Ravivarma\'s Wars',
-      subtitle: 'Military campaigns and internal struggles',
-      fullText: "Ravivarma clashed with Pallavas, Gangas, and internal Triparvata branch, extending north to Narmada River against Vakatakas. Ruling amid family feuds, he maintained core territories through military prowess and Shaiva temples like Banavasi's Madhukeshvara. His victories sustained the dynasty but sowed decline seeds via infighting.",
+      year: 'c. 497-537 CE',
+      title: "Ravivarma's Campaigns",
+      subtitle: 'Warfare and internal struggles',
+      fullText: "Ravivarma (c. 497-537 CE) restored Kadamba fortunes through near-constant warfare. His many inscriptions record victories against the Pallavas and the Western Gangas and the suppression of rival family branches - he killed Vishnuvarma of the Triparvata line and put down the revolt at Ucchangi. Yet the succession disputes he fought would resurface fatally after his death.",
       category: 'Military',
-      highlights: ['Conflicts with Pallavas and Gangas', 'Extension to Narmada River', 'Patronage of Shaiva temples', 'Internal family feuds'],
+      highlights: [
+        "Ravivarma reigned c. 497-537 CE",
+        "Fought the Pallavas and the Western Gangas",
+        "Suppressed rival Kadamba branches",
+        "Killed Vishnuvarma of the Triparvata line",
+        "Left the dynasty riven by succession disputes",
+      ],
       image: null,
+      sources: [{ label: 'Wikipedia — Kadamba dynasty', url: 'https://en.wikipedia.org/wiki/Kadamba_dynasty' }],
     },
     {
       id: 'kadamba-4',
       year: '540 CE',
       title: 'Chalukya Conquest',
       subtitle: 'End of independent rule',
-      fullText: "Badami Chalukyas under Pulakeshin I overthrew the weakened Kadambas, reducing them to vassals after Ravivarma's successors faltered. This ended independent Kadamba rule, fragmenting the dynasty into branches in Goa, Halasi, and Hangal under larger empires. However, Kadamba legacy persisted in architecture and minor kingdoms for centuries.",
+      fullText: "Around 540 CE the Chalukyas of Badami - once vassals of the Kadambas - conquered the entire kingdom and reduced the Kadambas to feudatory status, ending roughly two centuries of independent rule. The dynasty's legacy endured, however, in the Kannada administrative tradition it pioneered and in later Kadamba branches at Goa and Hangal.",
       category: 'Political Change',
-      highlights: ['Chalukya conquest under Pulakeshin I', 'Reduction to vassalage', 'Fragmentation into regional branches', 'Lasting cultural legacy'],
+      highlights: [
+        "Badami Chalukyas conquered the Kadambas c. 540 CE",
+        "The Chalukyas had once been Kadamba vassals",
+        "Ended roughly two centuries of independent rule",
+        "Kadambas reduced to feudatory status",
+        "Legacy survived in later Goa and Hangal branches",
+      ],
       image: null,
+      sources: [{ label: 'Wikipedia — Kadamba dynasty', url: 'https://en.wikipedia.org/wiki/Kadamba_dynasty' }],
     },
   ]
 
@@ -87,7 +115,7 @@ const KadambaTimeline = () => {
   const parentEvent = { id: 'evt2', title: 'Kadamba Dynasty', year: 'c. 345–540 CE', category: 'Politics' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8">
           <ArrowLeft size={20} />
@@ -101,58 +129,14 @@ const KadambaTimeline = () => {
         </div>
         <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-start">
           <div className="space-y-10">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-              <div className="space-y-8">
-                {kadambaEvents.map((event) => (
-                  <div key={event.id} className="relative pl-20">
-                    <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                      <Calendar size={14} className="text-white" />
-                    </div>
-
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                      <div className="p-6 cursor-pointer">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                            <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                            <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                          </div>
-                          <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0">
-                            <Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} />
-                          </button>
-                        </div>
-                      </div>
-
-                      {expandedEvent === event.id && (
-                        <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                          <div className="mb-6">
-                                <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                              </div>
-                          <div>
-                            <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {event.highlights.map((h, i) => (
-                                <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-primary-200"><div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></div><span className="text-gray-700">{h}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HoverExpandTimeline events={kadambaEvents} onOpen={markSeen} />
 
             <div className="p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Kadamba Dynasty</h3>
               <p className="text-gray-700 leading-relaxed mb-6">The Kadamba Dynasty (c. 345–540 CE) was an early Kannada kingdom in Karnataka, founded by Mayurasharma, pioneering local rule post-Gupta era with influences on art, architecture, and Shaivism. Key events defined its rise, expansions, and vassalage under Chalukyas. The Kadambas were pioneering administrators who established Kannada as an official language and created lasting contributions to South Indian temple architecture and cultural traditions.</p>
             </div>
 
-            <div className="p-6 bg-white rounded-lg border border-gray-200">
+            <div className="p-6 bg-cream-50 rounded-lg border border-gray-200">
               <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
               <ul className="space-y-2">
                 <li><a href="https://lotusarise.com/kadamba-dynasty-upsc/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">LotusArise - Kadamba Dynasty UPSC Notes</a></li>
@@ -171,7 +155,7 @@ const KadambaTimeline = () => {
 
           <aside className="hidden lg:block sticky top-24 space-y-6">
             {kadambaVisuals.map((visual) => (
-              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-white">
+              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-cream-50">
                 <div className="relative aspect-[4/5] bg-gray-100">
                   <img
                     src={visual.url}

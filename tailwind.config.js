@@ -22,10 +22,21 @@ export default {
         karnataka: {
           red: '#DC143C',
           yellow: '#FFD700',
+        },
+        // Paper palette shared with the landing page: `cream` is the page
+        // surface, `cream-50` the card sitting on top of it, `cream-200` the
+        // hairline between them.
+        cream: {
+          DEFAULT: '#fdf4e3',
+          50: '#fffbf0',
+          100: '#fdf4e3',
+          200: '#f5e8d1',
+          300: '#ecdab9',
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Bagel Fat One', 'Fredoka', 'Inter', 'system-ui', 'sans-serif'],
       },
     },
   },

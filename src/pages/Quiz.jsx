@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Trophy, Clock, RotateCcw, CheckCircle, XCircle, Award } from 'lucide-react'
+import { Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react'
 import ChatBot from '../components/Chatbot'
+import AiraQuizHero from '../components/AiraQuizHero'
 
 const Quiz = () => {
   const baseUrl = import.meta.env.BASE_URL
@@ -131,70 +132,10 @@ const Quiz = () => {
 
   if (!started) {
     return (
-      <div className="quiz-shell min-h-screen py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="quiz-hero aira-hero">
-            <div className="aira-hero-copy">
-              <div className="aira-chip">Aira-approved challenge</div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-                Karnataka History Quiz
-              </h1>
-              <p className="text-lg md:text-xl text-gray-700 max-w-2xl">
-                Test your knowledge, earn bragging rights, and learn with Aira by your side.
-              </p>
-              <div className="flex flex-wrap gap-2 mt-4 text-sm font-semibold text-gray-700">
-                <span className="pill-soft">10 curated questions</span>
-                <span className="pill-soft">Timer: 10 mins</span>
-                <span className="pill-soft">Explanations included</span>
-              </div>
-            </div>
-            <div className="aira-hero-mascot">
-              <img src={airaMascot} alt="Aira cheering" className="aira-hero-img" />
-              <div className="aira-stamp">Cheer Squad</div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 quiz-panel">
-            <div className="space-y-6 mb-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                  <Trophy className="text-primary-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">10 Questions</h3>
-                  <p className="text-sm text-gray-600">Multiple choice questions about Karnataka history</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Clock className="text-blue-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">10 Minutes</h3>
-                  <p className="text-sm text-gray-600">Complete the quiz within the time limit</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Award className="text-green-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Track Your Score</h3>
-                  <p className="text-sm text-gray-600">Get instant feedback and learn from explanations</p>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={startQuiz}
-              className="w-full btn-primary text-lg shine-button"
-            >
-              Start Quiz
-            </button>
-          </div>
-        </div>
+      <>
+        <AiraQuizHero baseUrl={baseUrl} onStart={startQuiz} />
         <ChatBot />
-      </div>
+      </>
     )
   }
 
@@ -204,12 +145,12 @@ const Quiz = () => {
     return (
       <div className="quiz-shell min-h-screen py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center quiz-panel">
+          <div className="bg-cream-50 rounded-2xl shadow-xl p-8 md:p-12 text-center quiz-panel">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mb-6">
               <Trophy className="text-white" size={48} />
             </div>
             
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Quiz Completed!</h2>
+            <h2 className="text-3xl md:text-4xl text-gray-900 mb-6">Quiz Completed!</h2>
             <p className={`text-2xl font-semibold mb-8 ${scoreMessage.color}`}>
               {scoreMessage.text}
             </p>
@@ -324,7 +265,7 @@ const Quiz = () => {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 quiz-panel question-panel">
+        <div className="bg-cream-50 rounded-2xl shadow-xl p-8 md:p-12 mb-8 quiz-panel question-panel">
           <div className="flex flex-col gap-4 mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               {question.question}

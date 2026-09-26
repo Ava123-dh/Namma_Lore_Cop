@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -37,51 +38,86 @@ const WesternChalukyaTimeline = () => {
       id: 'wc-1',
       year: '973 CE',
       title: "Tailapa II's Overthrow",
-      subtitle: 'Restores Chalukya lineage',
-      fullText: "Tailapa II, a Rashtrakuta feudatory, exploited their decline amid Paramara invasions to defeat Karka II, reclaiming Deccan territories. He restored Chalukya lineage from Badami Chalukyas, performed Vedic sacrifices, and patronized Kannada poet Ranna. This founding revived imperial ambitions, stabilizing rule for two centuries.",
+      subtitle: 'Revives the Chalukya line',
+      fullText: "In 973 CE Tailapa II, a Chalukya feudatory of the Rashtrakutas based at Tardavadi in the Bijapur region, exploited the chaos of a Paramara invasion to overthrow his overlords and revive the Chalukya line as the Western (Kalyani) Chalukyas. Ruling first from Manyakheta - the capital was later shifted to Kalyani (modern Basavakalyan) - he restored Chalukya power over the Deccan and patronised the great Kannada poet Ranna.",
       category: 'Politics',
-      highlights: ['Rashtrakuta decline exploited', 'Badami Chalukya lineage restored', 'Vedic sacrifices performed', 'Kannada literature patronized'],
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      highlights: [
+        'Overthrew the Rashtrakutas in 973 CE',
+        'Revived the Chalukya line as the Western (Kalyani) Chalukyas',
+        'Rose from a feudatory base at Tardavadi (Bijapur region)',
+        'Capital at Manyakheta, later shifted to Kalyani',
+        'Patronised the Kannada poet Ranna',
+      ],
+      image: '/images/western-chalukya/western-chalukya-1-lakkundi.jpg',
+      sources: [{ label: 'Wikipedia — Western Chalukya Empire', url: 'https://en.wikipedia.org/wiki/Western_Chalukya_Empire' }],
     },
     {
       id: 'wc-2',
-      year: '1006 CE',
+      year: 'c. 1007 CE',
       title: 'Chola Invasion Repelled',
-      subtitle: 'Satyashraya checks northern expansion',
-      fullText: 'Satyashraya faced Rajaraja Chola I\'s devastating raid on Kalyani but mounted counterattacks, preserving core lands. Though territories were lost temporarily, it checked Chola expansion northward. The conflict initiated prolonged Chalukya-Chola wars, shaping Deccan geopolitics.',
+      subtitle: 'Satyashraya holds the Deccan',
+      fullText: "Around 1007 CE the Cholas under crown-prince Rajendra (son of Rajaraja I) invaded the Western Chalukya realm, clashing with emperor Satyashraya at Donur in the Bijapur district. The Cholas overran Gangavadi and Nolambavadi to the south, but Satyashraya held his core territory and capital. The campaign opened more than a century of Chalukya-Chola warfare over the Tungabhadra doab and Vengi.",
       category: 'Military',
-      highlights: ['Rajaraja Chola I resisted', 'Core territories preserved', 'Chola expansion checked', 'Prolonged Chalukya-Chola wars began'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      highlights: [
+        'Chola invasion led by crown-prince Rajendra, c. 1007 CE',
+        'Battle against emperor Satyashraya at Donur (Bijapur district)',
+        'Cholas overran Gangavadi and Nolambavadi',
+        'Satyashraya retained his core lands and capital',
+        'Began over a century of Chalukya-Chola wars',
+      ],
+      image: '/images/western-chalukya/western-chalukya-2-itagi.jpg',
+      sources: [{ label: 'Wikipedia — Western Chalukya Empire', url: 'https://en.wikipedia.org/wiki/Western_Chalukya_Empire' }],
     },
     {
       id: 'wc-3',
-      year: '1020s CE',
-      title: 'Jayasimha II\'s Victories',
-      subtitle: 'Territorial recovery and cultural patronage',
-      fullText: 'Jayasimha II recaptured Kollipara from Cholas, defeated Paramara Bhoja of Malwa, and allied with Chandelas against common foes. He shifted patronage to Shaivism, building temples like those at Itagi. His reign stabilized the empire, fostering Vesara architecture and Kannada literature.',
+      year: '1015-1042 CE',
+      title: "Jayasimha II's Reign",
+      subtitle: 'Consolidation and patronage',
+      fullText: "Jayasimha II (r. 1015-1042) stabilised the empire after Satyashraya. He fought the Cholas along the Tungabhadra around 1020-21 and about 1024 checked the Paramara ruler Bhoja of Malwa to the north. His reign consolidated Chalukya control of the Deccan and sustained the temple-building and Kannada literary culture for which the dynasty is known.",
       category: 'Military & Culture',
-      highlights: ['Kollipara recaptured', 'Paramara Bhoja defeated', 'Shaivism patronized', 'Vesara architecture promoted'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned 1015-1042 CE',
+        'Fought the Cholas along the Tungabhadra c. 1020-21',
+        'Checked the Paramara Bhoja of Malwa c. 1024',
+        'Stabilised Chalukya control of the Deccan',
+        'Sustained temple-building and Kannada literary patronage',
+      ],
+      image: '/images/western-chalukya/western-chalukya-3-brahma-jinalaya.jpg',
+      sources: [{ label: 'Wikipedia — Western Chalukya Empire', url: 'https://en.wikipedia.org/wiki/Western_Chalukya_Empire' }],
     },
     {
       id: 'wc-4',
-      year: '1076 CE',
-      title: 'Vikramaditya VI\'s Accession',
-      subtitle: 'Golden age of scholarship',
-      fullText: 'Vikramaditya VI seized the throne from brother Someshvara II, ushering a 50-year golden age with Chalukya-Vikrama era dating. He subdued rebels, raided Chola territories, and commissioned Vikramankadeva Charita chronicle. His court thrived with scholars like Bilhana and Vijnaneshvara, advancing legal texts like Mitakshara.',
+      year: '1076-1126 CE',
+      title: "Vikramaditya VI's Golden Age",
+      subtitle: 'Scholarship and the Chalukya-Vikrama era',
+      fullText: "Vikramaditya VI (r. 1076-1126) presided over the dynasty's golden age. He took the throne from his brother Someshvara II and inaugurated the 'Chalukya-Vikrama' calendar era. His court produced two landmark works: Bilhana's biographical poem Vikramankadeva Charita and Vijnaneshwara's Mitakshara, still among the most influential treatises in Hindu law. His long reign saw prolific temple-building at Lakkundi, Itagi, Gadag and Dambal.",
       category: 'Culture & Administration',
-      highlights: ['Chalukya-Vikrama era established', 'Chola territories raided', 'Vikramankadeva Charita commissioned', 'Legal texts like Mitakshara advanced'],
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      highlights: [
+        'Ruled c. 1076-1126, the dynasty\'s golden age',
+        "Founded the 'Chalukya-Vikrama' era for dating",
+        "Court poet Bilhana wrote the Vikramankadeva Charita",
+        'Jurist Vijnaneshwara composed the Mitakshara law text',
+        'Temple-building at Lakkundi, Itagi, Gadag and Dambal',
+      ],
+      image: '/images/western-chalukya/western-chalukya-4-dambal.jpg',
+      sources: [{ label: 'Wikipedia — Western Chalukya Empire', url: 'https://en.wikipedia.org/wiki/Western_Chalukya_Empire' }],
     },
     {
       id: 'wc-5',
-      year: '1184 CE',
-      title: 'Someshvara IV\'s Resistance',
-      subtitle: 'Dynasty\'s effective end',
-      fullText: 'Someshvara IV fought Hoysala and Yadava incursions amid internal strife but lost Kalyani to Kalachuri Bijjala II\'s usurpation. Feudal revolts and overextension weakened defenses. This marked the dynasty\'s effective end, fragmenting into successor states.',
+      year: '1184-1200 CE',
+      title: "Someshvara IV's Last Stand",
+      subtitle: "Dynasty's effective end",
+      fullText: "Someshvara IV (r. 1184-1200) made a last bid to restore the dynasty, briefly recapturing Kalyani from the usurping Kalachuris around 1183. But hemmed in by the rising Hoysala, Seuna (Yadava) and Kakatiya powers, he was driven into exile at Banavasi by about 1189. With him the Western Chalukya empire effectively ended, and its lands were partitioned among those successor states.",
       category: 'Political Change',
-      highlights: ['Hoysala and Yadava attacks', 'Kalyani lost to Kalachuris', 'Internal feudal revolts', 'Fragmentation into successor states'],
-      image: 'https://images.unsplash.com/photo-1582719471537-41efb2d30bba?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned c. 1184-1200, the dynasty\'s last ruler',
+        'Briefly recaptured Kalyani from the Kalachuris (c. 1183)',
+        'Overwhelmed by Hoysalas, Seunas and Kakatiyas',
+        'Driven into exile at Banavasi by c. 1189',
+        'Empire\'s lands partitioned among successor states',
+      ],
+      image: '/images/western-chalukya/western-chalukya-5-gadag.jpg',
+      sources: [{ label: 'Wikipedia — Western Chalukya Empire', url: 'https://en.wikipedia.org/wiki/Western_Chalukya_Empire' }],
     },
   ]
 
@@ -96,7 +132,7 @@ const WesternChalukyaTimeline = () => {
   const parentEvent = { id: 'evt5', title: 'Western Chalukya Revival', year: '973–1189 CE' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8"><ArrowLeft size={20} />Back to Timeline</button>
         <div className="mb-12">
@@ -107,44 +143,14 @@ const WesternChalukyaTimeline = () => {
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-start">
           <div className="space-y-10">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-              <div className="space-y-8">
-                {events.map((event) => (
-                  <div key={event.id} className="relative pl-20">
-                    <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                      <Calendar size={14} className="text-white" />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                      <div className="p-6 cursor-pointer">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                            <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                            <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                          </div>
-                          <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"><Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} /></button>
-                        </div>
-                      </div>
-                      {expandedEvent === event.id && (
-                        <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                          <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                          <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HoverExpandTimeline events={events} onOpen={markSeen} />
 
             <div className="p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Western Chalukya Dynasty</h3>
               <p className="text-gray-700 leading-relaxed mb-6">The Western Chalukya revival, known as the Chalukyas of Kalyani (973–1189 CE), re-established Chalukya rule after Rashtrakuta dominance, with capitals at Manyakheta and Kalyani. From their strong base in the Deccan, they engaged in prolonged conflicts with the Chola Empire and later the Hoysalas, shaping southern Indian political dynamics. The dynasty was renowned for its cultural patronage, commissioning important literary works like the Vikramankadeva Charita and advancing legal scholarship with texts like Mitakshara. Their architectural contributions, particularly in Vesara style temples, enriched the region. Though Rashtrakuta conquest in 1070 CE and increasing pressure from the Hoysalas and Kalachuris ultimately led to their fragmentation in 1189 CE, their legacy endured through successor states and cultural traditions that influenced medieval South India.</p>
             </div>
 
-            <div className="p-6 bg-white rounded-lg border border-gray-200">
+            <div className="p-6 bg-cream-50 rounded-lg border border-gray-200">
               <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
               <ul className="space-y-2">
                 <li><a href="https://www.telangana360.com/2016/09/western-chalukyas-of-kalyani.html" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Telangana 360 - Western Chalukyas of Kalyani</a></li>
@@ -163,7 +169,7 @@ const WesternChalukyaTimeline = () => {
 
           <aside className="hidden lg:block sticky top-24 space-y-6">
             {visuals.map((visual) => (
-              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-white">
+              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-cream-50">
                 <div className="relative aspect-[4/5] bg-gray-100">
                   <img
                     src={visual.url}

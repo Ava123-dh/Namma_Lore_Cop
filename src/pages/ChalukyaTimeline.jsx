@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -36,62 +37,104 @@ const ChalukyaTimeline = () => {
     {
       id: 'ch-1',
       year: '543 CE',
-      title: 'Pulakesin I\'s Founding',
+      title: "Pulakeshin I's Founding",
       subtitle: 'Badami sovereignty established',
-      fullText: "Pulakesin I established Chalukya sovereignty by fortifying Badami (Vatapi) as capital and performing Ashvamedha yajna, asserting imperial status. He defeated local Kadambas, Nalas, and Mauryas, laying foundations for Deccan dominance. This marked the dynasty's emergence post-Gupta decline, blending martial prowess with Vaishnava devotion.",
+      fullText: "Pulakeshin I founded the Chalukya dynasty in 543 CE, seizing the hill of Vatapi (modern Badami) and fortifying it as his capital. Inscriptions record that he performed the Ashvamedha (horse sacrifice) to proclaim sovereign status as the older Deccan powers waned. His consolidation of the Malaprabha valley gave the dynasty the secure base from which his successors expanded across the Deccan.",
       category: 'Politics',
-      highlights: ['Badami capital fortified', 'Ashvamedha yajna performed', 'Defeated Kadambas and Nalas', 'Post-Gupta dominance established'],
-      image: 'https://images.unsplash.com/photo-1598977123118-4e30ba3c4f5b?w=400&h=300&fit=crop',
+      highlights: [
+        'Founded the Chalukya dynasty in 543 CE',
+        'Seized and fortified Vatapi (Badami) as capital',
+        'Performed the Ashvamedha to assert sovereignty',
+        'Consolidated the Malaprabha valley in the Deccan',
+        'Set the base for later Chalukya expansion',
+      ],
+      image: '/images/chalukya/chalukya-1-badami-caves.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
     },
     {
       id: 'ch-2',
-      year: '618 CE',
+      year: 'c. 618 CE',
       title: 'Narmada Victory',
-      subtitle: 'Pulakesin II halts Harshavardhana',
-      fullText: 'Pulakesin II halted Harshavardhana\'s southern expansion at the Narmada River, earning the title Satyashraya. This preserved Chalukya independence, boosted prestige, and fixed northern borders. The Aihole inscription celebrates it as a pivotal check on North Indian hegemony.',
+      subtitle: 'Pulakeshin II halts Harshavardhana',
+      fullText: "Pulakeshin II (r. 609-642), the greatest Chalukya ruler, checked the northern emperor Harshavardhana's southward advance at the Narmada River around 618 CE. The feat, celebrated in the Aihole inscription composed by his court poet Ravikirti, won him the imperial title 'Parameshvara' and fixed the Narmada as the effective boundary between north and south, securing Chalukya independence and prestige across the Deccan.",
       category: 'Military',
-      highlights: ['Northern border secured', 'Title Satyashraya earned', 'Chalukya independence preserved', 'Aihole inscription recorded'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
-    },
-    {
-      id: 'ch-3',
-      year: '631 CE',
-      title: 'Kanchi Plunder',
-      subtitle: 'Vikramaditya I sacks Pallava capital',
-      fullText: 'Vikramaditya I sacked Pallava capital Kanchipuram, avenging his father\'s defeat by Narasimhavarman I. He installed a victory pillar at Kailasanatha Temple with Kannada inscription. This reversed Pallava gains, affirming Chalukya supremacy in South India temporarily.',
-      category: 'Military',
-      highlights: ['Kanchipuram sacked', 'Victory pillar installed', 'Pallava power reversed', 'Kannada inscription commissioned'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      highlights: [
+        'Pulakeshin II reigned c. 609-642 CE',
+        "Halted Harshavardhana's advance at the Narmada, c. 618 CE",
+        "Assumed the imperial title 'Parameshvara'",
+        'Celebrated in the Aihole inscription by the poet Ravikirti',
+        'Fixed the Narmada as the north-south boundary',
+      ],
+      image: '/images/chalukya/chalukya-2-badami-fort.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
     },
     {
       id: 'ch-4',
-      year: '624 CE',
-      title: 'Eastern Branch Independence',
-      subtitle: 'Vengi granted to brother Kubja Vishnuvardhana',
-      fullText: 'Pulakesin II granted Vengi to brother Kubja Vishnuvardhana, founding Eastern Chalukyas stretching to Andhra coasts. This split fostered bilingual administration and alliances against common foes. It endured until 1070 CE, influencing Telugu culture and temple arts.',
+      year: 'c. 624 CE',
+      title: 'Eastern Branch Founded',
+      subtitle: 'Vengi given to brother Kubja Vishnuvardhana',
+      fullText: "After conquering the eastern Deccan, Pulakeshin II installed his brother Kubja Vishnuvardhana as viceroy of Vengi around 621-624 CE. Within a generation this branch became the independent Eastern Chalukya dynasty, ruling the Andhra coast from Vengi. It outlasted the parent Badami line by centuries, shaping Telugu language, literature and temple architecture until it merged with the Cholas in the late 11th century.",
       category: 'Expansion',
-      highlights: ['Eastern Chalukya dynasty founded', 'Bilingual administration', 'Andhra coast control', 'Influence until 1070 CE'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        'Kubja Vishnuvardhana made viceroy of Vengi c. 621-624 CE',
+        'Grew into the independent Eastern Chalukya dynasty',
+        'Ruled the Andhra coast from Vengi',
+        'Fostered Telugu language, literature and temple art',
+        'Endured for centuries, later merging with the Cholas',
+      ],
+      image: '/images/chalukya/chalukya-4-alampur.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
+    },
+    {
+      id: 'ch-3',
+      year: 'c. 670 CE',
+      title: 'Kanchi Captured',
+      subtitle: 'Vikramaditya I takes the Pallava capital',
+      fullText: "The Pallava king Narasimhavarman I sacked Badami in 642, and Pulakeshin II is presumed to have died fighting. His son Vikramaditya I (r. 655-680) restored Chalukya fortunes, drove the Pallavas back and around 670 CE captured their capital, Kanchipuram. He left a Kannada victory inscription on a pillar at the city's Kailasanatha temple, avenging his father and re-establishing Chalukya supremacy in the south.",
+      category: 'Military',
+      highlights: [
+        'Pallavas under Narasimhavarman I sacked Badami in 642',
+        'Vikramaditya I (r. 655-680) restored Chalukya power',
+        'Captured the Pallava capital Kanchipuram c. 670 CE',
+        "Left a Kannada inscription at Kanchi's Kailasanatha temple",
+        "Avenged his father Pulakeshin II's death",
+      ],
+      image: '/images/chalukya/chalukya-3-kanchi.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
     },
     {
       id: 'ch-5',
-      year: '740 CE',
-      title: 'Vikramaditya II\'s Triumphs',
+      year: '733-744 CE',
+      title: "Vikramaditya II's Triumphs",
       subtitle: 'Military zenith and cultural flourishing',
-      fullText: 'Vikramaditya II overran Kanchipuram thrice, decisively crushing Pallavas and repelling Arab incursions in Gujarat. His victories ended Pallava power, promoted Vesara architecture like Virupaksha Temple. The reign epitomized Chalukya military zenith and cultural flourishing.',
-      category: 'Military',
-      highlights: ['Kanchipuram conquered thrice', 'Arab incursions repelled', 'Pallava power ended', 'Vesara architecture promoted'],
-      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+      fullText: "Vikramaditya II (r. 733-744) repeatedly overran the Pallava capital Kanchipuram, defeating Nandivarman II, yet spared and endowed its temples. His generals also repelled Arab raids pushing into the southern Deccan around 738. To mark his triumphs his queens Lokamahadevi and Trailokyamahadevi built the Virupaksha and Mallikarjuna temples at Pattadakal, high points of early Chalukyan (Vesara) architecture and today a UNESCO World Heritage Site.",
+      category: 'Military & Culture',
+      highlights: [
+        'Reigned 733-744 CE at the Chalukya military zenith',
+        'Overran Kanchipuram and defeated Pallava Nandivarman II',
+        "Spared and patronised Kanchipuram's temples",
+        'Repelled Arab raids into the Deccan (c. 738)',
+        'Queens built the Virupaksha & Mallikarjuna temples at Pattadakal',
+      ],
+      image: '/images/chalukya/chalukya-5-pattadakal-virupaksha.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
     },
     {
       id: 'ch-6',
       year: '753 CE',
       title: 'Rashtrakuta Overthrow',
-      subtitle: 'End of Badami Chalukyas',
-      fullText: 'Dantidurga, a feudatory, defeated Kirtivarman II, ending Badami Chalukyas and founding Rashtrakutas. Internal weaknesses, prolonged wars, and overextension caused fragmentation. This shifted Deccan power, though Kalyani Chalukyas later revived the line.',
+      subtitle: 'End of the Badami Chalukyas',
+      fullText: "In 753 CE Dantidurga, a Rashtrakuta feudatory, overthrew the last Badami Chalukya king, Kirtivarman II, ending roughly two centuries of Chalukya rule. Prolonged wars with the Pallavas and internal strain had sapped the dynasty. Power in the Deccan passed to the Rashtrakutas of Manyakheta, though the Chalukya line would revive two centuries later as the Western (Kalyani) Chalukyas.",
       category: 'Political Change',
-      highlights: ['Internal weaknesses led to decline', 'Rashtrakutas founded', 'Deccan power shifted', 'Kalyani Chalukyas later revived line'],
-      image: 'https://images.unsplash.com/photo-1582719471537-41efb2d30bba?w=400&h=300&fit=crop',
+      highlights: [
+        'Kirtivarman II, the last Badami Chalukya, overthrown in 753 CE',
+        'Dantidurga founded the Rashtrakuta dynasty',
+        'Ended roughly two centuries of Chalukya rule',
+        'Deccan power passed to Manyakheta',
+        'Line later revived as the Western (Kalyani) Chalukyas',
+      ],
+      image: '/images/chalukya/chalukya-6-pattadakal.jpg',
+      sources: [{ label: 'Wikipedia — Chalukya dynasty', url: 'https://en.wikipedia.org/wiki/Chalukya_dynasty' }],
     },
   ]
 
@@ -106,7 +149,7 @@ const ChalukyaTimeline = () => {
   const parentEvent = { id: 'evt3', title: 'Chalukya Dynasty', year: 'Badami Chalukyas onwards', category: 'Politics' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8">
           <ArrowLeft size={20} />
@@ -121,58 +164,14 @@ const ChalukyaTimeline = () => {
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-start">
           <div className="space-y-10">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-              <div className="space-y-8">
-                {events.map((event) => (
-                  <div key={event.id} className="relative pl-20">
-                    <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                      <Calendar size={14} className="text-white" />
-                    </div>
-
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                      <div className="p-6 cursor-pointer">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                            <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                            <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                          </div>
-                          <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0">
-                            <Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} />
-                          </button>
-                        </div>
-                      </div>
-
-                      {expandedEvent === event.id && (
-                        <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                          <div className="mb-6">
-                            <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {event.highlights.map((h, i) => (
-                                <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-primary-200"><div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></div><span className="text-gray-700">{h}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HoverExpandTimeline events={events} onOpen={markSeen} />
 
             <div className="p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Chalukya Dynasty</h3>
               <p className="text-gray-700 leading-relaxed mb-6">The Badami Chalukyas (543–753 CE) established a powerful Deccan empire that dominated South India, pioneering the balance of power between North and South Indian kingdoms. Their strategic military victories, particularly under Pulakesin II and Vikramaditya II, secured Chalukya independence and prestige. The dynasty's patronage led to remarkable Vesara architecture, including the famous temples at Badami, Aihole, and Pattadakal. Though their direct rule ended with the Rashtrakuta conquest, their legacy endured through the Eastern Chalukyas and later revival of the Kalyani Chalukyas.</p>
             </div>
 
-            <div className="p-6 bg-white rounded-lg border border-gray-200">
+            <div className="p-6 bg-cream-50 rounded-lg border border-gray-200">
               <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
               <ul className="space-y-2">
                 <li><a href="https://lotusarise.com/chalukya-dynasty-upsc/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">LotusArise - Chalukya Dynasty UPSC Notes</a></li>
@@ -190,7 +189,7 @@ const ChalukyaTimeline = () => {
 
           <aside className="hidden lg:block sticky top-24 space-y-6">
             {visuals.map((visual) => (
-              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-white">
+              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-cream-50">
                 <div className="relative aspect-[4/5] bg-gray-100">
                   <img
                     src={visual.url}

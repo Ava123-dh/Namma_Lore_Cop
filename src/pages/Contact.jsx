@@ -1,7 +1,7 @@
 const Contact = () => (
   <div className="min-h-screen py-12">
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-primary-100 text-center">
+      <div className="bg-cream-50 rounded-3xl shadow-xl p-8 md:p-12 border border-primary-100 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl mb-6">
           <img
             src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-email-icon-png-image_5065641.jpg"

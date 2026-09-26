@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Heart, Calendar, Users, MapPin, ChevronRight } from 'lucide-react'
+import { Heart, ChevronRight, Hand } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
+import CoverflowCarousel from '../components/CoverflowCarousel'
 import ChatBot from '../components/Chatbot'
 
 const Timeline = () => {
@@ -10,6 +11,7 @@ const Timeline = () => {
   const { isFavorite, toggleFavorite } = useFavorites()
   const [selectedEra, setSelectedEra] = useState('all')
   const [selectedEvent, setSelectedEvent] = useState(null)
+  const [selected, setSelected] = useState(0)
 
   const timelineEvents = [
     {
@@ -31,7 +33,7 @@ const Timeline = () => {
       route: '/timeline/kadamba',
       description: 'Mayurasharma established the Kadamba dynasty, the first native kingdom of Karnataka with Banavasi as its capital.',
       category: 'Politics',
-      image: 'https://media.assettype.com/dharmadispatch%2F2021-09%2Fbe44d979-190a-4f02-bd99-27e9a8285f03%2FbattleSculpture.jpeg?rect=0%2C0%2C1396%2C785&w=480&auto=format%2Ccompress&fit=max',
+      image: `${baseUrl}images/kadamba/kadamba-1-banavasi.jpg`,
       details: 'The Kadambas were the first indigenous dynasty to use Kannada as an administrative language. They made significant contributions to art, architecture, and literature.',
     },
     {
@@ -64,7 +66,7 @@ const Timeline = () => {
       route: '/timeline/western-chalukya',
       description: 'Tailapa II revived the Chalukya dynasty, establishing the Western Chalukyas with Kalyani as capital.',
       category: 'Politics',
-      image: 'https://heritage-india.com/wp-content/uploads/2022/03/chalukyas-5.jpg',
+      image: `${baseUrl}images/western-chalukya/western-chalukya-2-itagi.jpg`,
       details: 'This period saw great literary development in Kannada, with poets like Ranna, Pampa, and Ponna flourishing under royal patronage.',
     },
     {
@@ -119,7 +121,7 @@ const Timeline = () => {
       route: '/timeline/hyder-ali',
       description: 'Hyder Ali became the de facto ruler of Mysore Kingdom, beginning a new chapter in Karnataka history.',
       category: 'Politics',
-      image: 'https://www.1st-art-gallery.com/media/catalog/product/cache/9bad95616889b8b60a4bb85fbf2f33f9/b/a/base_14178606.webp',
+      image: `${baseUrl}images/hyder-ali/hyder-ali-1-portrait.jpg`,
       details: 'Hyder Ali was a brilliant military strategist who modernized the Mysore army and successfully challenged British colonial expansion.',
     },
     {
@@ -164,33 +166,34 @@ const Timeline = () => {
     { id: 'modern', name: 'Modern (1700 - Present)', color: 'green' },
   ]
 
-  const filteredEvents = selectedEra === 'all' 
-    ? timelineEvents 
+  const filteredEvents = selectedEra === 'all'
+    ? timelineEvents
     : timelineEvents.filter(event => event.era === selectedEra)
 
   const cleanText = (text = '') => text.replace(/\[\d+\]/g, '').trim()
 
-  const routeMap = {
-    evt1: '/timeline/maurya',
-    evt2: '/timeline/kadamba',
-    evt3: '/timeline/chalukya',
-    evt4: '/timeline/rashtrakuta',
-    evt5: '/timeline/western-chalukya',
-    evt6: '/timeline/pampa',
-    evt7: '/timeline/hoysala',
-    evt8: '/timeline/vijayanagara',
-    evt10: '/timeline/keladi',
-    evt11: '/timeline/hyder-ali',
-    evt12: '/timeline/tipu',
-    evt13: '/timeline/independence',
-    evt14: '/timeline/formation-karnataka',
+  const changeEra = (eraId) => {
+    setSelectedEra(eraId)
+    setSelected(0)
+  }
+
+  const slides = filteredEvents.map((event) => ({
+    src: event.image,
+    alt: event.title,
+  }))
+
+  // Guard the index against the shrinking list when a filter is applied.
+  const activeEvent = filteredEvents[selected] || filteredEvents[0]
+
+  const goToEra = (event) => {
+    if (event?.route) navigate(event.route)
   }
 
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Interactive Timeline
           </h1>
@@ -200,15 +203,15 @@ const Timeline = () => {
         </div>
 
         {/* Era Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
           {eras.map((era) => (
             <button
               key={era.id}
-              onClick={() => setSelectedEra(era.id)}
+              onClick={() => changeEra(era.id)}
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                 selectedEra === era.id
                   ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg scale-105'
-                  : 'bg-white text-gray-700 hover:bg-primary-50 shadow'
+                  : 'bg-cream-50 text-gray-700 hover:bg-primary-50 shadow'
               }`}
             >
               {era.name}
@@ -216,76 +219,73 @@ const Timeline = () => {
           ))}
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="hidden md:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
+        {/* Coverflow Carousel */}
+        {activeEvent && (
+          <>
+            <CoverflowCarousel
+              key={selectedEra}
+              slides={slides}
+              onSelectedChange={setSelected}
+              onActivate={(i) => goToEra(filteredEvents[i])}
+              showNavigation
+              showPagination
+              label="Karnataka eras"
+            />
 
-          <div className="space-y-12">
-            {filteredEvents.map((event) => (
-              <div key={event.id} className="relative md:pl-20 pl-4">
-                {/* Timeline Dot */}
-                <div className="hidden md:flex absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg items-center justify-center">
-                  <Calendar size={14} className="text-white" />
-                </div>
-                <div className="md:hidden absolute left-0 top-6 w-3 h-3 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full shadow"></div>
+            <p className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-500">
+              <Hand size={15} className="text-primary-500" />
+              Drag or use <span className="font-semibold text-gray-600">&larr; &rarr;</span> to browse &middot; click a card to explore its timeline
+            </p>
 
-                {/* Event Card */}
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                  <div className="md:flex">
-                    <div className="md:w-1/3">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-56 md:h-64 object-cover"
-                      />
-                    </div>
-                    <div className="md:w-2/3 p-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                          <h3 className="text-2xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                          <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">
-                            {event.category}
-                          </span>
-                        </div>
-                        <button
-                          onClick={() => toggleFavorite(event)}
-                          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <Heart
-                            size={24}
-                            className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}
-                          />
-                        </button>
-                      </div>
-                      <p className="text-gray-700 mb-4">{cleanText(event.description)}</p>
-                      <div className="flex flex-wrap gap-3">
-                        {routeMap[event.id] && (
-                          <button
-                            onClick={() => navigate(routeMap[event.id])}
-                            className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
-                          >
-                            Explore Timeline
-                            <ChevronRight size={16} />
-                          </button>
-                        )}
-                        <button
-                          onClick={() => setSelectedEvent(event)}
-                          className="text-primary-600 font-semibold hover:text-primary-700 inline-flex items-center"
-                        >
-                          Learn More
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+            {/* Highlighted-card info panel */}
+            <div
+              key={activeEvent.id}
+              className="mx-auto mt-6 max-w-2xl rounded-2xl bg-cream-50/90 backdrop-blur shadow-lg border border-primary-100 p-6 sm:p-8"
+              style={{ animation: 'fadeUp 400ms ease both' }}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="text-primary-600 font-bold text-sm mb-1">{activeEvent.year}</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                    {activeEvent.title}
+                  </h2>
+                  <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">
+                    {activeEvent.category}
+                  </span>
                 </div>
+                <button
+                  onClick={() => toggleFavorite(activeEvent)}
+                  aria-label="Toggle favorite"
+                  className="shrink-0 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <Heart
+                    size={24}
+                    className={isFavorite(activeEvent.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}
+                  />
+                </button>
               </div>
-            ))}
-          </div>
-        </div>
+
+              <p className="text-gray-700 mt-4 mb-6">{cleanText(activeEvent.description)}</p>
+
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => goToEra(activeEvent)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold shadow hover:shadow-lg transition-all"
+                >
+                  Explore Timeline
+                  <ChevronRight size={16} />
+                </button>
+                <button
+                  onClick={() => setSelectedEvent(activeEvent)}
+                  className="inline-flex items-center gap-1 px-5 py-2.5 rounded-lg bg-primary-50 text-primary-700 font-semibold hover:bg-primary-100 transition-colors"
+                >
+                  Learn More
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Event Detail Modal */}
@@ -295,7 +295,7 @@ const Timeline = () => {
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-cream-50 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <img
@@ -311,6 +311,12 @@ const Timeline = () => {
               </span>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">{cleanText(selectedEvent.details)}</p>
               <div className="flex gap-4">
+                <button
+                  onClick={() => { goToEra(selectedEvent); setSelectedEvent(null) }}
+                  className="flex-1 py-3 rounded-lg font-semibold bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg transition-all"
+                >
+                  Explore Timeline
+                </button>
                 <button
                   onClick={() => toggleFavorite(selectedEvent)}
                   className={`flex-1 py-3 rounded-lg font-semibold transition-all ${

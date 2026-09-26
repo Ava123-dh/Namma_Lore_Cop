@@ -120,6 +120,41 @@ app.post('/api/generate', async (req, res) => {
   }
 })
 
+// Google Cloud Text-to-Speech proxy (mirrors netlify/functions/tts.js)
+app.post('/api/tts', async (req, res) => {
+  const { text, voice = 'en-IN-Neural2-A', speakingRate = 0.96, pitch = 0 } = req.body
+  if (!text || !text.trim()) return res.status(400).json({ error: 'Missing text' })
+
+  const apiKey = process.env.GOOGLE_TTS_API_KEY || process.env.GOOGLE_API_KEY
+  if (!apiKey) return res.status(500).json({ error: 'TTS API key not configured' })
+
+  const languageCode = voice.split('-').slice(0, 2).join('-') || 'en-IN'
+  const body = {
+    input: { text: text.slice(0, 4800) },
+    voice: { languageCode, name: voice },
+    audioConfig: { audioEncoding: 'MP3', speakingRate, pitch },
+  }
+
+  try {
+    const resp = await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      agent: httpsAgent,
+    })
+    const data = await resp.json()
+    if (!resp.ok || !data.audioContent) {
+      const detail = data?.error?.message || JSON.stringify(data)
+      console.error('Google TTS error:', detail)
+      return res.status(resp.status || 500).json({ error: 'TTS failed', detail })
+    }
+    return res.json({ audioContent: data.audioContent })
+  } catch (err) {
+    console.error('TTS proxy error:', err)
+    return res.status(500).json({ error: 'TTS request failed', detail: err.message })
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`AI proxy server listening on ${PORT}`)
 })

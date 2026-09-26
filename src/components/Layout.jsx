@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navigation Header */}
-      <header className="bg-white shadow-md sticky top-0 z-40">
+      <header className="bg-cream-50 shadow-md sticky top-0 z-40">
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}

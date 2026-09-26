@@ -59,7 +59,7 @@ const Favorites = () => {
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               {timelineFavorites.map((event) => (
-                <div key={event.id} className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                <div key={event.id} className="bg-cream-50 rounded-xl shadow-lg overflow-hidden card-hover">
                   <div className="md:flex">
                     <div className="md:w-2/5">
                       <img
@@ -111,12 +111,20 @@ const Favorites = () => {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {placeFavorites.map((site) => (
-                <div key={site.id} className="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                  <img
-                    src={site.image}
-                    alt={site.name}
-                    className="w-full h-48 object-cover"
-                  />
+                <div key={site.id} className="bg-cream-50 rounded-xl shadow-lg overflow-hidden card-hover">
+                  {site.image ? (
+                    <img
+                      src={site.image}
+                      alt={site.name}
+                      className="w-full h-48 object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-48 bg-gradient-to-r from-primary-500 to-primary-600 flex items-center justify-center">
+                      <span className="text-white text-xl font-bold px-4 text-center">
+                        {site.num ? `Pete Walk · Stop ${site.num}` : site.name}
+                      </span>
+                    </div>
+                  )}
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
                       <div>

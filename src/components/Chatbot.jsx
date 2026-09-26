@@ -195,7 +195,7 @@ const ChatBot = ({ primary = false }) => {
       {!isOpen && (
         <button
           onClick={handleOpenChat}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 z-[120] flex items-center justify-center pointer-events-auto"
+          className="chat-fab fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 text-white rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:scale-110 z-[120] flex items-center justify-center pointer-events-auto"
           title="Chat with Aira"
           aria-label="Open Aira chat"
         >
@@ -205,8 +205,8 @@ const ChatBot = ({ primary = false }) => {
 
       {/* Full-screen Chat Window only */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex bg-gradient-to-br from-blue-50 via-white to-blue-100 m-0 p-0">
-          <div className="flex flex-col w-full h-full">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/35 backdrop-blur-sm p-3 sm:p-6">
+          <div className="flex flex-col w-full h-full max-w-6xl bg-cream rounded-[28px] sm:rounded-[36px] border border-cream-200 shadow-2xl overflow-hidden">
             {/* Header */}
             <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white flex justify-between items-center p-6 shadow-lg">
               <div>
@@ -249,7 +249,7 @@ const ChatBot = ({ primary = false }) => {
                           style={{ marginBottom: '2px' }}
                         />
                         <div className="relative max-w-[76ch] message-reveal">
-                          <div className={`bg-white text-gray-900 p-5 rounded-[28px] rounded-tl-[12px] shadow-lg border border-blue-200 ${isActiveBot ? 'speech-pulse-active' : 'speech-pulse-idle'}`}>
+                          <div className={`bg-cream-50 text-gray-900 p-5 rounded-[28px] rounded-tl-[12px] shadow-lg border border-cream-300 ${isActiveBot ? 'speech-pulse-active' : 'speech-pulse-idle'}`}>
                             <p className="text-sm leading-relaxed message-text">
                               {message.text === 'Thinking...' ? (
                                 <span className="typing-dots" aria-label="Thinking">
@@ -262,7 +262,7 @@ const ChatBot = ({ primary = false }) => {
                               )}
                             </p>
                             {/* Speech bubble pointer */}
-                            <div className="absolute -left-3 top-6 w-5 h-5 bg-white border-l border-b border-blue-200 transform -rotate-45 rounded-bl-lg"></div>
+                            <div className="absolute -left-3 top-6 w-5 h-5 bg-cream-50 border-l border-b border-cream-300 transform -rotate-45 rounded-bl-lg"></div>
                           </div>
                         </div>
                       </>
@@ -286,11 +286,11 @@ const ChatBot = ({ primary = false }) => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask Aira anything about Karnataka history..."
-                  className="flex-1 px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                  className="flex-1 px-5 py-3 bg-cream-50 border border-cream-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
                 />
                 <button
                   onClick={handleSend}
-                  className="px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-5 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!input.trim()}
                 >
                   <Send size={20} />

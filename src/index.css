@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Navbar height, shared so full-screen sections can subtract it */
+  --nav-h: 56px;
+  /* Paper palette. The landing page set the tone; every other page now sits on
+     the same cream instead of white. */
+  --cream: #fdf4e3;
+  --cream-card: #fffbf0;
+  --cream-line: #f5e8d1;
+}
+
 @layer base {
   body {
-    @apply bg-gradient-to-br from-orange-50 via-white to-yellow-50 min-h-screen;
+    @apply min-h-screen;
+    background-color: var(--cream);
     background-image:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cstyle%3Etext%7Bfont-family:Inter,Arial,sans-serif;font-size:26px;fill:%23e65100;opacity:0.08%7D%3C/style%3E%3Ctext x='12' y='52' transform='rotate(-18 70 70)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='120' y='160' transform='rotate(-18 180 180)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='40' y='220' transform='rotate(-18 100 220)'%3E%C2%A9nammelore.app%3C/text%3E%3C/svg%3E");
     background-size: 240px 240px;
@@ -29,26 +40,11 @@
   }
   
   .btn-secondary {
-    @apply bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-2 border-primary-200;
-  }
-
-  .namma-hero {
-    background-image: linear-gradient(180deg, rgba(255, 121, 45, 0.32), rgba(255, 186, 120, 0.2)), var(--hero-bg-url);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    @apply bg-cream-50 text-primary-600 px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 border-2 border-primary-200;
   }
 
   .hero-glass {
     @apply relative z-10 max-w-5xl mx-auto px-6 py-8 sm:px-8 md:px-10 rounded-3xl border border-white/50 shadow-2xl backdrop-blur-md bg-white/55;
-  }
-
-  .hero-title-shadow {
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
-  }
-
-  .hero-subtitle-shadow {
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
   }
 
   /* Cascade layout across pages */
@@ -62,102 +58,8 @@
     animation: cascadeFade 900ms ease var(--cascade-delay, 0s) forwards;
   }
 
-  .hero-aurora {
-    pointer-events: none;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 38%),
-                radial-gradient(circle at 80% 10%, rgba(255, 221, 181, 0.4) 0%, rgba(255, 221, 181, 0) 34%),
-                radial-gradient(circle at 50% 60%, rgba(255, 122, 69, 0.28) 0%, rgba(255, 122, 69, 0) 42%);
-    mix-blend-mode: screen;
-    animation: auroraShift 14s ease-in-out infinite alternate;
-  }
-
-  .floating-orb {
-    position: absolute;
-    border-radius: 9999px;
-    filter: blur(10px);
-    opacity: 0.45;
-    animation: floatSoft 11s ease-in-out infinite;
-  }
-
-  .orb-one { width: 160px; height: 160px; background: rgba(255, 177, 120, 0.45); top: 12%; left: 8%; animation-delay: -2s; }
-  .orb-two { width: 140px; height: 140px; background: rgba(255, 255, 255, 0.38); top: 26%; right: 6%; animation-delay: -4s; }
-  .orb-three { width: 120px; height: 120px; background: rgba(255, 134, 86, 0.52); bottom: 18%; left: 14%; animation-delay: -1s; }
-
-  .hero-badges { gap: 10px; }
-  .badge-soft {
-    @apply px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-md border border-white/70;
-  }
-
-  .feature-card {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(249, 115, 22, 0.1);
-    animation: floatIn 900ms ease both;
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    inset: -120%;
-    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0) 100%);
-    transform: rotate(8deg);
-    animation: cardShine 8s ease-in-out infinite;
-  }
-
-  .feature-card:hover {
-    border-color: rgba(249, 115, 22, 0.35);
-    box-shadow: 0 24px 60px rgba(249, 115, 22, 0.14);
-    transform: translateY(-4px);
-  }
-
-  .section-reveal {
-    animation: fadeUp 700ms ease 80ms both;
-  }
-
   .delay-1 { animation-delay: 0.18s; }
   .delay-2 { animation-delay: 0.26s; }
-
-  .feature-grid > a:nth-child(1) { animation-delay: 0.02s; }
-  .feature-grid > a:nth-child(2) { animation-delay: 0.08s; }
-  .feature-grid > a:nth-child(3) { animation-delay: 0.14s; }
-
-  .icon-glow {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .icon-glow::after {
-    content: '';
-    position: absolute;
-    inset: -12px;
-    background: radial-gradient(circle, rgba(255,255,255,0.45), rgba(255,255,255,0));
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 250ms ease, transform 250ms ease;
-    z-index: -1;
-  }
-
-  .feature-card:hover .icon-glow::after {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-
-  .about-card {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(249, 115, 22, 0.2);
-  }
-
-  .about-card::after {
-    content: '';
-    position: absolute;
-    inset: 6%;
-    border-radius: 18px;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 166, 96, 0.16), rgba(255, 166, 96, 0)),
-                radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
-    opacity: 0.9;
-    pointer-events: none;
-  }
 
   .tilt-hover {
     transition: transform 220ms ease, box-shadow 220ms ease;
@@ -193,7 +95,7 @@
   }
 
   .quiz-hero {
-    @apply bg-white rounded-3xl shadow-xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 mb-10 border border-white/70 backdrop-blur-sm;
+    @apply bg-cream-50 rounded-3xl shadow-xl p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 mb-10 border border-cream-200 backdrop-blur-sm;
   }
 
   .aira-hero {
@@ -244,7 +146,7 @@
   }
 
   .pill-soft {
-    @apply px-3 py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-white/70;
+    @apply px-3 py-2 rounded-full bg-cream-50/85 backdrop-blur-sm shadow-sm border border-cream-200;
   }
 
   .shine-button {
@@ -318,8 +220,6 @@
   .quiz-review-card {
     border: 1px dashed rgba(249, 115, 22, 0.25);
   }
-
-  .feature-grid > a { will-change: transform, opacity; }
 
   .aira-cheer {
     display: inline-flex;
@@ -404,6 +304,27 @@
   .aira-cheer-inline { display: flex; }
   @media (min-width: 768px) {
     .aira-cheer-inline { display: none; }
+  }
+}
+
+/* Hover-expand timeline: scroll-reveal for each card */
+.hx-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.hx-card.hx-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 
@@ -550,7 +471,7 @@
 }
 
 .aira-nudge-secondary {
-  background: #fff;
+  background: var(--cream-card);
   color: #111827;
   border: 1px solid #e5e7eb;
 }
@@ -739,3 +660,1463 @@
   from { opacity: 0; transform: translateY(6px) }
   to { opacity: 1; transform: translateY(0) }
 }
+
+/* ============================================================
+   City Walks: The Pete & The Kote
+   ============================================================ */
+.walk-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: #f8fafc;
+}
+@media (min-width: 1024px) {
+  .walk-explorer {
+    flex-direction: row;
+    height: 680px;
+    padding: 20px;
+    gap: 20px;
+  }
+}
+
+/* Map */
+.walk-map {
+  position: relative;
+  flex: 1;
+  height: 440px;
+  min-height: 440px;
+  overflow: hidden;
+  border-radius: 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+@media (min-width: 1024px) {
+  .walk-map { height: 100%; }
+}
+.walk-map .leaflet-container { border-radius: 28px; }
+
+/* Walk selector chips */
+.walk-chips {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.walk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 251, 240, 0.95);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  border: 2px solid transparent;
+  transition: all 0.18s ease;
+}
+.walk-chip:hover { transform: translateY(-1px); }
+.walk-chip-on {
+  color: #fff;
+  background: var(--chip);
+  border-color: #fff;
+}
+.walk-chip-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.walk-chip-on .walk-chip-dot { background: #fff !important; }
+
+/* Numbered teardrop pins (colour via --pin) */
+.walk-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--pin);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.walk-pin span {
+  transform: rotate(45deg);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+.walk-pin-dim { opacity: 0.35; }
+.walk-pin-active {
+  width: 38px;
+  height: 38px;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.45);
+  animation: walkPinPulse 1.4s ease-in-out infinite;
+}
+.walk-pin-active span { font-size: 16px; }
+@keyframes walkPinPulse {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5), 0 4px 10px rgba(0, 0, 0, 0.45); }
+  50% { box-shadow: 0 0 0 11px rgba(255, 255, 255, 0.15), 0 4px 10px rgba(0, 0, 0, 0.45); }
+}
+
+/* Side drawer */
+.walk-drawer {
+  background: var(--cream-card);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+@media (min-width: 1024px) {
+  .walk-drawer { width: 400px; flex-shrink: 0; }
+}
+
+/* Overview (Aira + grouped list) */
+.walk-overview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: fadeUp 500ms ease both;
+}
+.walk-aira-greet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border-bottom: 1px solid #fed7aa;
+}
+.walk-aira-img { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
+.walk-aira-bubble {
+  background: var(--cream-card);
+  border-radius: 18px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.walk-stop-list { flex: 1; overflow-y: auto; padding: 8px; }
+.walk-group + .walk-group { margin-top: 6px; }
+.walk-group-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 12px 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.walk-group-meta {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+.walk-stop-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  text-align: left;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.walk-stop-item:hover { background: #f8fafc; transform: translateX(3px); }
+.walk-stop-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.walk-stop-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.walk-stop-name { font-weight: 600; color: #1f2937; font-size: 14px; line-height: 1.25; }
+.walk-stop-type { font-size: 12px; font-weight: 600; }
+
+/* Detail (pop-out tab) */
+.walk-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: walkSlideIn 420ms cubic-bezier(.2, .9, .3, 1) both;
+}
+@keyframes walkSlideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.walk-detail-imgwrap { position: relative; flex-shrink: 0; }
+.walk-detail-img,
+.walk-img-fallback {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.walk-img-fallback {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+  text-align: center;
+}
+.walk-img-num { font-size: 44px; font-weight: 800; line-height: 1; opacity: 0.95; }
+.walk-img-name { font-size: 14px; font-weight: 600; opacity: 0.9; }
+.walk-detail-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 251, 240, 0.92);
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.18s ease;
+}
+.walk-detail-close:hover { background: var(--cream-card); }
+.walk-detail-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.walk-detail-body { padding: 18px 20px; flex: 1; overflow-y: auto; }
+.walk-bullets { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.walk-bullets li { display: flex; gap: 10px; font-size: 14px; line-height: 1.5; color: #374151; }
+.walk-bullet-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: 7px;
+  border-radius: 50%;
+}
+.walk-fact {
+  margin-top: 16px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid #f59e0b;
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+.walk-fact-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #b45309;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.walk-fact p { font-size: 13.5px; line-height: 1.55; color: #78350f; }
+.walk-group-intro {
+  padding: 0 12px 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #6b7280;
+}
+.walk-context {
+  margin-top: 16px;
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-left: 4px solid #7c3aed;
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+.walk-context-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6d28d9;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.walk-context p { font-size: 13.5px; line-height: 1.55; color: #4c1d95; }
+.walk-todo {
+  margin: 0 12px 14px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+.walk-todo-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.walk-todo-list { display: flex; flex-direction: column; gap: 12px; }
+.walk-todo-item { display: flex; gap: 10px; align-items: flex-start; }
+.walk-todo-tag {
+  flex-shrink: 0;
+  min-width: 62px;
+  text-align: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 1px;
+}
+.walk-todo-text { display: flex; flex-direction: column; gap: 2px; }
+.walk-todo-title { font-size: 13.5px; font-weight: 600; color: #1f2937; line-height: 1.4; }
+.walk-todo-detail { font-size: 12.5px; line-height: 1.5; color: #6b7280; }
+.walk-detail-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid #f1f5f9;
+  background: var(--cream-card);
+}
+.walk-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 600;
+  font-size: 13px;
+  transition: background 0.18s ease;
+}
+.walk-nav-btn:hover { background: #e5e7eb; }
+.walk-aira-mini img { width: 40px; height: 40px; object-fit: contain; }
+
+/* --- Walk audio narration button --- */
+.walk-listen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 2px solid;
+  background: var(--cream-card);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.18s ease;
+}
+.walk-listen-btn:hover { filter: brightness(0.97); }
+.walk-audio-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.walk-audio-bars i {
+  width: 3px;
+  background: currentColor;
+  border-radius: 2px;
+  animation: walkAudioBar 0.9s ease-in-out infinite;
+}
+.walk-audio-bars i:nth-child(1) { height: 6px; animation-delay: 0s; }
+.walk-audio-bars i:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+.walk-audio-bars i:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+.walk-audio-bars i:nth-child(4) { height: 11px; animation-delay: 0.45s; }
+@keyframes walkAudioBar {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+
+/* --- Integrated Aira chat --- */
+.walk-chat {
+  margin-top: 20px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+.walk-chat-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.walk-chat-aira { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+.walk-chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 4px;
+}
+.walk-msg {
+  max-width: 88%;
+  padding: 9px 13px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.walk-msg-user {
+  align-self: flex-end;
+  background: #1f2937;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+.walk-msg-bot {
+  align-self: flex-start;
+  background: #f3f4f6;
+  color: #1f2937;
+  border-bottom-left-radius: 5px;
+}
+.walk-chat-suggest { display: flex; flex-direction: column; gap: 8px; }
+.walk-suggest-chip {
+  text-align: left;
+  padding: 9px 13px;
+  border-radius: 14px;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #fed7aa;
+  transition: background 0.16s ease;
+}
+.walk-suggest-chip:hover { background: #ffedd5; }
+.walk-chat-input { display: flex; gap: 8px; margin-top: 12px; }
+.walk-chat-field {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.16s ease;
+}
+.walk-chat-field:focus { border-color: #cbd5e1; }
+.walk-chat-send {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.16s ease, opacity 0.16s ease;
+}
+.walk-chat-send:hover { filter: brightness(1.05); }
+.walk-chat-send:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* --- Walk audio voice picker --- */
+.walk-audio { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.walk-voice-select {
+  max-width: 100%;
+  padding: 7px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  background: var(--cream-card);
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  cursor: pointer;
+  outline: none;
+}
+.walk-voice-select:focus { border-color: #cbd5e1; }
+.walk-voice-hint {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+.walk-spin { animation: walkSpin 0.8s linear infinite; }
+@keyframes walkSpin { to { transform: rotate(360deg); } }
+
+/* --- Hide the global floating chat bubble on the walks view --- */
+body.walks-active .chat-fab { display: none !important; }
+
+/* --- Compact "Ask Aira" trigger in the drawer --- */
+.walk-ask-trigger {
+  width: 100%;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid;
+  border-radius: 18px;
+  background: var(--cream-card);
+  text-align: left;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.walk-ask-trigger:hover { background: #fafafa; transform: translateY(-1px); }
+.walk-ask-aira { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
+.walk-ask-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.walk-ask-title { font-weight: 700; font-size: 14px; color: #1f2937; }
+.walk-ask-sub { font-size: 12px; color: #6b7280; }
+
+/* --- Full-screen Ask-Aira chat card --- */
+.walk-chat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeUp 220ms ease both;
+}
+.walk-chat-card {
+  width: 100%;
+  max-width: 720px;
+  height: min(86vh, 760px);
+  background: var(--cream-card);
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  animation: walkCardIn 300ms cubic-bezier(.2, .9, .3, 1) both;
+}
+@keyframes walkCardIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.walk-chat-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  color: #fff;
+}
+.walk-chat-topaira { width: 46px; height: 46px; object-fit: contain; flex-shrink: 0; }
+.walk-chat-titles { flex: 1; min-width: 0; }
+.walk-chat-title { font-weight: 800; font-size: 18px; line-height: 1.1; }
+.walk-chat-subtitle { font-size: 12.5px; opacity: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.walk-chat-x {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.16s ease;
+  flex-shrink: 0;
+}
+.walk-chat-x:hover { background: rgba(255, 255, 255, 0.32); }
+.walk-chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #f8fafc;
+}
+.walk-chat-welcome { text-align: center; padding: 12px 8px 4px; }
+.walk-chat-welcome-aira { width: 84px; height: 84px; object-fit: contain; margin: 0 auto 10px; }
+.walk-chat-welcome-text { font-size: 14.5px; color: #4b5563; line-height: 1.55; max-width: 46ch; margin: 0 auto 16px; }
+.walk-chat-body .walk-chat-suggest { max-width: 460px; margin: 0 auto; width: 100%; }
+.walk-cmsg-row { display: flex; align-items: flex-end; gap: 8px; }
+.walk-cmsg-row.is-user { justify-content: flex-end; }
+.walk-cmsg-aira { width: 40px; height: 40px; object-fit: contain; flex-shrink: 0; }
+.walk-cmsg {
+  max-width: 78%;
+  padding: 11px 15px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.walk-cmsg-bot {
+  background: var(--cream-card);
+  color: #1f2937;
+  border-radius: 20px 20px 20px 6px;
+}
+.walk-cmsg-user {
+  background: #1f2937;
+  color: #fff;
+  border-radius: 20px 20px 6px 20px;
+}
+.walk-chat-footer {
+  display: flex;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid #eef2f7;
+  background: var(--cream-card);
+}
+.walk-chat-footer .walk-chat-field { font-size: 15px; padding: 12px 16px; }
+.walk-chat-footer .walk-chat-send { width: 46px; height: 46px; }
+
+/* ===========================================================================
+   Quiz opening screen — Aira in the middle, the title curling around her,
+   stickers slapped on around the edges. One screen, no scrolling.
+   =========================================================================== */
+
+.quiz-open {
+  position: relative;
+  /* Navbar is sticky and 64px tall, so this fills whatever is left of the
+     viewport. svh keeps mobile browser chrome from pushing it into a scroll. */
+  height: calc(100svh - var(--nav-h));
+  min-height: 470px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fdf4e3;
+  /* Halftone dots, echoing the dot shading inside the stickers */
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255, 214, 148, 0.5), rgba(255, 214, 148, 0) 60%),
+    radial-gradient(circle at 75% 75%, rgba(178, 240, 120, 0.35), rgba(178, 240, 120, 0) 55%),
+    radial-gradient(rgba(31, 30, 28, 0.09) 1.4px, transparent 1.5px);
+  background-size: 100% 100%, 100% 100%, 16px 16px;
+}
+
+/* --- Stickers ------------------------------------------------------------ */
+
+.quiz-open-stickers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.quiz-sticker {
+  position: absolute;
+  top: var(--s-top, auto);
+  right: var(--s-right, auto);
+  bottom: var(--s-bottom, auto);
+  left: var(--s-left, auto);
+  width: var(--sticker-size);
+  height: auto;
+  transform: rotate(var(--sticker-rotate));
+  /* Hard shadow reads as a thick sticker lifted a hair off the page */
+  filter: drop-shadow(4px 5px 0 rgba(31, 30, 28, 0.22));
+  animation: stickerSettle 6s ease-in-out var(--sticker-delay) infinite alternate;
+}
+
+/* A slow, tiny wobble — as if the sticker isn't quite stuck down */
+@keyframes stickerSettle {
+  from { transform: rotate(var(--sticker-rotate)) translateY(0); }
+  to   { transform: rotate(calc(var(--sticker-rotate) + 2deg)) translateY(-7px); }
+}
+
+/* --- Badge: Aira with the title curled around her ------------------------ */
+
+.quiz-badge {
+  position: relative;
+  z-index: 1;
+  width: clamp(300px, 56vh, 540px);
+  aspect-ratio: 1;
+}
+
+.quiz-badge-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.quiz-badge-disc {
+  fill: #fffaf0;
+  filter: drop-shadow(0 10px 24px rgba(31, 30, 28, 0.13));
+}
+
+.quiz-arc {
+  font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  fill: #1f1e1c;
+}
+
+.quiz-arc-top {
+  font-size: 44px;
+  letter-spacing: 1px;
+}
+
+.quiz-arc-bottom {
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  fill: #b4530b;
+}
+
+.quiz-badge-dot { fill: #f97316; }
+
+.quiz-badge-aira {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 55%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  animation: airaFloat 4.5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 8px 10px rgba(31, 30, 28, 0.18));
+}
+
+@keyframes airaFloat {
+  from { transform: translate(-50%, -50%) rotate(-2deg); }
+  to   { transform: translate(-50%, calc(-50% - 10px)) rotate(2deg); }
+}
+
+/* --- Start button -------------------------------------------------------- */
+
+.quiz-open-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vh, 40px);
+  padding: 0 20px;
+}
+
+/* Sticker-styled: fat ink outline and a hard offset shadow, same language as
+   the artwork scattered behind it. */
+.quiz-start-btn {
+  font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  letter-spacing: 0.01em;
+  color: #1f1e1c;
+  background: #b7f04a;
+  padding: 0.7em 1.6em;
+  border: 4px solid #1f1e1c;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 0 #1f1e1c;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease;
+}
+
+.quiz-start-btn:hover {
+  background: #f2f531;
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 0 #1f1e1c;
+}
+
+.quiz-start-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 0 #1f1e1c;
+}
+
+.quiz-start-btn:focus-visible {
+  outline: 4px solid #f97316;
+  outline-offset: 5px;
+}
+
+/* --- Small screens ------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  /* Six stickers plus the badge is a jam on a phone; drop the two that sit
+     closest to the badge rather than shrinking everything into mush. */
+  .quiz-sticker-wide { display: none; }
+  .quiz-badge { width: min(84vw, 44vh); }
+
+  /* A sticker with a phonePos moves to it here; the rest keep their own
+     coordinates through the fallback. */
+  .quiz-sticker {
+    top: var(--s-top-phone, var(--s-top, auto));
+    right: var(--s-right-phone, var(--s-right, auto));
+    bottom: var(--s-bottom-phone, var(--s-bottom, auto));
+    left: var(--s-left-phone, var(--s-left, auto));
+  }
+  .quiz-arc-top { font-size: 40px; }
+  .quiz-arc-bottom { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-sticker,
+  .quiz-badge-aira {
+    animation: none;
+  }
+}
+
+
+
+/* ===========================================================================
+   Display typeface — Bagel Fat One, a free stand-in for Ristoy (Dcalita
+   Studio). Swap point: change the two font-family stacks below and the
+   Google Fonts <link> in index.html to use the real face instead.
+
+   Headings and the logo only. Body copy, quiz questions and timeline
+   paragraphs stay in Inter — a fat rounded display face is tiring to read at
+   paragraph length and loses legibility at small sizes.
+   =========================================================================== */
+
+.font-display,
+h1,
+h2,
+h3 {
+  font-family: 'Bagel Fat One', 'Fredoka', 'Inter', system-ui, sans-serif;
+  /* The face ships a single weight; without this the browser fakes a bolder
+     one on top of an already-heavy design and the counters fill in. */
+  font-synthesis: none;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+}
+
+/* Small card titles sit at body size, where the display face gets heavy —
+   let them keep a little more air. */
+h3 {
+  letter-spacing: 0;
+}
+
+/* ===========================================================================
+   Home — sticker-zine front page. Flat cream, ink outlines, oversized type,
+   two bands of rolling text and an index instead of a grid of cards.
+   =========================================================================== */
+
+.home {
+  --ink: #1f1e1c;
+  --lime: #b7f04a;
+  --zine-orange: #f2913c;
+  background: var(--cream);
+  /* Same halftone dots as the quiz screen, so the two pages share a surface */
+  background-image: radial-gradient(rgba(31, 30, 28, 0.09) 1.4px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* --- Hero ---------------------------------------------------------------- */
+
+/* The hero is one alpha-channel clip on the cream, so the section only has to
+   centre it and hold the rule that separates it from the bands below. */
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 3vh, 40px) 24px clamp(24px, 4vh, 56px);
+  border-bottom: 3px solid var(--ink);
+}
+
+.home-hero-video {
+  display: block;
+  width: 100%;
+  max-width: 1180px;
+  height: auto;
+  /* Held open before the first frame decodes, so the page never jumps */
+  aspect-ratio: 1280 / 800;
+  /* The clip is drawn with transparency; nothing behind it but the halftone */
+  background: transparent;
+}
+
+/* ===========================================================================
+   Heritage flashcards — photograph on the front, map and history on the back
+   =========================================================================== */
+
+.flashcard {
+  perspective: 1600px;
+  height: 26rem;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.flashcard-face:focus-visible {
+  outline: 3px solid #f97316;
+  outline-offset: 3px;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+/* Leaflet needs a sized box; the tiles sit behind everything on the card */
+.flashcard-map {
+  position: relative;
+  height: 11rem;
+  flex: none;
+  background: var(--cream-line);
+}
+
+.flashcard-map .leaflet-container {
+  background: var(--cream-line);
+}
+
+.flashcard-map-credit {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  z-index: 500;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: rgba(255, 251, 240, 0.75);
+  font-size: 9px;
+  color: rgba(31, 30, 28, 0.6);
+}
+
+/* --- Wordmark over the clip ---------------------------------------------- */
+
+/* Stretched across the section rather than offset from the middle, so the
+   words get the full width to lay out in and never shrink to fit. */
+.home-wordmark {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 24px);
+  font-family: 'Bagel Fat One', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(2.1rem, 7.5vw, 6.5rem);
+  line-height: 1;
+  /* Orange and red, dialled back from the flag so they sit with the rest of
+     the palette, over the same hard offset shadow the sticker buttons use —
+     that shadow is what keeps them readable wherever the clip goes light. */
+  text-shadow: 5px 5px 0 rgba(31, 30, 28, 0.55);
+  /* The clip underneath keeps its own hover targets */
+  pointer-events: none;
+}
+
+/* A one-line window over two stacked rows. The track is twice the window and
+   split into equal fractions, so the Kannada row can carry its own font size
+   without throwing the roll off by a few pixels. */
+.wordmark-word {
+  display: block;
+  height: 1.06em;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: default;
+  outline: none;
+}
+
+.wordmark-roll {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 200%;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.wordmark-word:hover .wordmark-roll,
+.wordmark-word:focus-visible .wordmark-roll {
+  transform: translateY(-50%);
+}
+
+.wordmark-item {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  white-space: nowrap;
+}
+
+.wordmark-namma { color: #ef8236; }
+.wordmark-lore { color: #d04c38; }
+
+/* Kannada glyphs run taller than the Latin caps at the same size */
+.wordmark-kn {
+  font-size: 0.74em;
+}
+
+/* Karnataka in its flag colours, toned down to sit on the cream */
+.wordmark-map {
+  height: 1.2em;
+  width: auto;
+  transform: rotate(-4deg);
+  filter: drop-shadow(4px 4px 0 rgba(31, 30, 28, 0.45));
+}
+
+/* --- Stickers ------------------------------------------------------------ */
+
+.home-sticker {
+  position: absolute;
+  z-index: 1;
+  filter: drop-shadow(4px 5px 0 rgba(31, 30, 28, 0.2));
+  pointer-events: none;
+}
+
+/* --- Rolling bands ------------------------------------------------------- */
+
+.home-bands {
+  position: relative;
+  padding: 58px 0;
+  overflow: hidden;
+  background: var(--cream);
+  border-bottom: 3px solid var(--ink);
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  width: 108%;
+  margin-left: -4%;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  padding: 10px 0;
+}
+
+.marquee-orange {
+  background: var(--zine-orange);
+  color: var(--ink);
+  transform: rotate(-2deg);
+}
+
+/* Near-parallel rather than counter-rotated: opposing angles converge at one
+   end and the bands clip each other's text. The 0.9deg of difference is
+   enough to read as hand-taped, and the gap absorbs it. */
+/* The one green on the page, saved for the places */
+.marquee-lime {
+  background: var(--lime);
+  color: var(--ink);
+  transform: rotate(-1.1deg);
+  margin-top: 20px;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeRun 34s linear infinite;
+}
+
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+@keyframes marqueeRun {
+  to { transform: translateX(-50%); }
+}
+
+.marquee-set {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.marquee-set li {
+  display: flex;
+  align-items: center;
+  font-family: 'Bagel Fat One', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  line-height: 1.25;
+  white-space: nowrap;
+  padding-left: 0.5em;
+}
+
+.marquee-star {
+  margin: 0 0.05em 0 0.55em;
+  font-size: 0.5em;
+  opacity: 0.55;
+}
+
+/* --- The index ----------------------------------------------------------- */
+
+.home-index {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(60px, 9vh, 110px) 24px clamp(40px, 7vh, 80px);
+}
+
+.home-index-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: clamp(20px, 3vh, 36px);
+}
+
+.home-index-label,
+.home-index-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(31, 30, 28, 0.55);
+}
+
+.home-index-rule {
+  flex: 1;
+  height: 2px;
+  background: rgba(31, 30, 28, 0.2);
+}
+
+.index-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid var(--ink);
+}
+
+.index-list li { border-bottom: 2px solid var(--ink); }
+
+.index-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  grid-template-areas: 'n name kn arrow';
+  align-items: center;
+  gap: clamp(14px, 3vw, 36px);
+  padding: clamp(18px, 3vh, 30px) clamp(10px, 2vw, 22px);
+  color: var(--ink);
+  overflow: hidden;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.index-row:hover,
+.index-row:focus-visible {
+  background: var(--zine-orange);
+  padding-left: clamp(20px, 3.4vw, 40px);
+  outline: none;
+}
+
+.index-n {
+  grid-area: n;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(31, 30, 28, 0.45);
+}
+
+.index-name {
+  grid-area: name;
+  font-family: 'Bagel Fat One', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(1.8rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.index-kn {
+  grid-area: kn;
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  color: rgba(31, 30, 28, 0.6);
+  white-space: nowrap;
+}
+
+/* Sits under the Kannada on wide screens; folds away when space runs out */
+.index-blurb {
+  grid-area: kn;
+  align-self: end;
+  display: none;
+}
+
+.index-arrow {
+  grid-area: arrow;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.index-row:hover .index-arrow { transform: translateX(8px); }
+
+/* A slice of the destination slides out from behind the arrow on hover */
+.index-peek {
+  grid-area: name;
+  justify-self: end;
+  align-self: center;
+  width: clamp(120px, 15vw, 200px);
+  height: clamp(66px, 8vw, 104px);
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  transform: translateX(26px) rotate(3deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+.index-row:hover .index-peek {
+  transform: translateX(0) rotate(-2deg);
+  opacity: 1;
+}
+
+/* --- Outro --------------------------------------------------------------- */
+
+.home-outro {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(30px, 5vh, 60px) 24px clamp(70px, 11vh, 130px);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-outro-aira {
+  width: clamp(78px, 9vw, 120px);
+  height: auto;
+  flex-shrink: 0;
+}
+
+.home-outro p {
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(31, 30, 28, 0.78);
+  max-width: 30rem;
+  margin: 0;
+}
+
+.home-sticker-dosa {
+  width: clamp(96px, 12vw, 170px);
+  right: 6%;
+  bottom: 18%;
+  transform: rotate(9deg);
+}
+
+/* --- Narrow screens ------------------------------------------------------ */
+
+@media (min-width: 900px) {
+  /* Room for the one-liner under the Kannada */
+  .index-row {
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 22rem) auto;
+    grid-template-areas:
+      'n name kn    arrow'
+      'n name blurb arrow';
+    row-gap: 4px;
+  }
+  .index-kn { align-self: end; }
+  .index-blurb {
+    grid-area: blurb;
+    display: block;
+    align-self: start;
+    font-size: 0.95rem;
+    color: rgba(31, 30, 28, 0.55);
+  }
+}
+
+@media (max-width: 860px) {
+  .home-hero { padding-left: 16px; padding-right: 16px; }
+  .index-peek { display: none; }
+  .index-kn { font-size: 0.95rem; }
+  .home-outro { flex-direction: column; align-items: flex-start; }
+  .home-sticker-dosa { width: 92px; right: 4%; bottom: 8%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .wordmark-roll,
+  .flashcard-inner {
+    transition: none;
+  }
+}
+
+/* ===========================================================================
+   Navbar — a thin rule rather than a floating slab. No icons, no pills: just
+   the wordmark, six labels, and a hairline under everything.
+   =========================================================================== */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(253, 244, 227, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(31, 30, 28, 0.16);
+}
+
+.nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Bagel Fat One', system-ui, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: 1.18rem;
+  letter-spacing: -0.01em;
+  color: #1f1e1c;
+  white-space: nowrap;
+}
+
+.nav-logo-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #f2913c;
+  border: 2px solid #1f1e1c;
+  transition: background-color 0.2s ease;
+}
+
+.nav-logo:hover .nav-logo-dot { background: #d04c38; }
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 30px);
+}
+
+@media (min-width: 880px) {
+  .nav-links { display: flex; }
+  /* Scoped so it outranks the .nav-toggle base rule further down the file */
+  .nav .nav-toggle { display: none; }
+}
+
+.nav-link {
+  position: relative;
+  padding: 4px 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(31, 30, 28, 0.62);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover { color: #1f1e1c; }
+
+/* Ink underline that grows from the left; the active page keeps it drawn */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: #1f1e1c;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after { transform: scaleX(1); }
+
+.nav-link-active { color: #1f1e1c; }
+.nav-link-active::after { transform: scaleX(1); }
+
+/* The English/Kannada roll */
+.nav-roll {
+  display: block;
+  overflow: hidden;
+  height: 1.7em;
+}
+
+/* The column is as wide as the wider of the two labels, so nothing reflows
+   mid-roll; centring keeps the slack split evenly instead of pooling on one
+   side and opening a gap in the row. */
+.nav-roll-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.34s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover .nav-roll-track,
+.nav-link:focus-visible .nav-roll-track {
+  transform: translateY(-50%);
+}
+
+.nav-roll-item {
+  height: 1.7em;
+  line-height: 1.7em;
+  white-space: nowrap;
+}
+
+/* Kannada glyphs carry more height than Latin caps, so they get their own
+   size and lose the tracking that uppercase Latin needs. */
+.nav-roll-kn {
+  font-size: 0.96rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: -6px;
+  color: #1f1e1c;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-toggle:hover { background: rgba(31, 30, 28, 0.07); }
+
+.nav-sheet {
+  border-top: 1px solid rgba(31, 30, 28, 0.14);
+  padding: 6px 24px 14px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.nav-sheet-link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 2px;
+  border-bottom: 1px solid rgba(31, 30, 28, 0.1);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(31, 30, 28, 0.66);
+}
+
+.nav-sheet-link:last-child { border-bottom: none; }
+.nav-sheet-link-active { color: #1f1e1c; }
+
+.nav-sheet-kn {
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(31, 30, 28, 0.5);
+}
+

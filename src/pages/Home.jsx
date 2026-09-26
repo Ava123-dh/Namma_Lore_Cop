@@ -1,172 +1,151 @@
 import { Link } from 'react-router-dom'
-import { Clock, BookOpen, MapPin, Sparkles } from 'lucide-react'
 import ChatBot from '../components/Chatbot'
+
+const DYNASTIES = [
+  'Kadambas', 'Chalukyas', 'Rashtrakutas', 'Hoysalas',
+  'Vijayanagara', 'Keladi', 'Mysore', 'Tipu',
+]
+
+const PLACES = [
+  'Banavasi', 'Badami', 'Ellora', 'Belur',
+  'Hampi', 'Talikota', 'Srirangapatna', 'Bengaluru',
+]
+
+const INDEX_ROWS = [
+  {
+    n: '01',
+    name: 'Timeline',
+    kn: 'ಕಾಲರೇಖೆ',
+    blurb: '345 CE to 1973, in one scroll',
+    to: '/timeline',
+    img: 'vijayanagara/vijayanagara-1-virupaksha.jpg',
+  },
+  {
+    n: '02',
+    name: 'Quiz',
+    kn: 'ಪ್ರಶ್ನೋತ್ತರ',
+    blurb: 'Ten questions, no googling',
+    to: '/quiz',
+    img: 'chitradurga-fort.jpg',
+  },
+  {
+    n: '03',
+    name: 'Map',
+    kn: 'ನಕ್ಷೆ',
+    blurb: "What's still standing near you",
+    to: '/map',
+    img: 'hoysala/hoysala-1-belur-founding.jpg',
+  },
+  {
+    n: '04',
+    name: 'Favourites',
+    kn: 'ಇಷ್ಟಗಳು',
+    blurb: 'Everything you pinned along the way',
+    to: '/favorites',
+    img: 'rashtrakuta/rashtrakuta-1-ellora.jpg',
+  },
+]
+
+// One band of scrolling text. The list is rendered twice inside the track and
+// the animation travels exactly half its width, so the seam never shows.
+const Marquee = ({ items, reverse, tone }) => (
+  <div className={`marquee marquee-${tone}${reverse ? ' marquee-reverse' : ''}`}>
+    <div className="marquee-track">
+      {[0, 1].map((copy) => (
+        <ul key={copy} className="marquee-set" aria-hidden={copy === 1}>
+          {items.map((item) => (
+            <li key={item}>
+              {item}
+              <span className="marquee-star">✦</span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+)
 
 const Home = () => {
   const baseUrl = import.meta.env.BASE_URL
-  const heroBackground = `linear-gradient(180deg, rgba(255, 121, 45, 0.32), rgba(255, 186, 120, 0.2)), url(${baseUrl}images/karnataka-hero.jpg)`
-  const features = [
-    {
-      icon: Clock,
-      title: 'Interactive Timeline',
-      description: 'Explore Karnataka\'s rich history through an engaging timeline of events, dynasties, and cultural milestones.',
-      link: '/timeline',
-      gradient: 'from-blue-500 to-cyan-500',
-    },
-    {
-      icon: BookOpen,
-      title: 'Fun Quizzes',
-      description: 'Test your knowledge with interactive MCQ quizzes covering various aspects of Karnataka\'s history.',
-      link: '/quiz',
-      gradient: 'from-purple-500 to-pink-500',
-    },
-    {
-      icon: MapPin,
-      title: 'Heritage Map',
-      description: 'Discover historical monuments and sites near you with our interactive location-based map.',
-      link: '/map',
-      gradient: 'from-green-500 to-emerald-500',
-    },
-  ]
+  const sticker = (file) => `${baseUrl}images/stickers/${file}`
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden namma-hero" style={{ backgroundImage: heroBackground }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b2c]/75 via-[#ff914d]/60 to-[#ffd199]/48"></div>
-        <div className="absolute inset-0 hero-aurora"></div>
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="floating-orb orb-one"></div>
-          <div className="floating-orb orb-two"></div>
-          <div className="floating-orb orb-three"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
-          <div className="text-center max-w-5xl mx-auto section-reveal">
-            <div className="inline-flex items-center space-x-2 bg-white/85 backdrop-blur-sm px-4 py-2 rounded-full shadow-md mb-6">
-              <Sparkles className="text-karnataka-red" size={20} />
-              <span className="text-sm font-semibold text-gray-700">Discover Karnataka's Rich Heritage</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 hero-title-shadow drop-shadow-2xl group">
-              <span className="inline-flex items-center gap-3 bg-clip-text text-transparent">
-                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent block group-hover:hidden">Namma</span>
-                <span className="bg-gradient-to-r from-white via-karnataka-yellow to-white bg-clip-text text-transparent hidden group-hover:inline-flex items-center whitespace-nowrap leading-[1.4] px-2 py-1 translate-y-[1px]">ನಮ್ಮ</span>
-                <img
-                  src={`${baseUrl}images/karnataka-flag-map.png`}
-                  alt="Karnataka map"
-                  className="h-20 md:h-24 w-auto object-contain opacity-70 drop-shadow-lg"
-                />
-                <span className="bg-gradient-to-r from-[#ff2d2d] via-[#ff6b2c] to-[#ff9248] bg-clip-text text-transparent">Lore</span>
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white drop-shadow-[0_12px_32px_rgba(0,0,0,0.6)] mb-10 max-w-3xl mx-auto hero-subtitle-shadow">
-              Making history fun, engaging, and accessible for students and tourists through interactive timelines, quizzes, and maps.
-            </p>
+    <div className="home">
+      <section className="home-hero">
+        <video
+          className="home-hero-video"
+          src={`${baseUrl}video/namma-bengaluru-hero.webm`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        />
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3 text-sm font-semibold text-gray-800 hero-badges">
-              <span className="badge-soft">Fresh drops weekly</span>
-              <span className="badge-soft">AI tutor built-in</span>
-              <span className="badge-soft">Made for explorers</span>
-            </div>
-          </div>
-        </div>
+        {/* Each word is a two-row window; hovering rolls it over to Kannada.
+            The Kannada rows are hidden from screen readers so the heading
+            still reads as "Namma Lore". */}
+        <h1 className="home-wordmark">
+          <span className="wordmark-word wordmark-namma" tabIndex={0}>
+            <span className="wordmark-roll">
+              <span className="wordmark-item">Namma</span>
+              <span className="wordmark-item wordmark-kn" aria-hidden="true">ನಮ್ಮ</span>
+            </span>
+          </span>
+
+          <img
+            src={`${baseUrl}images/karnataka-flag-map-muted.png`}
+            alt=""
+            className="wordmark-map"
+          />
+
+          <span className="wordmark-word wordmark-lore" tabIndex={0}>
+            <span className="wordmark-roll">
+              <span className="wordmark-item">Lore</span>
+              <span className="wordmark-item wordmark-kn" aria-hidden="true">ಲೋರ್</span>
+            </span>
+          </span>
+        </h1>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 section-reveal delay-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Explore History Your Way
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Choose your learning path and discover Karnataka's fascinating history through multiple interactive experiences.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 feature-grid">
-            {features.map((feature, index) => {
-              const Icon = feature.icon
-              return (
-                <Link
-                  key={index}
-                  to={feature.link}
-                  className="bg-white rounded-2xl p-8 shadow-lg card-hover feature-card"
-                >
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl mb-6 icon-glow`}>
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {feature.description}
-                  </p>
-                  <span className="text-primary-600 font-semibold inline-flex items-center">
-                    Learn More
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
+      {/* Two bands, tilted against each other and running opposite ways */}
+      <section className="home-bands" aria-hidden="true">
+        <Marquee items={DYNASTIES} tone="orange" />
+        <Marquee items={PLACES} tone="lime" reverse />
       </section>
 
-      {/* About Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-orange-50 section-reveal delay-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Why Namma Lore?
-              </h2>
-              <div className="space-y-4 text-gray-700">
-                <p className="text-lg">
-                  Namma Lore bridges the gap between traditional learning and modern technology, making Karnataka's history accessible and engaging for everyone.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-primary-600 font-bold mr-2">✓</span>
-                    <span><strong>Verified Content:</strong> All historical data is cross-checked and curated for accuracy</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary-600 font-bold mr-2">✓</span>
-                    <span><strong>Interactive Learning:</strong> Move beyond textbooks with engaging timelines and quizzes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary-600 font-bold mr-2">✓</span>
-                    <span><strong>Tourist Friendly:</strong> Discover monuments and sites based on your location</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary-600 font-bold mr-2">✓</span>
-                    <span><strong>Track Progress:</strong> Save favorites and monitor your learning journey</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-white rounded-2xl shadow-2xl p-8 about-card tilt-hover">
-                <img 
-                  src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=400&fit=crop" 
-                  alt="Karnataka Heritage" 
-                  className="rounded-xl w-full h-64 object-cover mb-4"
-                />
-                <div className="text-center">
-                  <p className="text-gray-600 italic">
-                    "Exploring history has never been this engaging!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="home-index">
+        <div className="home-index-head">
+          <span className="home-index-label">The index</span>
+          <span className="home-index-rule" aria-hidden="true" />
+          <span className="home-index-count">04</span>
         </div>
+
+        <ul className="index-list">
+          {INDEX_ROWS.map((row) => (
+            <li key={row.n}>
+              <Link to={row.to} className="index-row">
+                <span className="index-n">{row.n}</span>
+                <span className="index-name">{row.name}</span>
+                <span className="index-kn">{row.kn}</span>
+                <span className="index-blurb">{row.blurb}</span>
+                <img src={`${baseUrl}images/${row.img}`} alt="" className="index-peek" />
+                <span className="index-arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      {/* ChatBot */}
+      <section className="home-outro">
+        <img src={`${baseUrl}images/aira-mascot.png`} alt="Aira" className="home-outro-aira" />
+        <p>
+          Stuck on something? <strong>Aira</strong> is in the corner down there, and she
+          has read all of it.
+        </p>
+        <img src={sticker('dosa.png')} alt="" className="home-sticker home-sticker-dosa" />
+      </section>
+
       <ChatBot />
     </div>
   )

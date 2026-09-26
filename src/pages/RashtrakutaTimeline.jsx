@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -37,61 +38,103 @@ const RashtrakutaTimeline = () => {
       id: 'r-1',
       year: '753 CE',
       title: 'Founding by Dantidurga',
-      subtitle: 'End of Badami Chalukyas',
-      fullText: 'Dantidurga, a Chalukya feudatory, defeated Kirtivarman II, seizing Badami and performing Hiranya Garbha ritual to claim Kshatriya status. He fixed Manyakheta as capital, conquering Malwa, Kalinga, and Kosala. This ended Chalukya rule, establishing Rashtrakuta power across Maharashtra and beyond.',
+      subtitle: 'End of the Badami Chalukyas',
+      fullText: "In 753 CE Dantidurga overthrew the Badami Chalukya king Kirtivarman II, as recorded in his Samangadh copper-plate grant, and founded the Rashtrakuta dynasty. Rising from Achalapura (modern Elichpur) in the Berar region, he performed the Hiranyagarbha ceremony to affirm royal status and seized the northern Deccan. His successors made Manyakheta the imperial capital, from which the Rashtrakutas dominated the Deccan for two centuries.",
       category: 'Politics',
-      highlights: ['Hiranya Garbha ritual performed', 'Manyakheta capital established', 'Conquered Malwa and Kalinga', 'Kshatriya status claimed'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      highlights: [
+        'Overthrew Chalukya Kirtivarman II in 753 CE',
+        'Founding recorded in the Samangadh copper-plate grant',
+        'Rose from Achalapura (Elichpur) in Berar',
+        'Performed the Hiranyagarbha ceremony to claim kingship',
+        'Manyakheta became the imperial capital',
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-1-ellora.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
     {
       id: 'r-2',
-      year: '756–774 CE',
-      title: 'Krishna I\'s Conquests',
-      subtitle: 'Kailasa temple and expansion',
-      fullText: 'Krishna I subdued Gangas, conquered Konkan, and accepted Eastern Chalukya submission without battle. His reign saw the Kailasa Temple\'s construction at Ellora, a monolithic marvel. Victories expanded territory to Godavari, blending military might with Shaivite devotion.',
+      year: '756-773 CE',
+      title: "Krishna I & the Kailasa Temple",
+      subtitle: 'A monolith carved from a cliff',
+      fullText: "Krishna I (r. 756-773) expanded the young empire, subduing the Gangas of Talakad and the Konkan and accepting the submission of the Eastern Chalukyas. He is immortalised as the patron of the Kailasa temple at Ellora - a single, colossal temple carved top-down from one basalt cliff, among the greatest achievements of rock-cut architecture and dedicated to Shiva.",
       category: 'Military & Culture',
-      highlights: ['Kailasa Temple constructed', 'Gangas subdued', 'Konkan conquered', 'Shaivite devotion fostered'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned c. 756-773 CE',
+        'Subdued the Gangas of Talakad and the Konkan',
+        "Received the Eastern Chalukyas' submission",
+        'Commissioned the monolithic Kailasa temple at Ellora',
+        'The temple was carved top-down from a single cliff',
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-2-kailasa.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
     {
       id: 'r-3',
-      year: '780–793 CE',
-      title: 'Dhruva Dharavarsha\'s Rise',
-      subtitle: 'Entry into northern politics',
-      fullText: 'Dhruva quelled brothers\' rebellions, defeated Nagabhata II of Kannauj, and subjugated Malwa, Vengi, and Pallavas. He humbled Pratiharas and Palas in the tripartite struggle\'s onset. His campaigns marked Rashtrakuta entry into northern politics, peaking imperial prestige.',
+      year: '780-793 CE',
+      title: "Dhruva Dharavarsha's Rise",
+      subtitle: 'Into the northern tripartite struggle',
+      fullText: "Dhruva Dharavarsha (r. 780-793) turned the Rashtrakuta kingdom into a pan-Indian empire. After putting down a succession struggle, he marched north into the Gangetic plains and defeated both the Pratihara king Vatsaraja and the Pala king Dharmapala - the first Rashtrakuta intervention in the great tripartite struggle for Kannauj. His campaigns extended influence from the Kaveri deep into central and northern India.",
       category: 'Military',
-      highlights: ['Internal rebellions quelled', 'Nagabhata II defeated', 'Northern politics entered', 'Tripartite struggle initiated'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned c. 780-793 CE',
+        'Secured the throne after a succession struggle',
+        'Marched north into the Gangetic plains',
+        'Defeated the Pratihara Vatsaraja and Pala Dharmapala',
+        'Entered the tripartite struggle for Kannauj',
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-3-kailasa-elephant.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
     {
       id: 'r-4',
-      year: '793–814 CE',
-      title: 'Govinda III\'s Peak',
+      year: '793-814 CE',
+      title: "Govinda III's Peak",
       subtitle: 'Territorial zenith',
-      fullText: 'Govinda III crushed Pratiharas, annexed Malwa, Kosala, and Kalinga, then raided south to Rameshwaram, erecting a victory pillar. He fostered alliances via marriages and quelled Vengi revolts. This era epitomized territorial zenith from Narmada to Tamil lands.',
+      fullText: "Govinda III (r. 793-814) carried the empire to its territorial zenith. His Sanjan inscription boasts that his horses drank from Himalayan streams and his elephants from the Ganges. He crushed a confederacy of rival kings, humbled the Pratiharas and campaigned as far south as Kanchi, so that Rashtrakuta power stretched from Kannauj and Banaras in the north to the Tamil country and Bharuch.",
       category: 'Military',
-      highlights: ['Pratiharas crushed', 'Rameshwaram raided', 'Victory pillar erected', 'Narmada to Tamil control'],
-      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+      highlights: [
+        "Reigned c. 793-814 CE at the empire's peak",
+        'Sanjan inscription records campaigns to the Himalayas and Ganges',
+        'Humbled the Pratiharas and a confederacy of rivals',
+        'Campaigned south to Kanchi',
+        'Empire spanned Kannauj-Banaras to the Tamil country',
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-4-kuknur.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
     {
       id: 'r-5',
-      year: '916 CE',
-      title: 'Indra III\'s Kannauj Capture',
-      subtitle: 'Northern influence restored',
-      fullText: 'Indra III sacked Kannauj from Pratiharas, advancing to Ganges-Yamuna doab and defeating Palas. He restored Rashtrakuta northern influence amid weak successors. Victories over Malwa and Vengi bolstered the dynasty temporarily.',
+      year: 'c. 916 CE',
+      title: "Indra III's Kannauj Sack",
+      subtitle: 'Rashtrakuta power peaks in the north',
+      fullText: "Indra III (r. 914-929) revived Rashtrakuta fortunes in the north. Around 915-916 CE he swept into the Gangetic doab and sacked Kannauj, the Pratihara capital, temporarily driving out Mahipala I - the high-water mark of Rashtrakuta power in the north. The Arab geographer Al-Masudi, writing in 944, ranked the Rashtrakuta empire among the four greatest powers of the contemporary world.",
       category: 'Military',
-      highlights: ['Kannauj sacked', 'Pratiharas defeated', 'Ganges-Yamuna doab reached', 'Northern influence restored'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned c. 914-929 CE',
+        'Sacked the Pratihara capital Kannauj c. 915-916',
+        'Temporarily expelled the Pratihara Mahipala I',
+        'Marked the peak of Rashtrakuta power in the north',
+        "Al-Masudi (944) ranked the empire among the world's greatest",
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-5-jain-narayana.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
     {
       id: 'r-6',
-      year: '939–967 CE',
-      title: 'Krishna III\'s Southern Push',
-      subtitle: 'Final southern expansion',
-      fullText: 'Krishna III conquered Tondaimandalam, occupied Kanchi, and extracted Ceylon tribute, stretching rule to Kaveri. He built Jain temples and supported literature. Internal foes united post-death, sacking Manyakheta in 972 CE, hastening decline.',
+      year: '939-967 CE',
+      title: "Krishna III's Southern Push",
+      subtitle: 'The last great Rashtrakuta',
+      fullText: "Krishna III (r. 939-967), the last great Rashtrakuta, pushed the empire's reach from the Narmada to the Kaveri. He campaigned deep into the Tamil country, occupying Tondaimandalam and Kanchi and levying tribute on the king of Ceylon, while patronising Jain temples and Kannada letters. After his death the empire quickly unravelled; the Paramaras sacked the capital Manyakheta in 972, and the Kalyani Chalukyas soon supplanted the dynasty.",
       category: 'Military & Culture',
-      highlights: ['Kanchi occupied', 'Ceylon tribute extracted', 'Kaveri boundary reached', 'Jain temples built'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        'Reigned c. 939-967 CE, the last great Rashtrakuta',
+        'Extended power from the Narmada to the Kaveri',
+        'Occupied Tondaimandalam and Kanchi in the Tamil country',
+        'Levied tribute on the king of Ceylon',
+        'After his death, Manyakheta was sacked in 972',
+      ],
+      image: '/images/rashtrakuta/rashtrakuta-6-kailasa-nandi.jpg',
+      sources: [{ label: 'Wikipedia — Rashtrakuta dynasty', url: 'https://en.wikipedia.org/wiki/Rashtrakuta_dynasty' }],
     },
   ]
 
@@ -106,7 +149,7 @@ const RashtrakutaTimeline = () => {
   const parentEvent = { id: 'evt4', title: 'Rashtrakuta Empire', year: '753 CE', category: 'Politics' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8"><ArrowLeft size={20} />Back to Timeline</button>
 
@@ -118,52 +161,14 @@ const RashtrakutaTimeline = () => {
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-start">
           <div className="space-y-10">
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-              <div className="space-y-8">
-                {events.map((event) => (
-                  <div key={event.id} className="relative pl-20">
-                    <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                      <Calendar size={14} className="text-white" />
-                    </div>
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                      <div className="p-6 cursor-pointer">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                            <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                            <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                          </div>
-                          <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"><Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} /></button>
-                        </div>
-                      </div>
-                      {expandedEvent === event.id && (
-                        <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                          <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                          <div>
-                            <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {event.highlights && event.highlights.map((h, i) => (
-                                <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-primary-200"><div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></div><span className="text-gray-700">{h}</span></li>
-                              ))}
-                            </ul>
-                          </div>
-                          <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <HoverExpandTimeline events={events} onOpen={markSeen} />
 
             <div className="p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Rashtrakuta Empire</h3>
               <p className="text-gray-700 leading-relaxed mb-6">The Rashtrakuta Empire (753–982 CE) was a major Deccan power that dominated South India and periodically expanded into North India, engaging in the tripartite struggle with the Pratiharas and Palas. From their capital at Manyakheta, the Rashtrakutas controlled vast territories spanning from the Narmada River to the Tamil lands. Renowned for their architectural patronage, including the iconic Kailasa Temple at Ellora and numerous Jain temples, they were also great supporters of literature and learning. Though their direct rule ended in 982 CE with the rise of the Chalukyas of Kalyani, their cultural and architectural legacy profoundly influenced subsequent South Indian dynasties.</p>
             </div>
 
-            <div className="p-6 bg-white rounded-lg border border-gray-200">
+            <div className="p-6 bg-cream-50 rounded-lg border border-gray-200">
               <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
               <ul className="space-y-2">
                 <li><a href="https://www.worldhistory.org/timeline/Rashtrakuta_Dynasty/" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">World History Encyclopedia - Rashtrakuta Dynasty Timeline</a></li>
@@ -182,7 +187,7 @@ const RashtrakutaTimeline = () => {
 
           <aside className="hidden lg:block sticky top-24 space-y-6">
             {visuals.map((visual) => (
-              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-white">
+              <div key={visual.id} className="rounded-2xl overflow-hidden shadow-xl border border-primary-100 bg-cream-50">
                 <div className="relative aspect-[4/5] bg-gray-100">
                   <img
                     src={visual.url}

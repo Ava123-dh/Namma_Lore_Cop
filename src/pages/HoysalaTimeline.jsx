@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -16,61 +17,103 @@ const HoysalaTimeline = () => {
       id: 'h-1',
       year: '1026 CE',
       title: "Nripa Kama II's Founding",
-      subtitle: 'Early consolidation in Malnad hills',
-      fullText: 'Nripa Kama II, titled "Permanadi," established Hoysala rule by consolidating hill territories and allying with Western Gangas and Chalukyas. He built early temples like those at Belur, marking the dynasty\'s emergence as regional chieftains. This laid administrative foundations, blending Kannada culture with Vaishnava and Jaina patronage.',
+      subtitle: 'Early consolidation in the Malnad hills',
+      fullText: "The Hoysalas began as hill chieftains in the Malnad, first attested around 950 CE with the chief Arekalla and consolidated under Nripa Kama II (r. 1026-1047). Vassals of the Western Chalukyas, they built up a compact power base in the Western Ghats from which their successors would later expand onto the Deccan plains.",
       category: 'Politics',
-      highlights: ['Malnad territories consolidated', 'Belur temples founded', 'Kannada culture promoted', 'Multi-faith patronage established'],
-      image: 'https://images.unsplash.com/photo-1604420805055-aa0e0214b7e5?w=400&h=300&fit=crop',
+      highlights: [
+        "Nripa Kama II ruled c. 1026-1047 CE",
+        "Hoysala family attested from c. 950 CE (chief Arekalla)",
+        "Rose as chieftains in the Malnad hills",
+        "Served as vassals of the Western Chalukyas",
+        "Built the base for later expansion",
+      ],
+      image: '/images/hoysala/hoysala-1-belur-founding.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
     {
       id: 'h-2',
       year: '1047 CE',
-      title: 'Vinayaditya\'s Expansion',
-      subtitle: 'Rise to imperial power',
-      fullText: 'Vinayaditya solidified power by defeating Chalukya rivals and expanding into Karnataka plains, earning imperial titles. His 50-year reign fostered military reforms and land grants, boosting economy via agriculture. Belur became the nascent capital, symbolizing Hoysala ascent post-Chalukya turbulence.',
-      category: 'Military',
-      highlights: ['Imperial titles earned', 'Plains expansion achieved', 'Military reforms implemented', 'Agricultural economy boosted'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      title: "Vinayaditya's Reign",
+      subtitle: 'A long, stabilising rule',
+      fullText: "Vinayaditya (r. 1047-1098) gave the young dynasty a long, stabilising reign of half a century. Still nominally subordinate to the Western Chalukyas, he strengthened Hoysala authority over the Malnad and the surrounding hill country, setting the stage for the dramatic expansion that would come under his grandson Vishnuvardhana.",
+      category: 'Politics',
+      highlights: [
+        "Vinayaditya reigned c. 1047-1098 CE",
+        "A stabilising reign of about fifty years",
+        "Remained subordinate to the Western Chalukyas",
+        "Consolidated Hoysala power in the Malnad",
+        "Set the stage for Vishnuvardhana's expansion",
+      ],
+      image: '/images/hoysala/hoysala-2-emblem.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
     {
       id: 'h-3',
       year: '1116 CE',
       title: 'Talakad Victory',
-      subtitle: 'Vishnuvardhana defeats Cholas',
-      fullText: 'Vishnuvardhana crushed Chola forces at Talakad, annexing Gangavadi and renaming himself "Bitti Deva." Inspired by Ramanuja, he converted to Vaishnavism, commissioning Chennakesava Temple at Belur. This battle ended Chola dominance in Karnataka, elevating Hoysalas to major powers.',
+      subtitle: 'Vishnuvardhana defeats the Cholas',
+      fullText: "In 1116 CE Vishnuvardhana (r. c. 1108-1152) defeated the Cholas at Talakad, wresting Gangavadi from them and earning the title 'Talakadugonda'. Converted to Vaishnavism under the philosopher Ramanuja, he commissioned the exquisite Chennakesava temple at Belur (begun 1117), launching the golden age of Hoysala temple architecture now inscribed by UNESCO.",
       category: 'Military & Religion',
-      highlights: ['Talakad victory won', 'Gangavadi annexed', 'Conversion to Vaishnavism', 'Chennakesava Temple commissioned'],
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop',
+      highlights: [
+        "Vishnuvardhana beat the Cholas at Talakad in 1116",
+        "Captured Gangavadi and took the title 'Talakadugonda'",
+        "Converted to Vaishnavism under Ramanuja",
+        "Commissioned the Chennakesava temple at Belur (1117)",
+        "Began the golden age of Hoysala architecture",
+      ],
+      image: '/images/hoysala/hoysala-3-belur-chennakesava.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
     {
       id: 'h-4',
       year: '1193 CE',
-      title: 'Ballala II\'s Independence',
-      subtitle: 'Hoysala sovereignty declared',
-      fullText: 'Veera Ballala II declared sovereignty after defeating Yadavas and Kadambas, shifting capital to Dwarasamudra (Halebidu). He campaigned against Seunas and Pandyas, expanding to Tamil borders. His rule marked peak territorial control and Hoysala cultural zenith with ornate temples.',
+      title: "Ballala II's Sovereignty",
+      subtitle: 'Hoysala independence declared',
+      fullText: "Veera Ballala II (r. 1173-1220) threw off Chalukya overlordship and declared full Hoysala sovereignty in 1193, defeating the Seunas (Yadavas) and other rivals. Ruling from the capital Dwarasamudra (Halebidu), he raised the Hoysalas to a major Deccan power at the height of their territorial reach and cultural patronage.",
       category: 'Politics & Culture',
-      highlights: ['Full independence declared', 'Halebidu capital established', 'Tamil borders reached', 'Cultural zenith achieved'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      highlights: [
+        "Veera Ballala II reigned c. 1173-1220 CE",
+        "Declared Hoysala independence in 1193",
+        "Defeated the Seunas (Yadavas) and other rivals",
+        "Ruled from Dwarasamudra (Halebidu)",
+        "Raised the Hoysalas to a major Deccan power",
+      ],
+      image: '/images/hoysala/hoysala-4-halebidu.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
     {
       id: 'h-5',
-      year: '1318 CE',
-      title: 'Hoysala-Pandya War',
+      year: 'c. 1311-1327 CE',
+      title: 'Hoysala-Pandya Wars',
       subtitle: 'Resilience amid Deccan struggles',
-      fullText: 'Veera Ballala III allied with Kampili against Delhi Sultanate but faced Pandyas, sacking Madurai temporarily. Chronic wars drained resources amid four-way Deccan struggles. This highlighted Hoysala resilience yet foreshadowed fragmentation from invasions.',
+      fullText: "Under Veera Ballala III (r. 1292-1343) the Hoysalas were caught between the Pandyas to the south and the expanding Delhi Sultanate to the north. The campaigns of Malik Kafur and his successors sacked the capital Halebidu twice, in 1311 and 1327, forcing Ballala III to shift his base south toward Tiruvannamalai even as he resisted with remarkable tenacity.",
       category: 'Military',
-      highlights: ['Kampili alliance formed', 'Madurai temporarily sacked', 'Four-way Deccan struggles', 'Resource depletion evident'],
-      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+      highlights: [
+        "Veera Ballala III reigned 1292-1343 CE",
+        "Squeezed between the Pandyas and the Delhi Sultanate",
+        "Halebidu sacked twice, in 1311 and 1327",
+        "Shifted his base south toward Tiruvannamalai",
+        "Resisted the Sultanate with great tenacity",
+      ],
+      image: '/images/hoysala/hoysala-5-halebidu-relief.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
     {
       id: 'h-6',
       year: '1343 CE',
       title: 'Final Fall',
       subtitle: 'End of Hoysala rule',
-      fullText: 'Veera Ballala III died fighting Madurai Sultanate at Tiruvadi, ending Hoysala rule. Territories merged into Vijayanagara under Harihara I, a possible Hoysala commander. Legacy endured in architecture at Belur-Halebidu UNESCO sites and Kannada literature.',
+      fullText: "Veera Ballala III was killed fighting the Madurai Sultanate in 1343, and with him Hoysala rule effectively ended. Their territories were absorbed by the newly founded Vijayanagara Empire - whose founder Harihara I had served the Hoysalas. Their legacy endures in the temples of Belur, Halebidu and Somanathapura, jointly inscribed as UNESCO World Heritage in 2023.",
       category: 'Political Change',
-      highlights: ['Veera Ballala III died fighting', 'Territories absorbed by Vijayanagara', 'UNESCO heritage sites remain', 'Kannada literary legacy endured'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        "Veera Ballala III killed at Madurai in 1343",
+        "His death ended effective Hoysala rule",
+        "Territories absorbed by the Vijayanagara Empire",
+        "Vijayanagara's Harihara I had served the Hoysalas",
+        "Belur, Halebidu & Somanathapura made UNESCO sites (2023)",
+      ],
+      image: '/images/hoysala/hoysala-6-somanathapura.jpg',
+      sources: [{ label: 'Wikipedia — Hoysala Empire', url: 'https://en.wikipedia.org/wiki/Hoysala_Empire' }],
     },
   ]
 
@@ -85,7 +128,7 @@ const HoysalaTimeline = () => {
   const parentEvent = { id: 'evt7', title: 'Hoysala Kingdom', year: '1026–1343 CE' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8"><ArrowLeft size={20} />Back to Timeline</button>
         <div className="mb-12">
@@ -93,44 +136,14 @@ const HoysalaTimeline = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{parentEvent.title}</h1>
           <p className="text-xl text-gray-600">Major Hoysala events and cultural achievements.</p>
         </div>
-        <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-          <div className="space-y-8">
-            {events.map((event) => (
-              <div key={event.id} className="relative pl-20">
-                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                  <Calendar size={14} className="text-white" />
-                </div>
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                  <div className="p-6 cursor-pointer">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                        <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                        <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                      </div>
-                      <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"><Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} /></button>
-                    </div>
-                  </div>
-                  {expandedEvent === event.id && (
-                    <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                      <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                      <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <HoverExpandTimeline events={events} onOpen={markSeen} />
 
         <div className="mt-16 p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Hoysala Kingdom</h3>
           <p className="text-gray-700 leading-relaxed mb-6">The Hoysala Kingdom (c. 1026–1343 CE), originating as Chalukya feudatories in Karnataka's Malnad hills, rose to prominence through military prowess and Vesara temple architecture. From their capitals at Belur and later Halebidu (Dwarasamudra), they navigated complex regional politics amid Chola, Kalachuri, and Pandya conflicts. The Hoysalas are celebrated for their exquisite temple architecture featuring intricate stone carvings, exemplified by the renowned Chennakesava Temple at Belur and Hoysaleswara Temple at Halebidu, both now UNESCO World Heritage sites. Their reign marked a golden age of Kannada literature and administrative innovation. Though their direct rule ended in 1343 CE when Veera Ballala III fell to the Madurai Sultanate, their territories were absorbed by the rising Vijayanagara Empire, and their architectural and cultural legacy profoundly influenced subsequent South Indian dynasties.</p>
         </div>
 
-        <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
+        <div className="mt-8 p-6 bg-cream-50 rounded-lg border border-gray-200">
           <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
           <ul className="space-y-2">
             <li><a href="https://en.wikipedia.org/wiki/Hoysala_Kingdom" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">Wikipedia - Hoysala Kingdom</a></li>

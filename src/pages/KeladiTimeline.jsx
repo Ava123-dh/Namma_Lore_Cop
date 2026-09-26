@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Heart, Calendar } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
+import HoverExpandTimeline from '../components/HoverExpandTimeline'
 import AiraQuizNudge from '../components/AiraQuizNudge'
 import useQuizNudge from '../hooks/useQuizNudge'
 
@@ -16,61 +17,103 @@ const KeladiTimeline = () => {
       id: 'kel-1',
       year: '1499 CE',
       title: 'Founding by Chaudappa',
-      subtitle: 'Keladi established by Chaudappa Nayaka',
-      fullText: 'Chaudappa Nayaka (Chauda Gowda), from Pallibailu near Keladi, rose from farmer to Vijayanagara vassal, establishing rule over Shimoga-area territories. He fortified Keladi as capital, blending agriculture with military control amid imperial decline. This laid foundations for a dynasty blending Vokkaliga roots and Veerashaiva faith.',
+      subtitle: 'Keladi established in the Malnad',
+      fullText: "The Keladi (or Ikkeri/Bednur) Nayaka dynasty was founded around 1499 by Chaudappa Nayaka - born Chauda Gowda of Pallibailu village near Keladi in the Malnad hills of Shivamogga. Beginning as a local chief under the Vijayanagara Empire, he laid the foundation of a line that would rule the Malnad and the Karnataka coast for over two and a half centuries.",
       category: 'Politics',
-      highlights: ['Keladi fortified as capital', 'Vokkaliga origins', 'Vijayanagara vassal status', 'Veerashaiva faith adopted'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        "Founded c. 1499 by Chaudappa Nayaka",
+        "Born Chauda Gowda of Pallibailu, near Keladi",
+        "Based in the Malnad hills of Shivamogga",
+        "Began as a local chief under Vijayanagara",
+        "Line endured for over 250 years",
+      ],
+      image: '/images/keladi/keladi-1-rameshwara.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
     {
       id: 'kel-2',
       year: '1530 CE',
-      title: 'Sadashiva\'s Consolidation',
-      subtitle: 'Malnad expansion and culture',
-      fullText: 'Sadashiva Nayaka expanded domains, defeating local chieftains and securing Malnad hills. He shifted capital briefly for defense, fostering rice-pepper trade routes. His reign solidified autonomy, building temples like Rameshwara and promoting Kannada literature.',
-      category: 'Military & Trade',
-      highlights: ['Malnad hills secured', 'Local chieftains defeated', 'Rice-pepper trade fostered', 'Rameshwara Temple constructed'],
-      image: 'https://images.unsplash.com/photo-1609920658906-8223652d5f5d?w=400&h=300&fit=crop',
+      title: "Sadashiva's Expansion",
+      subtitle: 'Capital moved to Ikkeri',
+      fullText: "Under Sadashiva Nayaka (r. 1530-1566), a loyal Vijayanagara vassal, the Keladi realm expanded across the Malnad and brought the coastal provinces of Karnataka under direct rule. He shifted the capital about 20 km from Keladi to Ikkeri, which gave the dynasty its alternative name and its finest temple, the Aghoreshwara.",
+      category: 'Expansion',
+      highlights: [
+        "Sadashiva Nayaka reigned 1530-1566",
+        "Expanded across the Malnad as a Vijayanagara vassal",
+        "Brought coastal Karnataka under direct rule",
+        "Moved the capital from Keladi to Ikkeri",
+        "Ikkeri became the site of the Aghoreshwara temple",
+      ],
+      image: '/images/keladi/keladi-2-ikkeri.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
     {
       id: 'kel-3',
       year: '1586 CE',
-      title: 'Venkatappa I\'s Independence',
-      subtitle: 'Breaking from Vijayanagara overlordship',
-      fullText: 'Hiriya Venkatappa Nayaka broke Vijayanagara overlordship post-Talikota, conquering coastal Kanara to Tungabhadra plains. He defeated Gerusoppa\'s Bhairadevi, curbed Portuguese advances, and erected Hangal victory pillar. Multi-faith temple constructions marked cultural zenith.',
-      category: 'Military & Diplomacy',
-      highlights: ['Vijayanagara independence declared', 'Coastal Kanara conquered', 'Portuguese advances curbed', 'Hangal victory pillar erected'],
-      image: 'https://images.unsplash.com/photo-1581092162562-40038f63dd77?w=400&h=300&fit=crop',
+      title: "Venkatappa's Independence",
+      subtitle: 'Breaking from Vijayanagara',
+      fullText: "After Vijayanagara's collapse at Talikota, Hiriya Venkatappa Nayaka (r. 1582-1629) steadily threw off its overlordship, ceasing tribute to the rump court at Penukonda by about 1613 and declaring full independence. He repulsed rivals and Portuguese pressure on the coast, turning Keladi into a sovereign Nayaka kingdom.",
+      category: 'Politics',
+      highlights: [
+        "Venkatappa Nayaka I reigned c. 1582-1629",
+        "Threw off Vijayanagara overlordship after Talikota",
+        "Stopped tribute to Penukonda by c. 1613",
+        "Declared full independence",
+        "Resisted rivals and Portuguese pressure on the coast",
+      ],
+      image: '/images/keladi/keladi-3-ikkeri-nandi.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
     {
       id: 'kel-4',
-      year: '1629 CE',
-      title: 'Shivappa Nayaka\'s Reforms',
-      subtitle: 'Administrative consolidation',
-      fullText: 'Shivappa expanded to Mysore borders, codifying land revenue (Ashta Bhaga system) for efficient taxation. He built forts like Bhuvanagiri, suppressed rebellions, and patronized arts despite wars. His administrative innovations sustained prosperity amid Bijapur threats.',
-      category: 'Governance & Defense',
-      highlights: ['Ashta Bhaga system implemented', 'Bhuvanagiri Fort constructed', 'Mysore borders reached', 'Art patronage continued'],
-      image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400&h=300&fit=crop',
+      year: '1645-1660 CE',
+      title: "Shivappa Nayaka's Reforms",
+      subtitle: 'Revenue and administration',
+      fullText: "Shivappa Nayaka (r. 1645-1660), the dynasty's ablest ruler, overhauled the economy from his capital at Bidnur (Bednur/Nagara). He promoted agriculture and reorganised the collection of land revenue into a systematic assessment long remembered in Karnataka, while expanding trade and driving the Portuguese from several coastal forts.",
+      category: 'Administration',
+      highlights: [
+        "Shivappa Nayaka reigned c. 1645-1660",
+        "Ruled from the capital Bidnur (Bednur/Nagara)",
+        "Promoted agriculture across the kingdom",
+        "Reorganised land-revenue assessment systematically",
+        "Expanded trade and pushed back the Portuguese",
+      ],
+      image: '/images/keladi/keladi-4-palace.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
     {
       id: 'kel-5',
       year: '1672 CE',
-      title: 'Chennamma\'s Regency',
-      subtitle: 'Queen Chennamaji I defends kingdom',
-      fullText: 'Queen Chennamaji I defended against Bijapur invasions, allying with Marathas for survival. She constructed Ikkeri palace complexes and promoted trade with Europeans. Her diplomacy preserved the kingdom during Mughal pressures.',
-      category: 'Diplomacy & Defense',
-      highlights: ['Bijapur invasions repelled', 'Maratha alliances formed', 'Ikkeri palace expanded', 'European trade promoted'],
-      image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=300&fit=crop',
+      title: "Queen Chennamma's Defence",
+      subtitle: 'Sheltering Rajaram from the Mughals',
+      fullText: "Queen Keladi Chennamma (r. 1672-1697) is the dynasty's most celebrated ruler. Around 1689 she famously gave refuge to the Maratha king Rajaram as he fled Aurangzeb's armies, then withstood the Mughal reprisal that followed - defending her small kingdom's independence against the era's greatest power.",
+      category: 'Politics & War',
+      highlights: [
+        "Queen Chennamma reigned 1672-1697",
+        "Sheltered the Maratha king Rajaram (c. 1689)",
+        "Protected him from Aurangzeb's pursuing army",
+        "Withstood the ensuing Mughal reprisal",
+        "Kept Keladi independent against Mughal power",
+      ],
+      image: '/images/keladi/keladi-5-chennamma.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
     {
       id: 'kel-6',
       year: '1763 CE',
       title: 'Hyder Ali Conquest',
-      subtitle: 'End of Keladi dynasty',
-      fullText: 'Hyder Ali of Mysore overran Keladi, dethroning Queen Virammaji after draining wars with Marathas and locals. Treasury exhaustion and succession disputes ended the dynasty. Territories integrated into Mysore, closing a 264-year era of regional power.',
+      subtitle: 'End of the Keladi dynasty',
+      fullText: "In 1763 Hyder Ali of Mysore stormed the Keladi capital Bidnur (Bednur), then held by the last ruler Queen Virammaji, and absorbed the kingdom into Mysore - renaming the city Haidernagar and seizing its famed treasury. After more than 260 years, the Keladi Nayaka dynasty came to an end.",
       category: 'Political Change',
-      highlights: ['Hyder Ali conquest', 'Queen Virammaji dethroned', 'Succession disputes ended', 'Integration into Mysore Kingdom'],
-      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop',
+      highlights: [
+        "Hyder Ali conquered Keladi in 1763",
+        "Stormed the capital Bidnur (Bednur/Nagara)",
+        "Last ruler was Queen Virammaji",
+        "Kingdom absorbed into Mysore",
+        "Ended the 260-year Keladi dynasty",
+      ],
+      image: '/images/keladi/keladi-6-nagara-fort.jpg',
+      sources: [{ label: 'Wikipedia — Keladi Nayaka', url: 'https://en.wikipedia.org/wiki/Keladi_Nayaka' }],
     },
   ]
 
@@ -85,7 +128,7 @@ const KeladiTimeline = () => {
   const parentEvent = { id: 'evt10', title: 'Keladi Nayaka Kingdom', year: '1499–1763 CE' }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen py-12 bg-cream">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8"><ArrowLeft size={20} />Back to Timeline</button>
 
@@ -95,52 +138,14 @@ const KeladiTimeline = () => {
           <p className="text-xl text-gray-600">Overview of Keladi Nayaka rulers and key reforms.</p>
         </div>
 
-        <div className="relative">
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-300 via-primary-500 to-primary-700"></div>
-          <div className="space-y-8">
-            {events.map((event) => (
-              <div key={event.id} className="relative pl-20">
-                <div className="absolute left-4 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center cursor-pointer hover:shadow-xl transition-shadow" onClick={() => handleToggleEvent(event.id)}>
-                  <Calendar size={14} className="text-white" />
-                </div>
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" onClick={() => handleToggleEvent(event.id)}>
-                  <div className="p-6 cursor-pointer">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="text-primary-600 font-bold text-sm mb-1">{event.year}</div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{event.title}</h3>
-                        <p className="text-gray-600 text-sm mb-3">{event.subtitle}</p>
-                        <span className="inline-block px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">{event.category}</span>
-                      </div>
-                      <button onClick={(e) => { e.stopPropagation(); toggleFavorite(event) }} className="p-2 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"><Heart size={24} className={isFavorite(event.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'} /></button>
-                    </div>
-                  </div>
-                  {expandedEvent === event.id && (
-                    <div className="border-t border-gray-200 px-6 py-6 bg-gradient-to-br from-primary-50 to-transparent">
-                      <p className="text-gray-700 text-lg leading-relaxed mb-4">{event.fullText}</p>
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-3">Key Highlights:</h4>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {event.highlights && event.highlights.map((h, i) => (
-                            <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-primary-200"><div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0"></div><span className="text-gray-700">{h}</span></li>
-                          ))}
-                        </ul>
-                      </div>
-                      <button onClick={() => setExpandedEvent(null)} className="mt-6 text-primary-600 font-semibold hover:text-primary-700">Show Less ↑</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <HoverExpandTimeline events={events} onOpen={markSeen} />
 
         <div className="mt-16 p-8 bg-gradient-to-r from-primary-50 to-blue-50 rounded-xl border border-primary-200">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Keladi Nayaka Kingdom</h3>
           <p className="text-gray-700 leading-relaxed mb-6">The Keladi Nayaka Kingdom (1499–1763 CE), a Vijayanagara feudatory that gained independence post-1565, ruled Karnataka\'s Malnad and coastal regions with Virashaiva patronage, forts, and trade. Established by Chaudappa Nayaka in the Shimoga region, the kingdom blended Vokkaliga agricultural traditions with military prowess and administrative innovation. The reign of Shivappa Nayaka marked an administrative zenith with the implementation of the Ashta Bhaga revenue system, ensuring efficient taxation and sustained prosperity. Notably, Queen Chennamaji I demonstrated exceptional diplomatic acumen in defending against multiple invasions while maintaining trade relations with European powers. The kingdom was renowned for its administrative reforms, fortifications, and patronage of Kannada literature and Veerashaiva religious traditions. Though the kingdom fell to Hyder Ali\'s Mysore in 1763 after treasury exhaustion and succession disputes, its 264-year legacy enriched Karnataka\'s history with institutional innovations and cultural contributions.</p>
         </div>
 
-        <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200">
+        <div className="mt-8 p-6 bg-cream-50 rounded-lg border border-gray-200">
           <h4 className="font-bold text-lg mb-4">References & Further Reading</h4>
           <ul className="space-y-2">
             <li><a href="https://www.poojn.in/post/22227/keladi-nayakas-lineage-legacy-and-history" target="_blank" rel="noreferrer" className="text-primary-700 underline hover:text-primary-900">POOJN - Keladi Nayakas Lineage, Legacy & History</a></li>
