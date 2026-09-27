@@ -85,7 +85,7 @@ const Home = () => {
       <section className="home-hero">
         <video
           className="home-hero-video"
-          src={`${baseUrl}video/namma-bengaluru-hero.${isWebKitOnly ? 'mov' : 'webm'}`}
+          src={`${baseUrl}video/namma-bengaluru-hero.${isWebKitOnly ? 'mov' : 'webm'}?v=2`}
           autoPlay
           loop
           muted
