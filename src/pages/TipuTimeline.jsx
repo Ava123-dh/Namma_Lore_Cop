@@ -145,7 +145,7 @@ const TipuTimeline = () => {
   const parentEvent = { id: 'evt12', title: "Tipu Sultan's Reign", year: '1782–1799' }
 
   return (
-    <div className="min-h-screen py-12 bg-cream">
+    <div className="min-h-screen py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <button onClick={() => navigate('/timeline')} className="flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-8"><ArrowLeft size={20} />Back to Timeline</button>
 

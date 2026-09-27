@@ -10,16 +10,48 @@
   --cream: #fdf4e3;
   --cream-card: #fffbf0;
   --cream-line: #f5e8d1;
+  /* Faded chalkboard. The page surface is a neutral grey-black; cream stays as the
+     paper that cards sit on, and anything drawn straight onto the board is
+     chalk. */
+  --board: #262626;
+  --board-deep: #1e1e1e;
+  --chalk: #ece8de;
+  --chalk-dim: rgba(236, 232, 222, 0.68);
+  --chalk-faint: rgba(236, 232, 222, 0.22);
+  /* Half-erased smudges and a little dust, so the board doesn't read as flat */
+  --board-smudge:
+    radial-gradient(ellipse 60% 40% at 18% 22%, rgba(236, 232, 222, 0.05), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 82% 58%, rgba(236, 232, 222, 0.04), transparent 70%),
+    radial-gradient(ellipse 70% 30% at 40% 92%, rgba(236, 232, 222, 0.035), transparent 70%);
+  --board-dust: radial-gradient(rgba(236, 232, 222, 0.06) 1px, transparent 1.2px);
 }
 
 @layer base {
   body {
     @apply min-h-screen;
-    background-color: var(--cream);
+    background-color: var(--board);
+    background-attachment: fixed;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cstyle%3Etext%7Bfont-family:Inter,Arial,sans-serif;font-size:26px;fill:%23e65100;opacity:0.08%7D%3C/style%3E%3Ctext x='12' y='52' transform='rotate(-18 70 70)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='120' y='160' transform='rotate(-18 180 180)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='40' y='220' transform='rotate(-18 100 220)'%3E%C2%A9nammelore.app%3C/text%3E%3C/svg%3E");
-    background-size: 240px 240px;
+      var(--board-smudge),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cstyle%3Etext%7Bfont-family:Inter,Arial,sans-serif;font-size:26px;fill:%23ece8de;opacity:0.035%7D%3C/style%3E%3Ctext x='12' y='52' transform='rotate(-18 70 70)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='120' y='160' transform='rotate(-18 180 180)'%3E%C2%A9nammelore.app%3C/text%3E%3Ctext x='40' y='220' transform='rotate(-18 100 220)'%3E%C2%A9nammelore.app%3C/text%3E%3C/svg%3E");
+    background-size: 100% 100%, 100% 100%, 100% 100%, 240px 240px;
   }
+}
+
+/* Text sitting straight on the board (no card or filled element above it
+   inside <main>) switches to chalk. Anything inside a cream card or other
+   filled surface keeps its ink colours. */
+.chalk-surface :is(.text-gray-900, .text-gray-800, .text-gray-700, .text-primary-900):not([class*="bg-"] *, [class*="bg-"], .walk-explorer *, .btn-secondary, .nav *, .leaflet-container *, [role="dialog"] *) {
+  color: var(--chalk);
+}
+.chalk-surface :is(.text-gray-600, .text-gray-500, .text-gray-400):not([class*="bg-"] *, [class*="bg-"], .walk-explorer *, .btn-secondary, .nav *, .leaflet-container *, [role="dialog"] *) {
+  color: var(--chalk-dim);
+}
+.chalk-surface :is(.text-primary-500, .text-primary-600, .text-primary-700):not([class*="bg-"] *, [class*="bg-"], .walk-explorer *, .btn-secondary, .nav *, .leaflet-container *, [role="dialog"] *) {
+  color: #fdba74;
+}
+.chalk-surface :is(.hover\:text-primary-700, .hover\:text-primary-800):not([class*="bg-"] *, [class*="bg-"], .walk-explorer *, .btn-secondary, .nav *, .leaflet-container *, [role="dialog"] *):hover {
+  color: #fed7aa;
 }
 
 @layer components {
@@ -72,9 +104,9 @@
 
   /* Quiz styling with Aira accents */
   .quiz-shell {
-    background: radial-gradient(circle at 20% 20%, rgba(255, 227, 204, 0.45), rgba(255, 227, 204, 0)),
-                radial-gradient(circle at 80% 10%, rgba(255, 186, 120, 0.35), rgba(255, 186, 120, 0)),
-                radial-gradient(circle at 60% 70%, rgba(255, 241, 230, 0.8), rgba(255, 241, 230, 0));
+    background: radial-gradient(circle at 20% 20%, rgba(236, 232, 222, 0.05), rgba(236, 232, 222, 0)),
+                radial-gradient(circle at 80% 10%, rgba(253, 186, 116, 0.07), rgba(253, 186, 116, 0)),
+                radial-gradient(circle at 60% 70%, rgba(236, 232, 222, 0.04), rgba(236, 232, 222, 0));
   }
 
   .quiz-panel {
@@ -689,6 +721,11 @@
   overflow: hidden;
   border-radius: 28px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  /* iOS Safari drops translated tile layers inside an overflow:hidden box with
+     rounded corners unless the box gets its own compositing layer. */
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 @media (min-width: 1024px) {
   .walk-map { height: 100%; }
@@ -777,6 +814,11 @@
   flex-direction: column;
   border-radius: 28px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  /* iOS Safari drops translated tile layers inside an overflow:hidden box with
+     rounded corners unless the box gets its own compositing layer. */
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 @media (min-width: 1024px) {
   .walk-drawer { width: 400px; flex-shrink: 0; }
@@ -1283,12 +1325,12 @@ body.walks-active .chat-fab { display: none !important; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fdf4e3;
-  /* Halftone dots, echoing the dot shading inside the stickers */
+  background-color: var(--board);
+  /* Chalk-dust dots, echoing the dot shading inside the stickers */
   background-image:
-    radial-gradient(circle at 30% 20%, rgba(255, 214, 148, 0.5), rgba(255, 214, 148, 0) 60%),
-    radial-gradient(circle at 75% 75%, rgba(178, 240, 120, 0.35), rgba(178, 240, 120, 0) 55%),
-    radial-gradient(rgba(31, 30, 28, 0.09) 1.4px, transparent 1.5px);
+    radial-gradient(circle at 30% 20%, rgba(255, 214, 148, 0.08), rgba(255, 214, 148, 0) 60%),
+    radial-gradient(circle at 75% 75%, rgba(178, 240, 120, 0.06), rgba(178, 240, 120, 0) 55%),
+    var(--board-dust);
   background-size: 100% 100%, 100% 100%, 16px 16px;
 }
 
@@ -1490,18 +1532,22 @@ h3 {
 
 .home {
   --ink: #1f1e1c;
+  /* Rules and type drawn on the board are chalk; --ink stays for text that
+     sits on the orange and lime fills. */
+  --rule: var(--chalk);
   --lime: #b7f04a;
   --zine-orange: #f2913c;
-  background: var(--cream);
-  /* Same halftone dots as the quiz screen, so the two pages share a surface */
-  background-image: radial-gradient(rgba(31, 30, 28, 0.09) 1.4px, transparent 1.5px);
-  background-size: 16px 16px;
+  background-color: var(--board);
+  /* Same chalk dust as the quiz screen, so the two pages share a surface */
+  background-image: var(--board-smudge), var(--board-dust);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 16px 16px;
+  color: var(--chalk);
 }
 
 /* --- Hero ---------------------------------------------------------------- */
 
-/* The hero is one alpha-channel clip on the cream, so the section only has to
-   centre it and hold the rule that separates it from the bands below. */
+/* The hero is one alpha-channel clip on the board, so the section only has to
+   centre it. */
 .home-hero {
   position: relative;
   overflow: hidden;
@@ -1510,7 +1556,6 @@ h3 {
   align-items: center;
   justify-content: center;
   padding: clamp(16px, 3vh, 40px) 24px clamp(24px, 4vh, 56px);
-  border-bottom: 3px solid var(--ink);
 }
 
 .home-hero-video {
@@ -1678,8 +1723,6 @@ h3 {
   position: relative;
   padding: 58px 0;
   overflow: hidden;
-  background: var(--cream);
-  border-bottom: 3px solid var(--ink);
 }
 
 .marquee {
@@ -1770,23 +1813,23 @@ h3 {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(31, 30, 28, 0.55);
+  color: var(--chalk-dim);
 }
 
 .home-index-rule {
   flex: 1;
   height: 2px;
-  background: rgba(31, 30, 28, 0.2);
+  background: var(--chalk-faint);
 }
 
 .index-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 2px solid var(--ink);
+  border-top: 2px solid var(--rule);
 }
 
-.index-list li { border-bottom: 2px solid var(--ink); }
+.index-list li { border-bottom: 2px solid var(--rule); }
 
 .index-row {
   position: relative;
@@ -1796,7 +1839,7 @@ h3 {
   align-items: center;
   gap: clamp(14px, 3vw, 36px);
   padding: clamp(18px, 3vh, 30px) clamp(10px, 2vw, 22px);
-  color: var(--ink);
+  color: var(--chalk);
   overflow: hidden;
   transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
@@ -1804,6 +1847,7 @@ h3 {
 .index-row:hover,
 .index-row:focus-visible {
   background: var(--zine-orange);
+  color: var(--ink);
   padding-left: clamp(20px, 3.4vw, 40px);
   outline: none;
 }
@@ -1813,7 +1857,7 @@ h3 {
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: rgba(31, 30, 28, 0.45);
+  color: var(--chalk-dim);
 }
 
 .index-name {
@@ -1829,8 +1873,13 @@ h3 {
 .index-kn {
   grid-area: kn;
   font-size: clamp(0.95rem, 1.5vw, 1.25rem);
-  color: rgba(31, 30, 28, 0.6);
+  color: var(--chalk-dim);
   white-space: nowrap;
+}
+
+.index-row:hover :is(.index-n, .index-kn, .index-blurb),
+.index-row:focus-visible :is(.index-n, .index-kn, .index-blurb) {
+  color: rgba(31, 30, 28, 0.7);
 }
 
 /* Sits under the Kannada on wide screens; folds away when space runs out */
@@ -1890,7 +1939,7 @@ h3 {
 .home-outro p {
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   line-height: 1.55;
-  color: rgba(31, 30, 28, 0.78);
+  color: var(--chalk-dim);
   max-width: 30rem;
   margin: 0;
 }
@@ -1919,7 +1968,7 @@ h3 {
     display: block;
     align-self: start;
     font-size: 0.95rem;
-    color: rgba(31, 30, 28, 0.55);
+    color: var(--chalk-dim);
   }
 }
 

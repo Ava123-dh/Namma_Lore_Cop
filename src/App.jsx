@@ -64,7 +64,7 @@ const CascadeShell = () => {
   }, [location.pathname, isTimelineLanding, isMapPage])
 
   return (
-    <div className={`min-h-screen ${isTimelineLanding || isMapPage ? '' : 'page-cascade'}`}>
+    <div className={`min-h-screen chalk-surface ${isTimelineLanding || isMapPage ? '' : 'page-cascade'}`}>
       <Navbar />
       <ChatBot primary />
       <Routes>

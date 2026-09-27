@@ -245,6 +245,21 @@ const createNumberedIcon = (num, color, active, dim) =>
 
 function MapController({ focusStops, activeStop }) {
   const map = useMap()
+  // Leaflet measures its container once, at mount. On phones the box often
+  // settles later (page cascade animation, browser chrome collapsing, rotation),
+  // which leaves a grey map with only a corner of tiles. Re-measure whenever
+  // the container actually changes size.
+  useEffect(() => {
+    const el = map.getContainer()
+    const refit = () => map.invalidateSize()
+    const t = setTimeout(refit, 250)
+    const ro = new ResizeObserver(refit)
+    ro.observe(el)
+    return () => {
+      clearTimeout(t)
+      ro.disconnect()
+    }
+  }, [map])
   useEffect(() => {
     map.fitBounds(boundsOf(focusStops), { padding: [30, 30] })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -512,7 +527,7 @@ const WalksMap = ({ baseUrl }) => {
         <MapContainer center={[12.9662, 77.5772]} zoom={15} style={{ height: '100%', width: '100%' }} className="z-0">
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <MapController focusStops={focusStops} activeStop={activeStop} />
 

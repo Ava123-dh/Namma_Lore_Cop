@@ -87,7 +87,7 @@ const SiteFlashcard = ({ site, isFavorite, onToggleFavorite, onOpenDetails }) =>
                    nudge to re-measure once the flip has settled. */
                 whenReady={(e) => setTimeout(() => e.target.invalidateSize(), 400)}
               >
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <TileLayer url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <Marker position={site.position} />
               </MapContainer>
             )}
