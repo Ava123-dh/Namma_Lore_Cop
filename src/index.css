@@ -740,7 +740,10 @@
 /* Map */
 .walk-map {
   position: relative;
-  flex: 1;
+  /* Fixed height when stacked. flex: 1 here would size the box by flex-basis 0
+     inside an auto-height column, and the map's height: 100% then resolves to
+     0 on mobile Chrome, leaving a blank map. */
+  flex: none;
   height: 440px;
   min-height: 440px;
   overflow: hidden;
@@ -753,7 +756,7 @@
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 @media (min-width: 1024px) {
-  .walk-map { height: 100%; }
+  .walk-map { flex: 1; height: 100%; }
 }
 .walk-map .leaflet-container { border-radius: 28px; }
 
