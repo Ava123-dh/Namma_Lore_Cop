@@ -103,10 +103,36 @@
   }
 
   /* Quiz styling with Aira accents */
+  /* Stage lights behind the board: warm orange, a lime wash and a rose
+     glow, drifting slowly so the quiz feels lit rather than flat. */
   .quiz-shell {
-    background: radial-gradient(circle at 20% 20%, rgba(236, 232, 222, 0.05), rgba(236, 232, 222, 0)),
-                radial-gradient(circle at 80% 10%, rgba(253, 186, 116, 0.07), rgba(253, 186, 116, 0)),
-                radial-gradient(circle at 60% 70%, rgba(236, 232, 222, 0.04), rgba(236, 232, 222, 0));
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .quiz-shell::before,
+  .quiz-open::before {
+    content: '';
+    position: absolute;
+    inset: -15%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(249, 115, 22, 0.32), rgba(249, 115, 22, 0) 42%),
+      radial-gradient(circle at 84% 14%, rgba(183, 240, 74, 0.16), rgba(183, 240, 74, 0) 38%),
+      radial-gradient(circle at 70% 78%, rgba(244, 63, 94, 0.2), rgba(244, 63, 94, 0) 45%),
+      radial-gradient(circle at 28% 88%, rgba(253, 186, 116, 0.14), rgba(253, 186, 116, 0) 40%);
+    filter: blur(20px);
+    animation: quizLights 18s ease-in-out infinite alternate;
+  }
+  @keyframes quizLights {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(3%, -2%) scale(1.05); }
+    100% { transform: translate(-2%, 3%) scale(1.02); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .quiz-shell::before,
+    .quiz-open::before { animation: none; }
   }
 
   .quiz-panel {
@@ -701,7 +727,6 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background: #f8fafc;
 }
 @media (min-width: 1024px) {
   .walk-explorer {
@@ -1326,12 +1351,10 @@ body.walks-active .chat-fab { display: none !important; }
   align-items: center;
   justify-content: center;
   background-color: var(--board);
-  /* Chalk-dust dots, echoing the dot shading inside the stickers */
-  background-image:
-    radial-gradient(circle at 30% 20%, rgba(255, 214, 148, 0.08), rgba(255, 214, 148, 0) 60%),
-    radial-gradient(circle at 75% 75%, rgba(178, 240, 120, 0.06), rgba(178, 240, 120, 0) 55%),
-    var(--board-dust);
-  background-size: 100% 100%, 100% 100%, 16px 16px;
+  /* Chalk-dust dots, echoing the dot shading inside the stickers; the lights
+     come from ::before, shared with .quiz-shell */
+  background-image: var(--board-dust);
+  background-size: 16px 16px;
 }
 
 /* --- Stickers ------------------------------------------------------------ */
