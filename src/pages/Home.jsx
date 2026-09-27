@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
 import ChatBot from '../components/Chatbot'
 
+// WebKit (Safari, and every browser on iOS) plays WebM but ignores its alpha
+// channel, so the clip shows up on a cream box. Those browsers get an HEVC
+// copy with alpha instead; everyone else keeps the smaller WebM.
+const isWebKitOnly = (() => {
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent
+  const iOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  const desktopSafari = /Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|Firefox|Android/.test(ua)
+  return iOS || desktopSafari
+})()
+
 const DYNASTIES = [
   'Kadambas', 'Chalukyas', 'Rashtrakutas', 'Hoysalas',
   'Vijayanagara', 'Keladi', 'Mysore', 'Tipu',
@@ -74,7 +85,7 @@ const Home = () => {
       <section className="home-hero">
         <video
           className="home-hero-video"
-          src={`${baseUrl}video/namma-bengaluru-hero.webm`}
+          src={`${baseUrl}video/namma-bengaluru-hero.${isWebKitOnly ? 'mov' : 'webm'}`}
           autoPlay
           loop
           muted

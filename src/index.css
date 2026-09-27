@@ -1595,6 +1595,14 @@ h3 {
   background: transparent;
 }
 
+/* iOS paints a play button over autoplay video when it holds playback back
+   (Low Power Mode). The clip is decoration, so keep that glyph off it. */
+.home-hero-video::-webkit-media-controls-start-playback-button,
+.home-hero-video::-webkit-media-controls {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 /* ===========================================================================
    Heritage flashcards — photograph on the front, map and history on the back
    =========================================================================== */
