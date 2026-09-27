@@ -1593,6 +1593,15 @@ h3 {
   aspect-ratio: 1280 / 800;
   /* The clip is drawn with transparency; nothing behind it but the halftone */
   background: transparent;
+  /* Some iPhones drop the video's own alpha and paint a solid box around the
+     frame. The frame's outline never moves, so clip to it with a mask cut from
+     the clip's alpha channel; the box then disappears whatever the decoder does. */
+  -webkit-mask-image: url('/video/hero-mask.png');
+  mask-image: url('/video/hero-mask.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* iOS paints a play button over autoplay video when it holds playback back
