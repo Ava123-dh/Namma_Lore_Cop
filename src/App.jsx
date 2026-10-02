@@ -20,6 +20,7 @@ import FormationKarnatakaTimeline from './pages/FormationKarnatakaTimeline'
 import MysoreRenamedTimeline from './pages/MysoreRenamedTimeline'
 import Quiz from './pages/Quiz'
 import Map from './pages/Map'
+import Walks from './pages/Walks'
 import Favorites from './pages/Favorites'
 import Contact from './pages/Contact'
 import { FavoritesProvider } from './context/FavoritesContext'
@@ -28,7 +29,8 @@ import ChatBot from './components/Chatbot'
 const CascadeShell = () => {
   const location = useLocation()
   const isTimelineLanding = location.pathname === '/timeline'
-  const isMapPage = location.pathname === '/map'
+  // Leaflet maps measure their box at mount, so these pages skip the cascade
+  const isMapPage = location.pathname === '/map' || location.pathname === '/walks'
 
   useEffect(() => {
     if (isTimelineLanding || isMapPage) return
@@ -87,6 +89,7 @@ const CascadeShell = () => {
         <Route path="/timeline/mysore-renamed" element={<MysoreRenamedTimeline />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/walks" element={<Walks />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

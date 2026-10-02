@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" width="252" height="322" viewBox="32 16 252 322" role="img" aria-labelledby="logo-title logo-description">
 <title id="logo-title">Karnataka hourglass</title>
-<desc id="logo-description">Hourglass with a Karnataka outline on the upper glass, red sand above, and turmeric yellow sand below. Transparent background.</desc>
+<desc id="logo-description">Hourglass with a Karnataka outline on the upper glass, turmeric yellow sand above, and red sand below. Transparent background.</desc>
 <metadata>Karnataka boundary simplified from Natural Earth public-domain administrative boundary data, https://www.naturalearthdata.com/.</metadata>
 <defs>
  <path id="glass-shape" d="M64 57 H252 C252 112 228 138 179 166 Q167 176 179 186 C228 214 252 240 252 297 H64 C64 240 88 214 137 186 Q149 176 137 166 C88 138 64 112 64 57Z" />
@@ -10,14 +10,14 @@
 <g id="hourglass" stroke-linecap="round" stroke-linejoin="round">
  <use href="#glass-shape" fill="#FFF2D2" />
  <g clip-path="url(#inside-glass)">
-  <path id="red-sand" d="M54 84 Q106 74 160 85 T262 83 V188 H54Z" fill="#C64B43" />
-  <path id="yellow-sand" d="M52 287 C95 273 127 247 158 226 C190 247 220 273 264 287 V309 H52Z" fill="#E6B52E" />
-  <g fill="#A93633" opacity=".55">
+  <path id="top-yellow-sand" d="M54 84 Q106 74 160 85 T262 83 V188 H54Z" fill="#E6B52E" />
+  <path id="bottom-red-sand" d="M52 287 C95 273 127 247 158 226 C190 247 220 273 264 287 V309 H52Z" fill="#C64B43" />
+  <g fill="#B98B1D" opacity=".55">
    <circle cx="85" cy="99" r="2" /><circle cx="101" cy="103" r="1.7" /><circle cx="92" cy="116" r="1.8" />
    <circle cx="222" cy="100" r="2" /><circle cx="210" cy="114" r="1.7" /><circle cx="230" cy="114" r="1.8" />
    <circle cx="109" cy="129" r="1.5" /><circle cx="201" cy="130" r="1.6" />
   </g>
-  <g fill="#B98B1D" opacity=".65">
+  <g fill="#A93633" opacity=".65">
    <circle cx="107" cy="277" r="2" /><circle cx="121" cy="286" r="2" /><circle cx="139" cy="276" r="1.8" />
    <circle cx="156" cy="260" r="1.8" /><circle cx="160" cy="283" r="2" /><circle cx="178" cy="275" r="1.8" />
    <circle cx="191" cy="286" r="2" /><circle cx="208" cy="278" r="1.8" />
@@ -25,7 +25,7 @@
   <path id="karnataka-outline" d="M140.92 154.32 L140.59 153.44 L141.93 152.96 L140.50 153.16 L139.01 146.92 L138.75 143.90 L139.55 143.65 L138.99 142.96 L138.68 143.58 L136.76 139.13 L135.99 136.61 L136.92 136.49 L135.84 135.88 L135.10 133.13 L135.98 133.78 L135.18 132.64 L134.50 133.16 L134.95 132.14 L132.08 129.75 L133.72 129.12 L132.08 128.84 L133.82 128.02 L134.41 125.23 L133.81 124.52 L134.55 124.02 L133.78 120.10 L132.10 119.46 L133.27 118.25 L134.86 118.34 L136.04 115.26 L135.47 114.65 L136.49 113.95 L136.42 112.58 L134.77 112.09 L134.57 110.96 L135.17 110.68 L133.64 109.65 L133.84 109.01 L135.11 108.96 L136.06 107.72 L137.42 108.86 L138.74 108.21 L139.00 106.93 L140.96 106.39 L140.83 105.15 L142.20 104.03 L144.55 105.07 L145.58 103.97 L148.98 103.30 L149.89 103.76 L149.01 98.81 L149.82 97.76 L151.54 98.95 L152.70 98.49 L153.47 99.57 L155.52 98.90 L158.31 99.20 L157.84 96.16 L160.27 94.15 L162.05 95.00 L162.80 92.70 L164.22 92.63 L164.65 89.59 L166.74 89.18 L169.44 86.00 L170.88 88.09 L172.57 87.98 L172.27 90.44 L173.06 91.99 L170.58 95.91 L173.76 96.67 L170.15 100.81 L171.23 103.17 L170.56 106.63 L170.98 107.79 L168.79 110.09 L172.20 111.67 L171.50 112.35 L170.98 116.05 L167.70 115.88 L166.20 117.00 L166.79 119.48 L165.93 119.75 L165.43 121.42 L167.02 123.79 L167.32 125.79 L166.20 127.43 L163.07 126.36 L162.55 127.66 L163.74 128.44 L162.80 132.14 L163.78 133.72 L164.99 133.90 L164.16 134.90 L164.74 136.40 L166.65 136.70 L167.35 135.37 L170.07 136.64 L170.15 135.48 L171.19 136.07 L171.20 137.26 L169.61 138.02 L170.29 140.81 L169.16 139.37 L167.11 139.44 L165.75 138.70 L165.43 137.44 L164.36 137.54 L165.92 140.53 L165.45 142.45 L167.29 142.28 L167.47 140.57 L170.26 141.34 L171.54 143.07 L173.57 142.37 L174.88 140.26 L176.67 139.94 L176.48 141.53 L177.78 140.88 L178.46 141.54 L178.19 143.59 L181.73 144.46 L181.82 147.63 L183.92 147.98 L182.18 152.26 L182.83 153.09 L181.42 152.54 L180.23 153.26 L180.06 154.38 L177.87 153.30 L177.26 153.85 L176.30 153.04 L175.10 153.22 L174.68 154.88 L172.87 155.43 L172.82 158.63 L171.20 160.37 L171.41 161.01 L174.35 161.42 L174.69 162.30 L173.58 163.85 L171.49 164.39 L170.54 166.01 L168.81 165.70 L166.92 166.50 L165.95 165.64 L164.86 165.82 L163.73 168.00 L160.78 167.90 L160.05 166.88 L159.03 167.50 L158.64 166.52 L155.21 165.05 L155.05 163.95 L152.25 164.01 L151.44 162.68 L147.13 159.97 L146.88 157.86 L145.53 157.06 L145.76 156.29 L140.92 154.32 Z" fill="none" stroke="#FFF2D2" stroke-width="3.3" />
   <path d="M80 68 Q80 89 86 105 M80 262 Q77 275 78 284" fill="none" stroke="#FFFFFF" stroke-opacity=".72" stroke-width="5" />
  </g>
- <g id="falling-sand" fill="#C64B43">
+ <g id="falling-sand" fill="#E6B52E">
   <rect x="155.5" y="184" width="5" height="12" rx="2.5" />
   <circle cx="158" cy="205" r="2.5" /><circle cx="158" cy="216" r="2" />
  </g>

@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Heart, Navigation, Info, MapPin, Footprints, BookOpen, ExternalLink } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import ChatBot from '../components/Chatbot'
-import WalksMap from '../components/WalksMap'
 import SiteFlashcard from '../components/SiteFlashcard'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -20,7 +19,6 @@ const Map = () => {
   const { isFavorite, toggleFavorite } = useFavorites()
   const [selectedSite, setSelectedSite] = useState(null)
   const [filter, setFilter] = useState('all')
-  const [mapView, setMapView] = useState('heritage')
   const [showSources, setShowSources] = useState(false)
 
   // Every site below is described from the sources listed with it: the
@@ -201,67 +199,33 @@ const Map = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center mb-6">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              {mapView === 'heritage' ? 'Heritage Map' : 'City Walks: Six Routes Through Old Bengaluru'}
+              Heritage Map
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {mapView === 'heritage'
-                ? "Explore Karnataka's historical monuments and heritage sites"
-                : "Six themed walking routes across old Bengaluru \u2014 Kempegowda's merchant town, the fort Hyder and Tipu rebuilt, the British Cantonment, and Cubbon Park"}
+              Explore Karnataka's historical monuments and heritage sites
             </p>
           </div>
 
-          {/* View Toggle */}
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-            <button
-              onClick={() => setMapView('heritage')}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2 ${
-                mapView === 'heritage'
-                  ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg'
-                  : 'bg-cream-50 text-gray-700 hover:bg-primary-50 border-2 border-gray-200'
-              }`}
-            >
-              <MapPin size={18} />
-              Heritage Sites
-            </button>
-            <button
-              onClick={() => setMapView('walk')}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2 ${
-                mapView === 'walk'
-                  ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg'
-                  : 'bg-cream-50 text-gray-700 hover:bg-primary-50 border-2 border-gray-200'
-              }`}
-            >
-              <Footprints size={18} />
-              City Walks
-            </button>
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setFilter(category.id)}
+                className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                  filter === category.id
+                    ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg'
+                    : 'bg-cream-50 text-gray-700 hover:bg-primary-50 border-2 border-gray-200'
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
           </div>
-
-          {/* Category Filters (heritage view only) */}
-          {mapView === 'heritage' && (
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setFilter(category.id)}
-                  className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
-                    filter === category.id
-                      ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg'
-                      : 'bg-cream-50 text-gray-700 hover:bg-primary-50 border-2 border-gray-200'
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
-      {/* City Walks: The Pete & The Kote */}
-      {mapView === 'walk' && <WalksMap baseUrl={baseUrl} />}
-
       {/* Heritage Sites Grid */}
-      {mapView === 'heritage' && (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900">Featured Heritage Sites</h2>
@@ -323,7 +287,6 @@ const Map = () => {
           )}
         </div>
       </div>
-      )}
 
       {/* Site Detail Modal */}
       {selectedSite && (
@@ -440,8 +403,7 @@ const Map = () => {
         </div>
       )}
 
-      {/* Floating chat is integrated into the walk drawer, so hide it in walk view */}
-      {mapView !== 'walk' && <ChatBot />}
+      <ChatBot />
     </div>
   )
 }

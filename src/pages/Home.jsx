@@ -49,6 +49,14 @@ const INDEX_ROWS = [
   },
   {
     n: '04',
+    name: "B'lore Walks",
+    kn: 'ಬೆಂಗಳೂರು ನಡಿಗೆ',
+    blurb: 'Six routes through the old city, on foot',
+    to: '/walks',
+    img: 'hyder-ali/hyder-ali-3-bangalore-fort.jpg',
+  },
+  {
+    n: '05',
     name: 'Favourites',
     kn: 'ಇಷ್ಟಗಳು',
     blurb: 'Everything you pinned along the way',
@@ -129,7 +137,7 @@ const Home = () => {
         <div className="home-index-head">
           <span className="home-index-label">The index</span>
           <span className="home-index-rule" aria-hidden="true" />
-          <span className="home-index-count">04</span>
+          <span className="home-index-count">{String(INDEX_ROWS.length).padStart(2, '0')}</span>
         </div>
 
         <ul className="index-list">
@@ -137,7 +145,14 @@ const Home = () => {
             <li key={row.n}>
               <Link to={row.to} className="index-row">
                 <span className="index-n">{row.n}</span>
-                <span className="index-name">{row.name}</span>
+                {/* A one-line window over two stacked rows, like the hero
+                    wordmark; the Kannada row is hidden from screen readers */}
+                <span className="index-name">
+                  <span className="index-name-roll">
+                    <span className="index-name-item">{row.name}</span>
+                    <span className="index-name-item index-name-kn" aria-hidden="true">{row.kn}</span>
+                  </span>
+                </span>
                 <span className="index-kn">{row.kn}</span>
                 <span className="index-blurb">{row.blurb}</span>
                 <img src={`${baseUrl}images/${row.img}`} alt="" className="index-peek" />

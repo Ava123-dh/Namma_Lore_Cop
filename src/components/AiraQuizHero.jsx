@@ -119,7 +119,7 @@ const AiraQuizHero = ({ baseUrl, onStart }) => (
 
           <text className="quiz-arc quiz-arc-top">
             <textPath href="#quizArcTop" startOffset="50%" textAnchor="middle">
-              KARNATAKA HISTORY
+              HISTORY QUIZ
             </textPath>
           </text>
           <text className="quiz-arc quiz-arc-bottom">
