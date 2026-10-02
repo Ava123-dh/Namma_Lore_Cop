@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ChatBot from '../components/Chatbot'
 
@@ -88,6 +89,16 @@ const Home = () => {
   const baseUrl = import.meta.env.BASE_URL
   const sticker = (file) => `${baseUrl}images/stickers/${file}`
 
+  // Scroll cue under the hero clip: there on arrival, gone once the page moves
+  const [showCue, setShowCue] = useState(true)
+  const bandsRef = useRef(null)
+  useEffect(() => {
+    const onScroll = () => setShowCue(window.scrollY < 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="home">
       <section className="home-hero">
@@ -125,10 +136,25 @@ const Home = () => {
             </span>
           </span>
         </h1>
+
+        <button
+          type="button"
+          className={`home-scroll-cue${showCue ? '' : ' is-hidden'}`}
+          onClick={() => bandsRef.current?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label="Scroll down"
+          tabIndex={showCue ? 0 : -1}
+        >
+          <span className="home-scroll-cue-label" aria-hidden="true">Scroll</span>
+          <span className="home-scroll-cue-ring" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </button>
       </section>
 
       {/* Two bands, tilted against each other and running opposite ways */}
-      <section className="home-bands" aria-hidden="true">
+      <section className="home-bands" aria-hidden="true" ref={bandsRef}>
         <Marquee items={DYNASTIES} tone="orange" />
         <Marquee items={PLACES} tone="lime" reverse />
       </section>

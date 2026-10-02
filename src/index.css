@@ -1586,7 +1586,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(16px, 3vh, 40px) 24px clamp(24px, 4vh, 56px);
+  /* Bottom padding leaves room for the scroll cue under the clip's tip */
+  padding: clamp(16px, 3vh, 40px) 24px clamp(84px, 10vh, 104px);
 }
 
 .home-hero-video {
@@ -1683,6 +1684,71 @@ h3 {
   color: rgba(31, 30, 28, 0.6);
 }
 
+/* --- Scroll cue ---------------------------------------------------------- */
+
+/* A small chalk chevron under the clip that bobs until the page scrolls,
+   then fades away. Sits in the hero's bottom padding. */
+.home-scroll-cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: clamp(10px, 2vh, 22px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 0;
+  background: none;
+  color: var(--chalk);
+  cursor: pointer;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.home-scroll-cue-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+
+/* Thin chalk ring round the chevron; only the ring bobs */
+.home-scroll-cue-ring {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(236, 232, 222, 0.45);
+  border-radius: 999px;
+  animation: scrollCueBob 1.8s ease-in-out infinite;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.home-scroll-cue:hover .home-scroll-cue-ring,
+.home-scroll-cue:focus-visible .home-scroll-cue-ring {
+  border-color: var(--chalk);
+  background: rgba(236, 232, 222, 0.08);
+}
+
+.home-scroll-cue:focus-visible { outline: none; }
+
+.home-scroll-cue.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes scrollCueBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-scroll-cue-ring { animation: none; }
+}
+
 /* --- Wordmark over the clip ---------------------------------------------- */
 
 /* Stretched across the section rather than offset from the middle, so the
@@ -1692,6 +1758,9 @@ h3 {
   z-index: 2;
   inset: 0;
   margin: 0;
+  /* Matches the hero's extra bottom padding (room for the scroll cue), so the
+     words stay centred on the clip rather than on the taller section */
+  padding-bottom: calc(clamp(84px, 10vh, 104px) - clamp(24px, 4vh, 56px));
   display: flex;
   align-items: center;
   justify-content: center;
