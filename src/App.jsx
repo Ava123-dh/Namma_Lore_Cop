@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Timeline from './pages/Timeline'
@@ -28,6 +28,17 @@ import ChatBot from './components/Chatbot'
 
 const CascadeShell = () => {
   const location = useLocation()
+
+  // GoatCounter counts the first load by itself; React Router page changes
+  // don't reload the page, so count each one after that here.
+  const firstView = useRef(true)
+  useEffect(() => {
+    if (firstView.current) {
+      firstView.current = false
+      return
+    }
+    window.goatcounter?.count?.({ path: location.pathname })
+  }, [location.pathname])
   const isTimelineLanding = location.pathname === '/timeline'
   // Leaflet maps measure their box at mount, so these pages skip the cascade
   const isMapPage = location.pathname === '/map' || location.pathname === '/walks'
