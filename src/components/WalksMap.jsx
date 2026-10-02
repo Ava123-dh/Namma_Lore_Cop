@@ -285,7 +285,21 @@ function StopImage({ stop, baseUrl, color, className }) {
   return <img src={src} alt={stop.name} className={className} onError={() => setFailed(true)} />
 }
 
+// Touch screens (phones, tablets): one finger scrolls the page, two fingers
+// move and zoom the map, so the map never traps a swipe down the page.
+const isTouchScreen =
+  typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
+
 const WalksMap = ({ baseUrl }) => {
+  const [showTwoFingerHint, setShowTwoFingerHint] = useState(false)
+  const hintTimer = useRef(null)
+  useEffect(() => () => clearTimeout(hintTimer.current), [])
+  const onMapTouchMove = (e) => {
+    if (!isTouchScreen || e.touches.length !== 1) return
+    setShowTwoFingerHint(true)
+    clearTimeout(hintTimer.current)
+    hintTimer.current = setTimeout(() => setShowTwoFingerHint(false), 1400)
+  }
   const { isFavorite, toggleFavorite } = useFavorites()
   const [activeWalkId, setActiveWalkId] = useState('all') // 'all' | walk id
   const [activeStopId, setActiveStopId] = useState(null)
@@ -523,8 +537,15 @@ const WalksMap = ({ baseUrl }) => {
   return (
     <div className="walk-explorer">
       {/* Map */}
-      <div className="walk-map">
-        <MapContainer center={[12.9662, 77.5772]} zoom={15} style={{ height: '100%', width: '100%' }} className="z-0">
+      <div className="walk-map" onTouchMove={onMapTouchMove}>
+        <MapContainer
+          center={[12.9662, 77.5772]}
+          zoom={15}
+          dragging={!isTouchScreen}
+          touchZoom
+          style={{ height: '100%', width: '100%' }}
+          className="z-0"
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -585,6 +606,10 @@ const WalksMap = ({ baseUrl }) => {
             )
           })}
         </MapContainer>
+
+        <div className={`walk-map-hint${showTwoFingerHint ? ' is-shown' : ''}`} aria-hidden="true">
+          Use two fingers to move the map
+        </div>
 
         {/* Walk selector chips */}
         <div className="walk-chips">
