@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* The wordmark is inside the artwork, so the link carries the name
               for anyone who can't see it */}
           <img
-            src={`${import.meta.env.BASE_URL}images/nammalore-logo.svg`}
+            src={`${import.meta.env.BASE_URL}images/nammalore-logo.svg?v=2`}
             alt="Namma Lore"
             className="nav-logo-mark"
           />
