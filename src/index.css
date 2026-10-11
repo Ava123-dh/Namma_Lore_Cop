@@ -2116,6 +2116,55 @@ h3 {
   margin: 0;
 }
 
+/* Sits in the row between Aira's line and the dosa sticker, tilted a touch
+   like the stickers around it */
+.home-outro p.visitor-count {
+  margin-left: auto;
+  /* Clears the dosa sticker pinned at the right */
+  margin-right: clamp(110px, 17vw, 250px);
+  max-width: none;
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+  color: var(--chalk);
+  max-width: 13em;
+  text-align: center;
+  line-height: 1.4;
+  transform: rotate(-2deg);
+}
+
+.home-outro p.visitor-count .visitor-count-num {
+  font-size: 1.5em;
+  margin: 0 0.1em;
+}
+
+/* Odometer digits: a one-digit window over a 0–9 column */
+.visitor-count-num {
+  display: inline-flex;
+  color: var(--lime);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.visitor-digit {
+  display: inline-block;
+  height: 1.2em;
+  line-height: 1.2em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.visitor-digit-col {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.visitor-digit-col > span { height: 1.2em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .visitor-digit-col { transition: none; }
+}
+
 .home-sticker-dosa {
   width: clamp(96px, 12vw, 170px);
   right: 6%;
@@ -2149,6 +2198,7 @@ h3 {
   .index-peek { display: none; }
   .index-kn { font-size: 0.95rem; }
   .home-outro { flex-direction: column; align-items: flex-start; }
+  .home-outro p.visitor-count { margin-left: 0; margin-right: 0; text-align: left; }
   .home-sticker-dosa { width: 92px; right: 4%; bottom: 8%; }
 }
 

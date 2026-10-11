@@ -85,6 +85,69 @@ const Marquee = ({ items, reverse, tone }) => (
   </div>
 )
 
+// Total unique visitors from GoatCounter's public counter, shown as an
+// odometer: each digit is a column of 0–9 that rolls up from 0 once the line
+// scrolls into view. Stays hidden if the count can't be fetched.
+const VisitorCount = () => {
+  const [count, setCount] = useState(null)
+  const [rolled, setRolled] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('https://nammalore.goatcounter.com/counter/TOTAL.json')
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .then((data) => {
+        // GoatCounter formats the count with thousands separators ("1,234")
+        const n = parseInt(String(data.count_unique ?? data.count).replace(/\D/g, ''), 10)
+        if (!cancelled && n > 0) setCount(n)
+      })
+      .catch(() => {})
+    return () => { cancelled = true }
+  }, [])
+
+  useEffect(() => {
+    if (count === null || !ref.current) return
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setRolled(true)
+        io.disconnect()
+      }
+    }, { threshold: 0.6 })
+    io.observe(ref.current)
+    return () => io.disconnect()
+  }, [count])
+
+  if (count === null) return null
+  const digits = count.toLocaleString('en-IN').split('')
+
+  return (
+    <p className="visitor-count" ref={ref}>
+      This site has{' '}
+      <span className="visitor-count-num" aria-label={count.toLocaleString('en-IN')}>
+        {digits.map((ch, i) =>
+          /\d/.test(ch) ? (
+            <span key={i} className="visitor-digit" aria-hidden="true">
+              <span
+                className="visitor-digit-col"
+                style={{
+                  transform: `translateY(-${rolled ? Number(ch) * 10 : 0}%)`,
+                  transitionDelay: `${(digits.length - i) * 90}ms`,
+                }}
+              >
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => <span key={d}>{d}</span>)}
+              </span>
+            </span>
+          ) : (
+            <span key={i} aria-hidden="true">{ch}</span>
+          )
+        )}
+      </span>{' '}
+      unique visitors!!
+    </p>
+  )
+}
+
 const Home = () => {
   const baseUrl = import.meta.env.BASE_URL
   const sticker = (file) => `${baseUrl}images/stickers/${file}`
@@ -99,9 +162,17 @@ const Home = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // On phones a tap on the hero nudges the page down a little, towards the
+  // bands, so the clip reads as a way in. The scroll cue has its own action.
+  const onHeroTap = (e) => {
+    if (e.target.closest('.home-scroll-cue')) return
+    if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) return
+    window.scrollBy({ top: Math.round(window.innerHeight * 0.4), behavior: 'smooth' })
+  }
+
   return (
     <div className="home">
-      <section className="home-hero">
+      <section className="home-hero" onClick={onHeroTap}>
         <video
           className="home-hero-video"
           src={`${baseUrl}video/namma-bengaluru-hero.${isWebKitOnly ? 'mov' : 'webm'}?v=2`}
@@ -195,6 +266,7 @@ const Home = () => {
           Stuck on something? <strong>Aira</strong> is in the corner down there, and she
           has read all of it.
         </p>
+        <VisitorCount />
         <img src={sticker('dosa.png')} alt="" className="home-sticker home-sticker-dosa" />
       </section>
 
