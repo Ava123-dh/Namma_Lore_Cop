@@ -36,7 +36,7 @@ const INDEX_ROWS = [
     n: '02',
     name: 'Quiz',
     kn: 'ಪ್ರಶ್ನೋತ್ತರ',
-    blurb: 'Ten questions, no googling',
+    blurb: 'Five quizzes, spin to pick one',
     to: '/quiz',
     img: 'chitradurga-fort.jpg',
   },
@@ -123,7 +123,7 @@ const VisitorCount = () => {
 
   return (
     <p className="visitor-count" ref={ref}>
-      This site has{' '}
+      This site has
       <span className="visitor-count-num" aria-label={count.toLocaleString('en-IN')}>
         {digits.map((ch, i) =>
           /\d/.test(ch) ? (
@@ -142,7 +142,7 @@ const VisitorCount = () => {
             <span key={i} aria-hidden="true">{ch}</span>
           )
         )}
-      </span>{' '}
+      </span>
       unique visitors!!
     </p>
   )

@@ -2232,9 +2232,12 @@ h3 {
   margin: 0;
 }
 
-/* Sits in the row between Aira's line and the dosa sticker, tilted a touch
-   like the stickers around it */
+/* Sits in the row between Aira's line and the dosa sticker, on one line */
 .home-outro p.visitor-count {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  white-space: nowrap;
   margin-left: auto;
   /* Clears the dosa sticker pinned at the right */
   margin-right: clamp(110px, 17vw, 250px);
@@ -2242,15 +2245,11 @@ h3 {
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   font-weight: 600;
   color: var(--chalk);
-  max-width: 13em;
-  text-align: center;
   line-height: 1.4;
-  transform: rotate(-2deg);
 }
 
 .home-outro p.visitor-count .visitor-count-num {
   font-size: 1.5em;
-  margin: 0 0.1em;
 }
 
 /* Odometer digits: a one-digit window over a 0–9 column */
@@ -2314,7 +2313,7 @@ h3 {
   .index-peek { display: none; }
   .index-kn { font-size: 0.95rem; }
   .home-outro { flex-direction: column; align-items: flex-start; }
-  .home-outro p.visitor-count { margin-left: 0; margin-right: 0; text-align: left; }
+  .home-outro p.visitor-count { margin-left: 0; margin-right: 0; font-size: 1rem; }
   .home-sticker-dosa { width: 92px; right: 4%; bottom: 8%; }
 }
 
