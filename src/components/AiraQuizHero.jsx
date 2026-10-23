@@ -105,7 +105,7 @@ const AiraQuizHero = ({ baseUrl, onStart }) => (
     </div>
 
     <div className="quiz-open-inner">
-      <h1 className="sr-only">Karnataka history quiz — ten questions, ten minutes</h1>
+      <h1 className="sr-only">Karnataka history quiz — five quizzes, spin the wheel to pick one</h1>
 
       <div className="quiz-badge">
         <svg className="quiz-badge-ring" viewBox={`0 0 ${BOX} ${BOX}`} aria-hidden="true">
@@ -124,7 +124,7 @@ const AiraQuizHero = ({ baseUrl, onStart }) => (
           </text>
           <text className="quiz-arc quiz-arc-bottom">
             <textPath href="#quizArcBottom" startOffset="50%" textAnchor="middle">
-              10 QUESTIONS · 10 MINUTES
+              5 QUIZZES · SPIN TO PICK
             </textPath>
           </text>
 

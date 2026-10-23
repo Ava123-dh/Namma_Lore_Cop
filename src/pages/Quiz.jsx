@@ -2,10 +2,14 @@ import { useState } from 'react'
 import { Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react'
 import ChatBot from '../components/Chatbot'
 import AiraQuizHero from '../components/AiraQuizHero'
+import QuizWheel from '../components/QuizWheel'
+import { quizzes } from '../data/quizzes'
 
 const Quiz = () => {
   const baseUrl = import.meta.env.BASE_URL
-  const [started, setStarted] = useState(false)
+  // 'intro' → 'wheel' → 'quiz'
+  const [stage, setStage] = useState('intro')
+  const [quizIndex, setQuizIndex] = useState(null)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -16,81 +20,11 @@ const Quiz = () => {
   const airaMascot = `${baseUrl}images/aira-mascot.png`
   const airaBadge = `${baseUrl}images/aira-bubble.png`
 
-  const questions = [
-    {
-      id: 1,
-      question: 'Who founded the Kadamba Dynasty, the first native kingdom of Karnataka?',
-      options: ['Mayurasharma', 'Pulakeshin I', 'Harihara I', 'Vishnuvardhana'],
-      correct: 0,
-      explanation: 'Mayurasharma founded the Kadamba dynasty around 345 CE, establishing the first native kingdom in Karnataka with Banavasi as its capital.'
-    },
-    {
-      id: 2,
-      question: 'Which UNESCO World Heritage Site was built by the Rashtrakutas?',
-      options: ['Hampi', 'Kailasa Temple at Ellora', 'Belur Temple', 'Badami Caves'],
-      correct: 1,
-      explanation: 'The Kailasa Temple at Ellora is a magnificent rock-cut temple built by the Rashtrakuta king Krishna I in the 8th century.'
-    },
-    {
-      id: 3,
-      question: 'In which year was Karnataka state officially formed?',
-      options: ['1947', '1950', '1956', '1973'],
-      correct: 2,
-      explanation: 'Karnataka was formed on November 1, 1956, following the States Reorganisation Act, initially called Mysore State.'
-    },
-    {
-      id: 4,
-      question: 'Who is known as "Adikavi" (First Poet) in Kannada literature?',
-      options: ['Ranna', 'Pampa', 'Ponna', 'Basavanna'],
-      correct: 1,
-      explanation: 'Pampa is called "Adikavi" and is considered one of the greatest Kannada poets. His work Vikramarjuna Vijaya is a masterpiece.'
-    },
-    {
-      id: 5,
-      question: 'Which empire had Hampi as its capital?',
-      options: ['Chalukya Empire', 'Hoysala Empire', 'Vijayanagara Empire', 'Rashtrakuta Empire'],
-      correct: 2,
-      explanation: 'The Vijayanagara Empire, founded in 1336 CE, had Hampi as its magnificent capital, which was one of the largest cities in the world at its peak.'
-    },
-    {
-      id: 6,
-      question: 'The Battle of Talikota in 1565 led to the decline of which empire?',
-      options: ['Chalukya', 'Hoysala', 'Vijayanagara', 'Rashtrakuta'],
-      correct: 2,
-      explanation: 'The Battle of Talikota resulted in the defeat of the Vijayanagara Empire by the allied Deccan Sultanates, leading to its eventual decline.'
-    },
-    {
-      id: 7,
-      question: 'Tipu Sultan was also known as:',
-      options: ['Lion of Mysore', 'Tiger of Mysore', 'Eagle of Mysore', 'Falcon of Mysore'],
-      correct: 1,
-      explanation: 'Tipu Sultan was called the "Tiger of Mysore" for his fierce resistance against British colonialism and his valor in battle.'
-    },
-    {
-      id: 8,
-      question: 'Which dynasty is known for the exquisite temples at Belur and Halebidu?',
-      options: ['Chalukya', 'Hoysala', 'Kadamba', 'Ganga'],
-      correct: 1,
-      explanation: 'The Hoysala dynasty is renowned for its intricate temple architecture, particularly the magnificent temples at Belur, Halebidu, and Somanathapura.'
-    },
-    {
-      id: 9,
-      question: 'When was Mysore State renamed as Karnataka?',
-      options: ['1956', '1965', '1973', '1980'],
-      correct: 2,
-      explanation: 'Mysore State was officially renamed Karnataka on November 1, 1973, meaning "lofty land" in Kannada.'
-    },
-    {
-      id: 10,
-      question: 'Which was the capital of the Kadamba dynasty?',
-      options: ['Badami', 'Banavasi', 'Hampi', 'Halebidu'],
-      correct: 1,
-      explanation: 'Banavasi was the capital of the Kadamba dynasty and is one of the oldest towns in Karnataka with a rich historical heritage.'
-    }
-  ]
+  const quiz = quizIndex !== null ? quizzes[quizIndex] : null
+  const questions = quiz ? quiz.questions : []
 
   const startQuiz = () => {
-    setStarted(true)
+    setStage('quiz')
     setCurrentQuestion(0)
     setScore(0)
     setSelectedAnswer(null)
@@ -130,10 +64,25 @@ const Quiz = () => {
     return { text: 'Keep practicing! History is fascinating! 💪', color: 'text-red-600' }
   }
 
-  if (!started) {
+  if (stage === 'intro') {
     return (
       <>
-        <AiraQuizHero baseUrl={baseUrl} onStart={startQuiz} />
+        <AiraQuizHero baseUrl={baseUrl} onStart={() => setStage('wheel')} />
+        <ChatBot />
+      </>
+    )
+  }
+
+  if (stage === 'wheel') {
+    return (
+      <>
+        <QuizWheel
+          quizzes={quizzes}
+          onPicked={(index) => {
+            setQuizIndex(index)
+            startQuiz()
+          }}
+        />
         <ChatBot />
       </>
     )
@@ -150,7 +99,8 @@ const Quiz = () => {
               <Trophy className="text-white" size={48} />
             </div>
             
-            <h2 className="text-3xl md:text-4xl text-gray-900 mb-6">Quiz Completed!</h2>
+            <h2 className="text-3xl md:text-4xl text-gray-900 mb-2">Quiz Completed!</h2>
+            <p className="text-lg text-gray-600 mb-6">{quiz.title}</p>
             <p className={`text-2xl font-semibold mb-8 ${scoreMessage.color}`}>
               {scoreMessage.text}
             </p>
@@ -173,7 +123,7 @@ const Quiz = () => {
               {questions.map((question, index) => {
                 const userAnswer = answers.find(a => a.question === index)
                 return (
-                  <div key={question.id} className="bg-gray-50 rounded-lg p-4 quiz-review-card">
+                  <div key={index} className="bg-gray-50 rounded-lg p-4 quiz-review-card">
                     <div className="flex items-start space-x-3 mb-2">
                       {userAnswer?.correct ? (
                         <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={20} />
@@ -209,10 +159,10 @@ const Quiz = () => {
                 Try Again
               </button>
               <button
-                onClick={() => setStarted(false)}
+                onClick={() => setStage('wheel')}
                 className="flex-1 btn-secondary"
               >
-                Back to Home
+                Spin Again
               </button>
             </div>
           </div>
@@ -250,7 +200,7 @@ const Quiz = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-gray-600">
-              Question {currentQuestion + 1} of {questions.length}
+              {quiz.title} · Question {currentQuestion + 1} of {questions.length}
             </span>
             <span className="text-sm font-semibold text-gray-600">
               Score: {score}/{currentQuestion + (selectedAnswer !== null ? 1 : 0)}
