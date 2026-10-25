@@ -2376,7 +2376,7 @@ h3 {
   gap: clamp(14px, 2.4vw, 30px);
 }
 
-@media (min-width: 880px) {
+@media (min-width: 900px) {
   .nav-links { display: flex; }
   /* Scoped so it outranks the .nav-toggle base rule further down the file */
   .nav .nav-toggle { display: none; }
@@ -2499,3 +2499,688 @@ h3 {
   color: rgba(31, 30, 28, 0.5);
 }
 
+
+/* ===========================================================================
+   Books — a 3D shelf on the board. The middle book shows its spine and the
+   rest turn their covers out the further they stand from it. Taking one down
+   opens it over the page: synopsis inside the cover, reviews opposite.
+   =========================================================================== */
+
+.books {
+  --ink: #1f1e1c;
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 5vh, 56px) 0 clamp(40px, 7vh, 72px);
+  background-color: var(--board);
+  /* Same chalk dust as the home page and the quiz */
+  background-image: var(--board-smudge), var(--board-dust);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 16px 16px;
+  color: var(--chalk);
+}
+
+.books-head {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.books-kicker {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--chalk-dim);
+}
+
+.books-kicker [lang='kn'] {
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.books-title {
+  margin: 10px 0 12px;
+  font-size: clamp(2rem, 5.4vw, 3.6rem);
+  color: var(--chalk);
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+.books-title em {
+  font-style: normal;
+  color: #f2913c;
+}
+
+.books-blurb {
+  max-width: 34rem;
+  margin: 0 auto;
+  font-size: clamp(0.98rem, 1.5vw, 1.12rem);
+  line-height: 1.55;
+  color: var(--chalk-dim);
+}
+
+/* --- The shelf ----------------------------------------------------------- */
+
+.shelf-wrap {
+  /* Everything on the shelf is sized off the cover width */
+  --book-w: clamp(108px, 12.5vw, 158px);
+  --book-t: calc(var(--book-w) * 0.26);
+  margin-top: clamp(18px, 4vh, 44px);
+}
+
+/* Clips the books running off either side. Not on the stage itself: the
+   stage holds the perspective, and the books need room to lift on hover. */
+.shelf {
+  position: relative;
+  overflow: hidden;
+  padding-top: 30px;
+}
+
+.shelf-stage {
+  position: relative;
+  z-index: 1;
+  /* Tall enough for the tallest book; they all stand on the bottom edge */
+  height: calc(var(--book-w) * 1.72);
+  perspective: calc(var(--book-w) * 7);
+  /* Eye a little above the middle of the books, so the shelf top shows */
+  perspective-origin: 50% 45%;
+  /* Sideways drags are the shelf's; up and down still scrolls the page */
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.shelf-stage:active { cursor: grabbing; }
+
+/* The book itself is the size of its spine; the covers hang off its sides.
+   Every book is as wide as the rest, and as tall as its own cover. */
+.shelf-book {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: var(--book-t);
+  height: calc(var(--book-w) / var(--aspect));
+  margin-left: calc(var(--book-t) / -2);
+  padding: 0;
+  border: 0;
+  background: none;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shelf-book:focus-visible { outline: none; }
+
+.shelf-book-body {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+}
+
+/* Hovered or focused, a book lifts a little off the shelf */
+.shelf-book:hover .shelf-book-body,
+.shelf-book:focus-visible .shelf-book-body {
+  transform: translateY(-14px);
+}
+
+.shelf-spine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: calc(var(--book-t) * 0.45) 0 calc(var(--book-t) * 0.35);
+  overflow: hidden;
+  color: var(--spine-ink);
+  background-color: var(--spine);
+  /* Rounded spine: darker at both edges, a sheen down the middle */
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.24),
+    rgba(255, 255, 255, 0.1) 38%,
+    rgba(255, 255, 255, 0.1) 58%,
+    rgba(0, 0, 0, 0.24)
+  );
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Two printed bands, top and bottom, like a cloth binding */
+.shelf-spine::before,
+.shelf-spine::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.5;
+}
+.shelf-spine::before { top: calc(var(--book-t) * 0.22); }
+.shelf-spine::after { bottom: calc(var(--book-t) * 0.2); }
+
+.shelf-book:focus-visible .shelf-spine {
+  outline: 3px solid #f97316;
+  outline-offset: 3px;
+}
+
+/* Spines read top to bottom. Long titles drop a size and take two lines. */
+.shelf-spine-title {
+  writing-mode: vertical-rl;
+  max-height: 74%;
+  overflow: hidden;
+  font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  font-synthesis: none;
+  font-size: calc(var(--book-t) * 0.4 * var(--spine-scale, 1));
+  line-height: 1.05;
+  text-align: center;
+}
+
+.shelf-spine-author {
+  writing-mode: vertical-rl;
+  flex: none;
+  font-size: calc(var(--book-t) * 0.25);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Front cover on the right of the spine, back cover on the left, both
+   folded back into the shelf. Each only shows from its own side. */
+.shelf-face {
+  position: absolute;
+  top: 0;
+  width: var(--book-w);
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.shelf-face-front {
+  left: 100%;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+}
+
+.shelf-face-back {
+  right: 100%;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+}
+
+/* Wooden plank the books stand on: a lighter top, then the front edge in
+   ink outline with the same hard shadow as the sticker buttons */
+.shelf-plank {
+  position: relative;
+  height: 20px;
+  margin: 0 -10px;
+  background: #c98a4b;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.35);
+}
+
+.shelf-plank::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 16px;
+  background: linear-gradient(#b8783c, #e3a865);
+}
+
+/* --- Covers -------------------------------------------------------------- */
+
+/* The real front cover, edge to edge, with the same ink outline as
+   everything else on the board */
+.book-cover {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: var(--spine, #fffaf0);
+  background-size: cover;
+  border: 2px solid #1f1e1c;
+  border-radius: 2px 5px 5px 2px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* --- Caption and arrows -------------------------------------------------- */
+
+.shelf-caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  max-width: 760px;
+  margin: clamp(24px, 4vh, 40px) auto 0;
+  padding: 0 24px;
+}
+
+.shelf-nav {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--ink);
+  background: #fffaf0;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  transition: background-color 0.14s ease, transform 0.14s ease, box-shadow 0.14s ease, opacity 0.2s ease;
+}
+
+.shelf-nav:hover:not(:disabled) { background: #f2f531; }
+
+.shelf-nav:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 var(--ink);
+}
+
+.shelf-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.shelf-nav:focus-visible {
+  outline: 4px solid #f97316;
+  outline-offset: 4px;
+}
+
+.shelf-now {
+  margin: 0;
+  text-align: center;
+}
+
+.shelf-now-n {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--chalk-dim);
+}
+
+/* Room for two lines, so a long title doesn't shove the page about */
+.shelf-now-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.3em;
+  margin-top: 6px;
+  font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  font-synthesis: none;
+  font-size: clamp(1.05rem, 2.3vw, 1.5rem);
+  line-height: 1.15;
+  color: var(--chalk);
+}
+
+.shelf-now-by {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  color: var(--chalk-dim);
+}
+
+@media (max-width: 640px) {
+  .books-head,
+  .shelf-caption { padding: 0 16px; }
+  .shelf-caption { gap: 10px; }
+  .shelf-nav { width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shelf-book-body { transition: none; }
+}
+
+/* --- The open book ------------------------------------------------------- */
+
+.ob {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 16px 40px;
+  background: rgba(22, 22, 21, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: obFade 0.3s ease;
+  transition: opacity 0.4s ease;
+}
+
+.ob-leaving { opacity: 0; }
+
+.ob-close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: #1f1e1c;
+  background: #fffaf0;
+  border: 3px solid #1f1e1c;
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 0 #1f1e1c;
+  transition: background-color 0.14s ease;
+}
+
+.ob-close:hover { background: #f2f531; }
+
+.ob-close:focus-visible {
+  outline: 4px solid #f97316;
+  outline-offset: 4px;
+}
+
+.ob-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  perspective: 2200px;
+  outline: none;
+  animation: obRise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.4s ease;
+}
+
+.ob-leaving .ob-dialog { transform: translateY(24px) scale(0.96); }
+
+@keyframes obFade {
+  from { opacity: 0; }
+}
+
+@keyframes obRise {
+  from { opacity: 0; transform: translateY(40px) scale(0.9); }
+}
+
+/* Two page-sized halves. Shut, the cover lies over the right-hand page and
+   the whole book slides left so it sits in the middle; open, the cover
+   swings over to the left and the spread centres itself. The pages take the
+   cover's own proportions, so the whole cover shows. */
+.ob-book {
+  --ph: min(500px, calc(100svh - 170px));
+  --pw: min(calc(var(--ph) * var(--aspect)), 44vw);
+  position: relative;
+  width: calc(var(--pw) * 2);
+  height: var(--ph);
+  transform-style: preserve-3d;
+  transform: translateX(calc(var(--pw) * -0.5));
+  transition: transform 0.8s cubic-bezier(0.6, 0.05, 0.3, 1);
+  cursor: pointer;
+}
+
+.ob-book.is-open { transform: none; }
+
+.ob-paper {
+  color: #1f1e1c;
+  background-color: #fffaf0;
+  border: 3px solid #1f1e1c;
+}
+
+.ob-page-reviews {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pw);
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+  /* The gutter darkens towards the spine */
+  background-image: linear-gradient(90deg, rgba(31, 30, 28, 0.13), rgba(31, 30, 28, 0) 12%);
+  box-shadow: 8px 8px 0 0 #1f1e1c;
+}
+
+.ob-leaf {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pw);
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.6, 0.05, 0.3, 1);
+}
+
+.ob-book.is-open .ob-leaf { transform: rotateY(-180deg); }
+
+.ob-leaf-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ob-leaf-front {
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: 8px 8px 0 0 #1f1e1c;
+}
+
+.ob-leaf-front .book-cover {
+  border-width: 3px;
+  border-radius: 2px 8px 8px 2px;
+}
+
+.ob-leaf-back {
+  transform: rotateY(180deg);
+  border-radius: 8px 0 0 8px;
+  background-image: linear-gradient(270deg, rgba(31, 30, 28, 0.13), rgba(31, 30, 28, 0) 12%);
+  box-shadow: 0 8px 0 0 #1f1e1c;
+}
+
+.ob-paper-inner {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.ob-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.ob-title {
+  margin: 8px 0 6px;
+  font-size: clamp(1.2rem, 2.1vw, 1.5rem);
+  line-height: 1.15;
+  color: #1f1e1c;
+}
+
+.ob-byline {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(31, 30, 28, 0.62);
+}
+
+.ob-synopsis {
+  margin-top: 14px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.ob-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 14px;
+}
+
+.ob-rating-num {
+  font-family: 'Bagel Fat One', 'Fredoka', system-ui, sans-serif;
+  font-synthesis: none;
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.ob-rating-of {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(31, 30, 28, 0.62);
+}
+
+.ob-reviews {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ob-review {
+  padding: 10px 12px;
+  background: #fdf4e3;
+  border: 2px solid #1f1e1c;
+  border-radius: 10px;
+}
+
+.ob-stars {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: #ea580c;
+}
+
+.ob-stars-off { color: rgba(31, 30, 28, 0.2); }
+
+.ob-review-text {
+  margin: 4px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.ob-review-text::before { content: '“'; }
+.ob-review-text::after { content: '”'; }
+
+.ob-review-by {
+  margin-top: 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(31, 30, 28, 0.6);
+}
+
+.ob-review-by::before { content: '— '; }
+
+.ob-empty {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(31, 30, 28, 0.75);
+}
+
+/* Same sticker button as the quiz's Start */
+.ob-goodreads {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 0.55em 1.2em;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #1f1e1c;
+  background: #b7f04a;
+  border: 3px solid #1f1e1c;
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 0 #1f1e1c;
+  transition: background-color 0.14s ease, transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.ob-goodreads:hover {
+  background: #f2f531;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #1f1e1c;
+}
+
+.ob-goodreads:focus-visible {
+  outline: 4px solid #f97316;
+  outline-offset: 4px;
+}
+
+.ob-hint {
+  min-height: 1.4em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--chalk);
+}
+
+/* A phone has no room for a spread: hinge the cover at the top instead, so
+   it flips up like a notepad and the two pages stack */
+@media (max-width: 759px) {
+  .ob { padding: 70px 16px 24px; }
+
+  .ob-book {
+    --pw: min(calc(100vw - 32px), 420px);
+    --ph: min(calc(var(--pw) * 0.95), calc((100svh - 150px) / 2));
+    width: var(--pw);
+    height: calc(var(--ph) * 2);
+    transform: translateY(calc(var(--ph) * -0.5));
+  }
+
+  .ob-page-reviews,
+  .ob-leaf {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: var(--ph);
+  }
+
+  .ob-page-reviews {
+    border-radius: 0 0 8px 8px;
+    background-image: linear-gradient(180deg, rgba(31, 30, 28, 0.13), rgba(31, 30, 28, 0) 12%);
+    box-shadow: 6px 6px 0 0 #1f1e1c;
+  }
+
+  .ob-leaf { transform-origin: center top; }
+  .ob-book.is-open .ob-leaf { transform: rotateX(180deg); }
+
+  /* The leaf is wider than a cover here, so the cover stands in the middle
+     of it at its own shape, and the page underneath stays out of sight
+     until the cover flips up */
+  .ob-leaf-front { box-shadow: none; }
+
+  .ob-leaf-front .book-cover {
+    left: 50%;
+    right: auto;
+    width: auto;
+    height: 100%;
+    aspect-ratio: var(--aspect);
+    transform: translateX(-50%);
+    border-radius: 2px 6px 6px 2px;
+    box-shadow: 6px 6px 0 0 #1f1e1c;
+  }
+
+  .ob-page-reviews { transition: opacity 0.3s ease; }
+  .ob-book:not(.is-open) .ob-page-reviews { opacity: 0; }
+
+  .ob-leaf-back {
+    transform: rotateX(180deg);
+    border-radius: 8px 8px 0 0;
+    background-image: linear-gradient(0deg, rgba(31, 30, 28, 0.13), rgba(31, 30, 28, 0) 12%);
+    box-shadow: 6px 0 0 0 #1f1e1c;
+  }
+
+  .ob-paper-inner { padding: 16px 18px; }
+  .ob-synopsis { margin-top: 10px; }
+  .ob-dialog { gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ob,
+  .ob-dialog { animation: none; }
+  .ob-book,
+  .ob-leaf { transition-duration: 0.01s; }
+}

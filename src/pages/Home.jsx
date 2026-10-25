@@ -58,6 +58,14 @@ const INDEX_ROWS = [
   },
   {
     n: '05',
+    name: 'Books',
+    kn: 'ಪುಸ್ತಕಗಳು',
+    blurb: 'Fifteen books on the state and the city',
+    to: '/books',
+    img: 'mysore-renamed/mysore-renamed-1-vidhana-soudha.jpg',
+  },
+  {
+    n: '06',
     name: 'Favourites',
     kn: 'ಇಷ್ಟಗಳು',
     blurb: 'Everything you pinned along the way',

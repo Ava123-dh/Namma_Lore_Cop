@@ -8,6 +8,7 @@ const navItems = [
   { name: 'Quiz', path: '/quiz', kn: 'ಪ್ರಶ್ನೋತ್ತರ' },
   { name: 'Map', path: '/map', kn: 'ನಕ್ಷೆ' },
   { name: "B'lore Walks", path: '/walks', kn: 'ಬೆಂಗಳೂರು ನಡಿಗೆ' },
+  { name: 'Books', path: '/books', kn: 'ಪುಸ್ತಕಗಳು' },
   { name: 'Favorites', path: '/favorites', kn: 'ಇಷ್ಟಗಳು' },
   { name: 'Contact', path: '/contact', kn: 'ಸಂಪರ್ಕ' },
 ]
