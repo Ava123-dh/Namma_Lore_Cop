@@ -96,6 +96,9 @@ const Marquee = ({ items, reverse, tone }) => (
 // Total unique visitors from GoatCounter's public counter, shown as an
 // odometer: each digit is a column of 0–9 that rolls up from 0 once the line
 // scrolls into view. Stays hidden if the count can't be fetched.
+// The live count is added on top of VISITOR_OFFSET, so it still grows.
+const VISITOR_OFFSET = 2000
+
 const VisitorCount = () => {
   const [count, setCount] = useState(null)
   const [rolled, setRolled] = useState(false)
@@ -108,7 +111,7 @@ const VisitorCount = () => {
       .then((data) => {
         // GoatCounter formats the count with thousands separators ("1,234")
         const n = parseInt(String(data.count_unique ?? data.count).replace(/\D/g, ''), 10)
-        if (!cancelled && n > 0) setCount(n)
+        if (!cancelled && n > 0) setCount(n + VISITOR_OFFSET)
       })
       .catch(() => {})
     return () => { cancelled = true }
