@@ -1,17 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Heart, ChevronRight, Hand } from 'lucide-react'
 import { useFavorites } from '../context/FavoritesContext'
 import CoverflowCarousel from '../components/CoverflowCarousel'
 import ChatBot from '../components/Chatbot'
 
+// The era filter and centred card, kept for the tab's lifetime so coming back
+// from an era's page lands on the same card instead of the Mauryans again.
+const PLACE_KEY = 'nammaLoreTimelinePlace'
+
+const readSavedPlace = () => {
+  try {
+    return JSON.parse(sessionStorage.getItem(PLACE_KEY)) || {}
+  } catch {
+    return {}
+  }
+}
+
 const Timeline = () => {
   const baseUrl = import.meta.env.BASE_URL
   const navigate = useNavigate()
   const { isFavorite, toggleFavorite } = useFavorites()
-  const [selectedEra, setSelectedEra] = useState('all')
   const [selectedEvent, setSelectedEvent] = useState(null)
-  const [selected, setSelected] = useState(0)
 
   const timelineEvents = [
     {
@@ -166,9 +176,18 @@ const Timeline = () => {
     { id: 'modern', name: 'Modern (1700 - Present)', color: 'green' },
   ]
 
+  const [saved] = useState(readSavedPlace)
+  const [selectedEra, setSelectedEra] = useState(
+    eras.some((era) => era.id === saved.era) ? saved.era : 'all',
+  )
+
   const filteredEvents = selectedEra === 'all'
     ? timelineEvents
     : timelineEvents.filter(event => event.era === selectedEra)
+
+  const [selected, setSelected] = useState(() =>
+    Math.max(0, filteredEvents.findIndex((event) => event.id === saved.eventId)),
+  )
 
   const cleanText = (text = '') => text.replace(/\[\d+\]/g, '').trim()
 
@@ -184,6 +203,14 @@ const Timeline = () => {
 
   // Guard the index against the shrinking list when a filter is applied.
   const activeEvent = filteredEvents[selected] || filteredEvents[0]
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(PLACE_KEY, JSON.stringify({ era: selectedEra, eventId: activeEvent?.id }))
+    } catch {
+      // Storage blocked (private mode etc.): the carousel just starts over.
+    }
+  }, [selectedEra, activeEvent?.id])
 
   const goToEra = (event) => {
     if (event?.route) navigate(event.route)
@@ -225,6 +252,7 @@ const Timeline = () => {
             <CoverflowCarousel
               key={selectedEra}
               slides={slides}
+              initialIndex={selected}
               onSelectedChange={setSelected}
               onActivate={(i) => goToEra(filteredEvents[i])}
               showNavigation

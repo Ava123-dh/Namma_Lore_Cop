@@ -14,11 +14,13 @@ const useIsoLayoutEffect =
  * only the styling tokens and the TypeScript were changed.
  *
  * slides: [{ src, alt }]
+ * initialIndex: the card centred on mount (read once, later changes ignored).
  * onSelectedChange(index): fires when the centred card changes.
  * onActivate(index): fires when the already-centred card is clicked.
  */
 export function CoverflowCarousel({
   slides,
+  initialIndex = 0,
   rotate = 44,
   depth = 0.6,
   perspective = 3,
@@ -40,10 +42,10 @@ export function CoverflowCarousel({
   const frameRef = React.useRef(null)
   const cardRefs = React.useRef([])
   /** Fractional card index at the centre. The single source of truth. */
-  const posRef = React.useRef(0)
+  const posRef = React.useRef(initialIndex)
   /** Where the current settle is headed. Stepping off `pos` instead would
       swallow a keypress that lands mid-flight, before the round-off moves. */
-  const targetRef = React.useRef(0)
+  const targetRef = React.useRef(initialIndex)
   const widthRef = React.useRef(0)
   const rafRef = React.useRef(null)
   const dragRef = React.useRef(null)
@@ -51,7 +53,7 @@ export function CoverflowCarousel({
       doesn't get read as a tap-to-navigate. */
   const movedRef = React.useRef(false)
 
-  const [selected, setSelected] = React.useState(0)
+  const [selected, setSelected] = React.useState(initialIndex)
 
   React.useEffect(() => {
     onSelectedChange?.(selected)
